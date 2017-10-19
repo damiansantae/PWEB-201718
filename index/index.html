@@ -6,27 +6,80 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<div>
-    <form>
-        <input v-text="Nombre" name="nombre" placeholder="Nombre" required>
-        <input v-text="Apellidos" name="nombre" placeholder="Apellidos" required>
+<div id="main-container">
+    <header>
+        <h1>Nombre de la Web</h1>
+    </header>
+    <div id="main-wrapper" role="main">
+        <section id="explanation-wrapper">
+            <h2> ¿Qué es NombreDeLaWeb? </h2>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent facilisis mi id risus vestibulum varius.
+            Praesent ac leo eget urna imperdiet elementum sit amet ac leo. Cras sagittis tortor ut enim imperdiet, in
+            pulvinar turpis vehicula. Vivamus a suscipit ipsum, sit amet dapibus orci. Duis in rhoncus mauris. Donec
+            blandit, tellus sit amet cursus tincidunt, quam mi finibus ante, et vehicula erat ante quis nisi. Morbi
+            vitae nisi et massa commodo euismod. Nunc in augue neque. Interdum et malesuada fames ac ante ipsum primis
+            in faucibus.
+        </section>
+        <section id="register-wrapper">
+            <h2>Registrate gratis</h2>
+            <form id="register">
+                <input v-text="Nombre" name="nombre" placeholder="Nombre" required> <br>
+                <input v-text="Apellidos" name="nombre" placeholder="Apellidos" required><br>
 
-        <input v-text="Nombre" name="nombre" placeholder="Nombre de usuario" required>
-        <input type="password" name="password" placeholder="Contraseña nueva" required>
-        <input type="password" name="passwordr" placeholder="Repetir contraseña" required>
-        <input v-text="peso" name="nombre" placeholder="0,0" type="number">
-        <select name="unit">
-            <option> kg</option>
-            <option> lb</option>
-        </select>
-        <input v-text="peso" name="age" placeholder="0" type="number">
-        <input type="radio" name="sex" value="h"> Hombre
-        <input type="radio" name="sex" value="m"> Mujer
+                <input v-text="Nombre" name="nombre" placeholder="Nombre de usuario" required><br>
+                <input type="password" name="password" placeholder="Contraseña nueva" required><br>
+                <input type="password" name="passwordr" placeholder="Repetir contraseña" required><br>
+                <input v-text="peso" name="nombre" placeholder="0,0" type="number">
+                <select name="unit">
+                    <option> kg</option>
+                    <option> lb</option>
+                </select> <br>
+                Edad
+                <input v-text="edad" name="age" placeholder="0" type="number"><br>
+                <input type="radio" name="sex" value="h"> Hombre
+                <input type="radio" name="sex" value="m"> Mujer <br>
+                <input class="button" type="button" name="register" value="Register">
+            </form>
+        </section>
 
-        <input class="button" type="button" name="register" value="Register">
-    </form>
+    </div>
 </div>
-
-
 </body>
 </html>
+
+
+
+
+<!--
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Save The Child | Home Page</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div id="main-container">
+    <header>
+        <h1 id="logo">Save The Child</h1>
+    </header>
+    <div id="main" role="main">
+        <section id="main-top-section">
+            <div id="donation-address">
+                <p class="donation-address">
+                    Lorem ipsum dolor sit amet, consectetur e magna aliqua.
+                    Nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident.
+                </p>
+
+            </div>
+        </section>
+    </div>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>
+-->

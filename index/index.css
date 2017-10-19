@@ -3,3 +3,123 @@
     background-color: darkred;
  text-decoration-color: white;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+}
+ul li, ol li {
+    list-style: none;
+}
+
+
+html,body{
+    font-size: 62.5%;
+}
+
+h1 {
+    font-size: 6em;
+}
+
+h2 {
+    font-size: 3em;
+}
+
+#main-container {
+    width: 1280px;
+    margin: 0 auto;
+}
+
+div#main-wrapper {
+  height: 900px;
+    width: 100%;
+    margin-top: 18px;
+    padding-top: 20px;
+background-color: darkred;
+}
+
+#explanation-wrapper {
+    text-align: center;
+    border-radius: 50%;
+  margin-left: 50px;
+    margin-top: 200px;
+   width: 450px;
+    height: 450px;
+    float: left;
+    background-color: white;
+}
+
+form {
+    font-size: 2em;
+    position: relative;
+    left: 125px;
+    width  : 100%;
+    height : 450px;
+    margin : 0 auto;
+
+}
+
+
+#register-wrapper {
+    text-align: center;
+    border-radius: 50%;
+    margin-left: 50px;
+    margin-top: 200px;
+    width: 450px;
+    float: left;
+    background-color: white;
+    height: 450px;
+}
+    input {
+        border: none;
+        border-bottom: 2px solid darkred;
+    width: 200px;
+    padding: 4px;
+    margin-top: 10px;
+}
+    select{
+        padding: 4px 4px;
+        border: none;
+        border-radius: 4px;
+        border-bottom-color: darkred;
+
+        background-color: #f1f1f1;
+    }
+
+/*
+
+* {
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+}
+#main-container {
+    width: 980px;
+    margin: 0 auto;
+}
+
+header {
+    height: 80px;
+}
+
+div#main {
+    clear: both;
+    min-height: 480px;
+}
+
+#main-top-section {
+    width: 100%;
+    height: 90%;
+    margin-top: 18px;
+    background-color: darkred;
+}
+p.donation-address {
+    padding: 4em 46% 2.5em 2em;
+}
+
+*/
