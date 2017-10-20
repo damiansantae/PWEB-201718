@@ -11,7 +11,7 @@
         <div id="logo" class="col-3">
         <h1>Nombre de la Web</h1>
         </div>
-        <div id="login-form" class="col-3">
+        <div id="login-form" class="col-4">
             <input name="user" placeholder="Nombre de usuario o email" required>
             <input type="password" name="password" placeholder="Contraseña" required>
             <input class="button" type="button" name="login" value="Login">
@@ -32,22 +32,22 @@
         <section id="register-wrapper" class="col-3">
             <h2>Registrate gratis</h2>
             <form id="register">
-                <input v-text="Nombre" name="nombre" placeholder="Nombre" required> <br>
-                <input v-text="Apellidos" name="nombre" placeholder="Apellidos" required><br>
+                <input v-text="Nombre" name="nombre"  class="w3-input w3-border w3-round-large" placeholder="Nombre" required> <br>
+                <input v-text="Apellidos" name="nombre" class="w3-input w3-border w3-round-large" placeholder="Apellidos" required><br>
 
-                <input v-text="Nombre" name="nombre" placeholder="Nombre de usuario" required><br>
-                <input type="password" name="password" placeholder="Contraseña nueva" required><br>
-                <input type="password" name="passwordr" placeholder="Repetir contraseña" required><br>
-                <input v-text="peso" name="nombre" placeholder="0,0" type="number">
+                <input v-text="Nombre" name="nombre" class="w3-input w3-border w3-round-large" placeholder="Nombre de usuario" required><br>
+                <input type="password" name="password" class="w3-input w3-border w3-round-large" placeholder="Contraseña nueva" required><br>
+                <input type="password" name="passwordr" class="w3-input w3-border w3-round-large" placeholder="Repetir contraseña" required><br>
+                <input v-text="peso" name="nombre" class="short-input w3-border w3-round-large" placeholder="0,0" type="number">
                 <select name="unit">
                     <option> kg</option>
                     <option> lb</option>
-                </select> <br>
+                </select>
                 Edad
-                <input v-text="edad" name="age" placeholder="0" type="number"><br>
-                <input type="radio" name="sex" value="h"> Hombre
-                <input type="radio" name="sex" value="m"> Mujer <br>
-                <input class="button" type="button" name="register" value="Register">
+                <input v-text="edad" name="age"  class=" short-input w3-border w3-round-large" placeholder="0" type="number"><br>
+                <input type="radio" name="sex" value="h" class="w3-radio"> Hombre
+                <input type="radio" name="sex" value="m" class="w3-radio"> Mujer <br>
+                <input class="w3-button w3-round-large w3-red" type="button" name="register" value="Register">
             </form>
         </section>
 
