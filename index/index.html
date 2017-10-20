@@ -6,12 +6,21 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<div id="main-container">
-    <header>
+
+    <header class="col-12">
+        <div id="logo" class="col-3">
         <h1>Nombre de la Web</h1>
+        </div>
+        <div id="login-form" class="col-3">
+            <input name="user" placeholder="Nombre de usuario o email" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <input class="button" type="button" name="login" value="Login">
+
+        </div>
     </header>
-    <div id="main-wrapper" role="main">
-        <section id="explanation-wrapper">
+    <div id="main-container" class="col-12">
+
+        <section id="explanation-wrapper" class="col-3">
             <h2> ¿Qué es NombreDeLaWeb? </h2>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent facilisis mi id risus vestibulum varius.
             Praesent ac leo eget urna imperdiet elementum sit amet ac leo. Cras sagittis tortor ut enim imperdiet, in
@@ -20,7 +29,7 @@
             vitae nisi et massa commodo euismod. Nunc in augue neque. Interdum et malesuada fames ac ante ipsum primis
             in faucibus.
         </section>
-        <section id="register-wrapper">
+        <section id="register-wrapper" class="col-3">
             <h2>Registrate gratis</h2>
             <form id="register">
                 <input v-text="Nombre" name="nombre" placeholder="Nombre" required> <br>
@@ -43,43 +52,6 @@
         </section>
 
     </div>
-</div>
 </body>
 </html>
 
-
-
-
-<!--
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-
-    <title>Save The Child | Home Page</title>
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
-<div id="main-container">
-    <header>
-        <h1 id="logo">Save The Child</h1>
-    </header>
-    <div id="main" role="main">
-        <section id="main-top-section">
-            <div id="donation-address">
-                <p class="donation-address">
-                    Lorem ipsum dolor sit amet, consectetur e magna aliqua.
-                    Nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident.
-                </p>
-
-            </div>
-        </section>
-    </div>
-</div>
-<script src="js/main.js"></script>
-</body>
-</html>
--->
