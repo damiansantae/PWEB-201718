@@ -12,9 +12,9 @@
         <h1>Nombre de la Web</h1>
         </div>
         <div id="login-form" class="col-4">
-            <input name="user" placeholder="Nombre de usuario o email" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
-            <input class="button" type="button" name="login" value="Login">
+            <input name="user" class="login-input w3-border w3-round-large" placeholder="Nombre de usuario o email" required>
+            <input type="password" class="login-input w3-border w3-round-large" name="password" placeholder="Contraseña" required>
+            <input  type="button" class="w3-button w3-round-large w3-red"  name="login" value="Login">
 
         </div>
     </header>
@@ -39,15 +39,18 @@
                 <input type="password" name="password" class="w3-input w3-border w3-round-large" placeholder="Contraseña nueva" required><br>
                 <input type="password" name="passwordr" class="w3-input w3-border w3-round-large" placeholder="Repetir contraseña" required><br>
                 <input v-text="peso" name="nombre" class="short-input w3-border w3-round-large" placeholder="0,0" type="number">
-                <select name="unit">
+                <select name="unit" id="d-unit">
                     <option> kg</option>
                     <option> lb</option>
                 </select>
                 Edad
                 <input v-text="edad" name="age"  class=" short-input w3-border w3-round-large" placeholder="0" type="number"><br>
-                <input type="radio" name="sex" value="h" class="w3-radio"> Hombre
-                <input type="radio" name="sex" value="m" class="w3-radio"> Mujer <br>
-                <input class="w3-button w3-round-large w3-red" type="button" name="register" value="Register">
+                <div id="rb-sex">
+                    <input type="radio" name="sex" value="h" class="w3-radio"> Hombre
+                    <input type="radio" name="sex" value="m" class="w3-radio"> Mujer
+                </div><br>
+
+                <input id="btn-register" class="w3-button w3-round-large w3-red" type="button" name="register" value="Register">
             </form>
         </section>
 
