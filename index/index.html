@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>jgsbdnk</title>
     <link rel="stylesheet" href="assets/css/index.css">
+
 </head>
 <body>
 
@@ -11,12 +12,12 @@
         <div id="logo" class="col-3">
             <img src="assets/img/2ND%20LOGO.png" alt="logo" width="300" height="100"/>
         </div>
-        <div id="login-form" class="col-4">
+        <form id="login-form" class="col-4">
             <input name="user" class="login-input w3-border w3-round-large" placeholder="Nombre de usuario o email" required>
             <input type="password" class="login-input w3-border w3-round-large" name="password" placeholder="Contraseña" required>
-            <input  type="submit" class="w3-button w3-round-large w3-red"  name="login" value="Login">
+            <input  id="btn-login" type="submit" class="w3-button w3-round-large w3-red"  name="login" value="Login">
 
-        </div>
+        </form>
     </header>
     <div id="main-container" class="col-12">
 
@@ -53,6 +54,9 @@
                 <input id="btn-register" class="w3-button w3-round-large w3-red" type="submit" name="register" value="Register">
             </form>
         </section>
+        <footer>
+            <script type="text/javascript" src="js/index.js"></script>
+        </footer>
 
     </div>
 </body>
