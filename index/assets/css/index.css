@@ -1658,14 +1658,20 @@ header {
 }
 
 #explanation-wrapper {
+    border-radius: 50%;
+    text-align: center;
+    padding: 5%;
     background-color: white;
-    margin: 10%;
+    margin: 5%;
+    height: 600px;
 }
 
 #register-wrapper {
+    padding: 2.5%;
+    border-radius: 50%;
     background-color: white;
     text-align: center;
-    margin: 10%;
+    margin: 5%;
     float: right;
 }
 
@@ -1674,6 +1680,13 @@ header {
     float: right;
 }
 
+#input-name{
+    padding: 8px;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 75%
+}
 .row::after {
     content: "";
     clear: both;
@@ -1735,6 +1748,9 @@ header {
 }
 
 @media only screen and (max-width: 768px) {
+    body{
+        text-align: center;
+    }
     /* For mobile phones: */
     [class*="col-"] {
         width: 100%;
@@ -1750,5 +1766,6 @@ header {
         margin: 0;
         float: left;
     }
+
 
 }

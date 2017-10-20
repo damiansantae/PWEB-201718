@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>jgsbdnk</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
 
     <header class="col-12">
         <div id="logo" class="col-3">
-        <h1>Nombre de la Web</h1>
+            <img src="assets/img/2ND%20LOGO.png" alt="logo" width="300" height="100"/>
         </div>
         <div id="login-form" class="col-4">
             <input name="user" class="login-input w3-border w3-round-large" placeholder="Nombre de usuario o email" required>
             <input type="password" class="login-input w3-border w3-round-large" name="password" placeholder="Contraseña" required>
-            <input  type="button" class="w3-button w3-round-large w3-red"  name="login" value="Login">
+            <input  type="submit" class="w3-button w3-round-large w3-red"  name="login" value="Login">
 
         </div>
     </header>
@@ -38,7 +38,7 @@
                 <input name="nombre" class="w3-input w3-border w3-round-large" placeholder="Nombre de usuario" required><br>
                 <input type="password" name="password" class="w3-input w3-border w3-round-large" placeholder="Contraseña nueva" required><br>
                 <input type="password" name="passwordr" class="w3-input w3-border w3-round-large" placeholder="Repetir contraseña" required><br>
-                <input  name="peso" class="short-input w3-border w3-round-large" placeholder="0,0" type="number">
+                <input  name="peso" class="short-input w3-border w3-round-large" placeholder="0,0" type="number" min="0">
                 <select name="unit" id="d-unit" class="w3-border w3-round-large short-input">
                     <option> kg</option>
                     <option> lb</option>
@@ -50,7 +50,7 @@
                     <input type="radio" name="sex" value="m" class="w3-radio"> Mujer
                 </div><br>
 
-                <input id="btn-register" class="w3-button w3-round-large w3-red" type="button" name="register" value="Register">
+                <input id="btn-register" class="w3-button w3-round-large w3-red" type="submit" name="register" value="Register">
             </form>
         </section>
 
