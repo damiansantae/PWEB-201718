@@ -1696,7 +1696,7 @@ header {
 [class*="col-"] {
     float: left;
     padding: 15px;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
 }
 
 .col-1 {
@@ -1759,12 +1759,25 @@ header {
 
     #explanation-wrapper {
         display: none;
-        margin: 0;
     }
 
     #register-wrapper {
         margin: 0;
-        float: left;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    #input-apellidos{
+        padding: 8px;
+        margin-left: 40px;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        width: 80%;
+    }
+    #input-name{
+        width: 70%;
+    }
+    #main-container{
+        margin-top: 10px;
     }
 
 
