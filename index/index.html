@@ -20,7 +20,7 @@
     </header>
     <div id="main-container" class="col-12">
 
-        <section id="explanation-wrapper" class="col-3">
+        <section id="explanation-wrapper" class="col-4">
             <h2> ¿Qué es NombreDeLaWeb? </h2>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent facilisis mi id risus vestibulum varius.
             Praesent ac leo eget urna imperdiet elementum sit amet ac leo. Cras sagittis tortor ut enim imperdiet, in
@@ -29,17 +29,17 @@
             vitae nisi et massa commodo euismod. Nunc in augue neque. Interdum et malesuada fames ac ante ipsum primis
             in faucibus.
         </section>
-        <section id="register-wrapper" class="col-3">
+        <section id="register-wrapper" class="col-4">
             <h2>Registrate gratis</h2>
             <form id="register">
-                <input v-text="Nombre" name="nombre"  class="w3-input w3-border w3-round-large" placeholder="Nombre" required> <br>
+                <input id="input-name" v-text="Nombre" name="nombre"  class="w3-border w3-round-large" placeholder="Nombre" required> <br>
                 <input v-text="Apellidos" name="nombre" class="w3-input w3-border w3-round-large" placeholder="Apellidos" required><br>
 
-                <input v-text="Nombre" name="nombre" class="w3-input w3-border w3-round-large" placeholder="Nombre de usuario" required><br>
+                <input name="nombre" class="w3-input w3-border w3-round-large" placeholder="Nombre de usuario" required><br>
                 <input type="password" name="password" class="w3-input w3-border w3-round-large" placeholder="Contraseña nueva" required><br>
                 <input type="password" name="passwordr" class="w3-input w3-border w3-round-large" placeholder="Repetir contraseña" required><br>
-                <input v-text="peso" name="nombre" class="short-input w3-border w3-round-large" placeholder="0,0" type="number">
-                <select name="unit" id="d-unit">
+                <input  name="peso" class="short-input w3-border w3-round-large" placeholder="0,0" type="number">
+                <select name="unit" id="d-unit" class="w3-border w3-round-large short-input">
                     <option> kg</option>
                     <option> lb</option>
                 </select>
