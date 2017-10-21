@@ -31,9 +31,17 @@
     float: left;
     height: 350px;
     width: 410px;
-
+    padding: 125px;
     border: 1px solid gainsboro;
     text-align: center;
+}
+[class*="col-"]:hover {
+    background-image: none;
+    background-color: darkred;
+
+}
+[class*="col-"]:hover h1{
+    display: block;
 
 }
 .row::after {
@@ -43,7 +51,8 @@
 }
 
 h1 {
-    color: darkred;
-
+    display: none;
+    color: white;
+    align-self: center;
 }
 
