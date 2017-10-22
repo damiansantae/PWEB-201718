@@ -1,8 +1,7 @@
 div.tab {
 
     overflow: hidden;
-    border: 1px solid #FFffff;
-    background-color: #b30000;
+    background-color: darkred;
     tab-size: 44;
 
 }
@@ -22,7 +21,7 @@ div.tab button {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 20px 50px;
     transition: 0.3s;
     margin-left: 3.5em;
     margin-right: 3.5em;
@@ -34,7 +33,9 @@ div.tab button:hover {
     -moz-tab-size: 4;
     -o-tab-size:   4;
     tab-size:      4;
-    background-color: #ff6666;
+    background-color: white;
+    color: darkred;
+
 
 }
 
@@ -44,7 +45,9 @@ div.tab button.active {
     -moz-tab-size: 4;
     -o-tab-size:   4;
     tab-size:      4;
-    background-color: #ff6666;
+    background-color: white;
+    color: darkred;
+
 
 }
 
@@ -64,9 +67,9 @@ div.tab button.active {
 }
 
 #pestanas #pestana5, #cpestana5{
-    background: #b30000;
+    background: darkred;
 }
 
 #pestanas #pestana6, #cpestana6{
-    background: #b30000;
+    background: darkred;
 }
