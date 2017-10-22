@@ -1,0 +1,72 @@
+div.tab {
+
+    overflow: hidden;
+    border: 1px solid #FFffff;
+    background-color: #b30000;
+    tab-size: 44;
+
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    -moz-tab-size: 4;
+    -o-tab-size:   4;
+    tab-size:      4;
+    color: WHITE;
+    font-size: 155%;
+    text-align: justify;
+    text-justify: inter-word;
+    font-family: Verdana, Arial, Times, serif;
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    margin-left: 3.5em;
+    margin-right: 3.5em;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+
+    -moz-tab-size: 4;
+    -o-tab-size:   4;
+    tab-size:      4;
+    background-color: #ff6666;
+
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+
+    -moz-tab-size: 4;
+    -o-tab-size:   4;
+    tab-size:      4;
+    background-color: #ff6666;
+
+}
+
+/* Style the tab content */
+.tabcontent {
+    font-family: Verdana, Arial, Times, serif;
+    text-align: justify;
+    text-justify: inter-word;
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ffffff;
+    border-top: none;
+    -moz-tab-size: 4;
+    -o-tab-size:   4;
+    tab-size:      4;
+
+}
+
+#pestanas #pestana5, #cpestana5{
+    background: #b30000;
+}
+
+#pestanas #pestana6, #cpestana6{
+    background: #b30000;
+}
