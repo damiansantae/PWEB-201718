@@ -31,7 +31,7 @@
     float: left;
     height: 350px;
     width: 400px;
-    border: 1px solid gainsboro;
+    border: 1px solid darkred;
     text-align: center;
 }
 [class*="col-"]:hover {
