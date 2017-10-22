@@ -29,7 +29,6 @@
 
 [class*="col-"] {
     float: left;
-    /*padding:125px;*/
     height: 350px;
     width: 410px;
     border: 1px solid gainsboro;
@@ -37,13 +36,14 @@
 }
 [class*="col-"]:hover {
     background-color: darkred;
-    /*background-image: none;*/
+    background-image: none;
 
 }
 [class*="col-"]:hover h1{
     display: block;
 
 }
+
 .row::after {
     content: "";
     clear: both;
@@ -54,21 +54,7 @@ h1 {
     display: none;
     color: white;
     align-self: center;
-}
-img{
-    display: block;
-    opacity: 0;
-    margin: 0 auto;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-}
-img:hover{
-    display: block;
-    opacity: 0.5;
-    margin: 0 auto;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
+    padding-top: 125px;
 
 }
+
