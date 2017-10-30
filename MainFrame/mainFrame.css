@@ -3,6 +3,10 @@ div.tab {
     overflow: hidden;
     background-color: darkred;
     tab-size: 44;
+    border: 2px solid;
+    border-radius: 25px;
+    border-style: solid;
+    border-color: darkred;
 
 }
 
@@ -12,7 +16,7 @@ div.tab button {
     -o-tab-size:   4;
     tab-size:      4;
     color: WHITE;
-    font-size: 155%;
+    font-size: 122%;
     text-align: justify;
     text-justify: inter-word;
     font-family: Verdana, Arial, Times, serif;
