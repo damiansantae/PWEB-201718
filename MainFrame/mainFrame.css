@@ -1,12 +1,19 @@
+body{
+    font-size: 62.5%;
+}
+
+h1{
+    font-size: 2em;
+}
+
+.tablinks{
+    font-size: 2em;
+}
 div.tab {
 
     overflow: hidden;
     background-color: darkred;
     tab-size: 44;
-    border: 2px solid;
-    border-radius: 25px;
-    border-style: solid;
-    border-color: darkred;
 
 }
 
@@ -16,7 +23,6 @@ div.tab button {
     -o-tab-size:   4;
     tab-size:      4;
     color: WHITE;
-    font-size: 122%;
     text-align: justify;
     text-justify: inter-word;
     font-family: Verdana, Arial, Times, serif;
@@ -77,3 +83,57 @@ div.tab button.active {
 #pestanas #pestana6, #cpestana6{
     background: darkred;
 }
+
+.hd-1 {
+    width: 8.33%;
+}
+
+.hd-2 {
+    width: 16.66%;
+}
+
+.hd-3 {
+    width: 25%;
+}
+
+.hd-4 {
+    width: 33.33%;
+}
+
+.hd-5 {
+    width: 41.66%;
+}
+
+.hd-6 {
+    width: 50%;
+}
+
+.hd-7 {
+    width: 58.33%;
+}
+
+.hd-8 {
+    width: 66.66%;
+}
+
+.hd-9 {
+    width: 75%;
+}
+
+.hd-10 {
+    width: 83.33%;
+}
+
+.hd-11 {
+    width: 91.66%;
+}
+
+.hd-12 {
+    width: 100%;
+}
+[class*="hd-"] {
+    float: left;
+    padding: 15px;
+    /*border: 1px solid red;*/
+}
+

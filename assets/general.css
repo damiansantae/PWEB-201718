@@ -1,0 +1,249 @@
+/*Parametros generales de estilo*/
+
+body{
+    font-size: 62.5%;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+h1{
+    font-size: 2em;
+}
+
+
+html {
+    box-sizing: border-box
+}
+
+*, *:before, *:after {
+    box-sizing: inherit
+}
+
+/* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary {
+    display: block
+}
+
+audio, canvas, progress, video {
+    display: inline-block
+}
+
+progress {
+    vertical-align: baseline
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0
+}
+
+/****************************************
+********************HEADER****************
+******************************************** */
+header {
+    clear: both;
+}
+
+#right-content{
+    background-color: darkred;
+
+}
+
+.icons-h{
+    width: 30px;
+}
+/*Navigation bar**************
+*********************************/
+.tablinks{
+    font-size: 2em;
+}
+div.tab {
+    margin-left: 10%;
+    overflow: hidden;
+    background-color: darkred;
+
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    -moz-tab-size: 4;
+    -o-tab-size:   4;
+    tab-size:      4;
+    color: WHITE;
+    text-align: center;
+    text-justify: inter-word;
+    font-family: Verdana, Arial, Times, serif;
+    font-size: 2em;
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    padding-right: 3.7%;
+    transition: 0s;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+
+    -moz-tab-size: 4;
+    -o-tab-size:   4;
+    tab-size:      4;
+    background-color: white;
+    color: darkred;
+
+
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+
+    -moz-tab-size: 4;
+    -o-tab-size:   4;
+    tab-size:      4;
+    background-color: white;
+    color: darkred;
+
+
+}
+
+/* Style the tab content */
+.tabcontent {
+    font-family: Verdana, Arial, Times, serif;
+    text-align: justify;
+    padding-left: 7%;
+    text-justify: inter-word;
+    display: none;
+    border: 1px solid #ffffff;
+    border-top: none;
+    -moz-tab-size: 4;
+    -o-tab-size:   4;
+    tab-size:      4;
+
+}
+
+#pestanas #pestana5, #cpestana5{
+    background: darkred;
+}
+
+#pestanas #pestana6, #cpestana6{
+    background: darkred;
+}
+
+
+/*Division de tamaño del header*/
+
+.hd-1 {
+    width: 8.33%;
+}
+
+.hd-2 {
+    width: 16.66%;
+}
+
+.hd-3 {
+    width: 25%;
+}
+
+.hd-4 {
+    width: 33.33%;
+}
+
+.hd-5 {
+    width: 41.66%;
+}
+
+.hd-6 {
+    width: 50%;
+}
+
+.hd-7 {
+    width: 58.33%;
+}
+
+.hd-8 {
+    width: 66.66%;
+}
+
+.hd-9 {
+    width: 75%;
+}
+
+.hd-10 {
+    width: 83.33%;
+}
+
+.hd-11 {
+    width: 91.66%;
+}
+
+.hd-12 {
+    width: 100%;
+}
+.hd-19 {
+    width: 75%;
+}
+[class*="hd-"] {
+    float: left;
+    padding: 0;
+    /*border: 1px solid red;*/
+}
+
+.user-action{
+    padding-top: 1.6%;
+    float: right;
+    text-align: right;
+    margin-right: 10px;
+
+}
+@media only screen and (max-width: 1050px) {
+#logo{
+    display: none;
+}
+    .hd-9{
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 700px) {
+    div.tab button {
+        font-size: 1.8em;
+    }
+    .icons-h{
+        width: 25px;
+    }
+}
+@media only screen and (max-width: 580px) {
+    body{
+        align-items: center;
+        text-align: center;
+    }
+
+    div.tab button {
+        font-size: 1.5em;
+        padding-right: 2.5%;
+    }
+    #logo{
+        display: block;
+    }
+
+    .hd-3{
+        width: 100%;
+    }
+    .icons-h{
+        width: 20px;
+    }
+
+.main-content{
+    width: 100%;
+}
+}
+
