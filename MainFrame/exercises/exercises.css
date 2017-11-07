@@ -23,7 +23,7 @@
     margin-right: 3px;
     text-align: center;
     border: 1px solid darkred;
-    perspective: 1000px;
+    perspective: 3000px;
 }
 [class*="chest-col-"]:hover {
 
@@ -44,11 +44,19 @@
 }
 
 
-h1.muscular_group{
-    color: black;
+h1.exercise{
+    color: darkred;
     align-self: center;
     padding-top: 60px;
     z-index: 0;
+}
+
+p.exercise{
+    color: white;
+    align-self: center;
+    padding-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 img {
