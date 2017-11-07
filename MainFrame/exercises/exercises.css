@@ -23,21 +23,12 @@
     margin-right: 3px;
     text-align: center;
     border: 1px solid darkred;
+    perspective: 1000px;
 }
 [class*="chest-col-"]:hover {
-    background-color: darkred;
-    background-image: none;
-}
-
-[class*="chest-col-"]:hover h1{
-    display: none;
 
 }
 
-[class*="chest-col-"]:hover img{
-    display: none;
-
-}
 
 /*.row::after {
     content: "";
@@ -62,7 +53,45 @@ h1.muscular_group{
 
 img {
     width: 25%;
-    height: 100%;
+    height: 99%;
     float: left;
     z-index: 1;
+}
+
+/* flip the pane when hovered */
+[class*="chest-col-"]:hover .flipper, [class*="chest-col-"].hover .flipper {
+    transform: rotateY(180deg);
+}
+
+
+/* flip speed goes here */
+.flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+
+    position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    backface-visibility: hidden;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 200px;
+    width: 800px;
+}
+
+/* front pane, placed above back */
+.front {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+    transform: rotateY(180deg);
+    background-color: darkred;
 }
