@@ -3,28 +3,28 @@
 }
 
 .col-1 {
-    background-image: url("images/pecho_PW_ajustada.jpg");
+    background-image: url("../images/pecho_PW_ajustada.jpg");
 }
 .col-2 {
-    background-image: url("images/dorsales-PW_ajustada.jpg");
+    background-image: url("../images/dorsales-PW_ajustada.jpg");
 }
 .col-3 {
-    background-image: url("images/bicpes_PW_ajustada.jpg");
+    background-image: url("../images/bicpes_PW_ajustada.jpg");
 }
 .col-4 {
-    background-image: url("images/tricpes_PW_ajustada.jpg");
+    background-image: url("../images/tricpes_PW_ajustada.jpg");
 }
 .col-5 {
-    background-image: url("images/deltoides_PW_ajustada.jpg");
+    background-image: url("../images/deltoides_PW_ajustada.jpg");
 }
 .col-6 {
-    background-image: url("images/femorales_PW_ajustada.jpg");
+    background-image: url("../images/femorales_PW_ajustada.jpg");
 }
 .col-7 {
-    background-image: url("images/gemelos_PW_ajustada.jpg");
+    background-image: url("../images/gemelos_PW_ajustada.jpg");
 }
 .col-8 {
-    background-image: url("images/abdominales_PW_ajustada.jpg");
+    background-image: url("../images/abdominales_PW_ajustada.jpg");
 }
 
 [class*="col-"] {

@@ -35,6 +35,7 @@ div.tab button {
     transition: 0s;
     margin-left: 3.5em;
     margin-right: 3.5em;
+
 }
 
 /* Change background color of buttons on hover */
@@ -74,6 +75,10 @@ div.tab button.active {
     -o-tab-size:   4;
     tab-size:      4;
 
+}
+
+#Ejercicios {
+    border-left: 50px;
 }
 
 #pestanas #pestana5, #cpestana5{

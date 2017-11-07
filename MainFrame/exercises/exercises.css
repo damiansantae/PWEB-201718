@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+}
+.chest-col-1 {
+
+}
+.chest-col-2 {
+
+}
+.chest-col-3 {
+
+}
+.chest-col-4 {
+
+}
+
+
+[class*="chest-col-"] {
+    float: left;
+    height: 200px;
+    width: 800px;
+    margin-top: 3px;
+    margin-right: 3px;
+    text-align: center;
+    border: 1px solid darkred;
+}
+[class*="chest-col-"]:hover {
+    background-color: darkred;
+    background-image: none;
+}
+
+[class*="chest-col-"]:hover h1{
+    display: none;
+
+}
+
+[class*="chest-col-"]:hover img{
+    display: none;
+
+}
+
+/*.row::after {
+    content: "";
+    clear: both;
+    display: table;
+
+}*/
+
+.row_chest_exercises{
+    margin-left: 22px;
+    margin-top: 20px;
+
+}
+
+
+h1.muscular_group{
+    color: black;
+    align-self: center;
+    padding-top: 60px;
+    z-index: 0;
+}
+
+img {
+    width: 25%;
+    height: 100%;
+    float: left;
+    z-index: 1;
+}
