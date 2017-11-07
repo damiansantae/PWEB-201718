@@ -6,13 +6,12 @@
     <script type="text/javascript" src="js/cambiarPestanna.js"></script>
     <script type="text/javascript" src="mainFrame.js"></script>
 
-
     <title></title>
-    <head>
         <link rel="stylesheet" type="text/css" href="../assets/general.css">
         <link rel="stylesheet" type="text/css" href="muscular_groups/muscular_groups.css">
-    </head>
+
 </head>
+<body onload="checkLogin()">
 <header class="hd-12">
     <div id="logo" class="hd-3">
         <img src="../index/assets/img/2ND%20LOGO.png" alt="logo" width="250" height="100"/>
@@ -23,7 +22,7 @@
 
             <button class="tablinks" onclick="openTab(event, 'Intro')">Intro</button>
             <button class="tablinks" onclick="openTab(event, 'Ejercicios')"> Ejercicios </button>
-            <button class="tablinks" onclick="openTab(event, 'MyPersonalTrainer')">MyPersonalTrainer</button>
+            <button id="tabGymTrainer" class="tablinks" onclick="openTab(event, 'MyPersonalTrainer')">MyPersonalTrainer</button>
             <button class="tablinks" onclick="openTab(event, 'OtraCosa')">Otros</button>
         </div>
         <div class="user-action hd-1">
@@ -86,3 +85,8 @@
     <h3>OtraCosa</h3>
     <p>Aquí veremos otras cosas. Cosas diferentes, y tal y cual.</p>
 </div>
+<footer>
+
+</footer>
+</body>
+</html>

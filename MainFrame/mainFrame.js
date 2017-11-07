@@ -1,3 +1,16 @@
+var x = document.doctype.name;
+var y = document.inputEncoding;
+
+
+
+
+var isLogged = 0;
+
+function setLoging (islogged){
+    isLogged = islogged;
+}
+
+
 function openTab(evt, tabName) {
     // Declare all variables
     var i, tabcontent, tablinks;
@@ -17,4 +30,17 @@ function openTab(evt, tabName) {
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
+}
+function checkLogin() {
+
+onLogged = 1;
+    if (isLogged === 0) {
+
+        var x = document.getElementById('tabGymTrainer');
+        x.className += " disable";
+        x.innerHTML = "Login To see this content";
+        alert('hola')
+    }
+
+
 }
