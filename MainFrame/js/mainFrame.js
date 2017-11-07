@@ -4,7 +4,7 @@ var y = document.inputEncoding;
 
 
 
-var isLogged = 0;
+var isLogged = false;
 
 function setLoging (islogged){
     isLogged = islogged;
@@ -34,11 +34,17 @@ function openTab(evt, tabName) {
 function checkLogin() {
 
 onLogged = 1;
-    if (isLogged === 0) {
+    if (isLogged === false) {
 
-        var x = document.getElementById('tabGymTrainer');
-        x.className += " disable";
-        x.innerHTML = "Login To see this content";
+        var a = document.getElementById('tabGymTrainer');
+
+        a.className += " disable";
+        a.innerHTML = "Login To see this content";
+
+        var b = document.getElementById('loginContent');
+        b.style.display = "none";
+
+
         alert('hola')
     }
 

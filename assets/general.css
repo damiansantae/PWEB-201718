@@ -120,7 +120,6 @@ div.tab button.active {
 .tabcontent {
     font-family: Verdana, Arial, Times, serif;
     text-align: justify;
-    padding-left: 7%;
     text-justify: inter-word;
     display: none;
     border: 1px solid #ffffff;
@@ -249,4 +248,5 @@ div.tab button.active {
 
 #tabGymTrainer.disable {
     background-color: #7f8c8d;
+    color: WHITE;
 }
