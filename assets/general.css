@@ -247,3 +247,6 @@ div.tab button.active {
 }
 }
 
+#tabGymTrainer.disable {
+    background-color: #7f8c8d;
+}
