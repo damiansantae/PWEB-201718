@@ -1,11 +1,11 @@
 .modalDialog {
     position: fixed;
     font-family: Helvetica,Times, sans-serif;
-    top: 0;
-    right: 0;
+    top: -90px;
+    right: 50px;
     bottom: 0;
     left: 0;
-    background: #ffffff;
+    background:darkred;
     z-index: 99999;
     opacity:0;
     -webkit-transition: opacity 400ms ease-in;
@@ -20,26 +20,32 @@
 }
 
 .modalDialog > div {
-    width: 400px;
+    width: 410px;
     position: relative;
     margin: 10% auto;
     padding: 5px 20px 13px 20px;
     border-radius: 12px;
     background: darkred;
-    background: -moz-linear-gradient(#4d4d4d,#4d4d4d);
-    background: -webkit-linear-gradient(#4d4d4d,#4d4d4d);
-    background: -o-linear-gradient(#4d4d4d,#4d4d4d);
+    background: -moz-linear-gradient(#666666,#666666);
+    background: -webkit-linear-gradient(#666666,#666666);
+    background: -o-linear-gradient(#666666,#666666);
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+    border: 7px solid #660000;
+    outline-style: solid;
+    outline-color: invert;
 }
 
 .close {
-    background: darkred;
-    color: #000000;
+    background: #990000;
+    color: black;
     line-height: 25px;
     position: absolute;
-    right: -12px;
+    right: 10px;
     text-align: center;
-    top: -10px;
-    width: 24px;
+    top: 10px;
+    height:25px;
+    width: 25px;
     text-decoration: none;
     font-weight: bold;
     -webkit-border-radius: 12px;
@@ -50,4 +56,14 @@
     box-shadow: 1px 1px 3px #000;
 }
 
-.close:hover { background: #00d9ff; }
+.close:hover { background: #660000; }
+
+.button  {
+    background-color: #666666;
+    border: none;
+    color:darkred;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;}
