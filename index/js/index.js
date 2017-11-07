@@ -8,7 +8,9 @@ function checkValidation(){
     //Validamos que el nombre de usuario es un nombre entre 2-20 caracteres
     var username = document.getElementById('username');
     if(username.validity.patternMismatch === true){
-        username.setCustomValidity('El nombre de usuario debe de tener entre 2-20 caracteres alfanuméricos')
+        username.setCustomValidity('El nombre de usuario debe de tener entre 2-20 caracteres alfanuméricos');
+    }else{
+        username.setCustomValidity('');
     }
 
    /* //comprobamos formato de email
@@ -23,9 +25,10 @@ function checkValidation(){
     var pwd1 = document.getElementById('password');
 
    if (pwd1.validity.patternMismatch === true){
-        pwd1.setCustomValidity('la contraseña debe tener una mayúscula, una minúscula, un número y minimo 8 caracteres')
+        pwd1.setCustomValidity('La contraseña debe tener una mayúscula, una minúscula, un número y minimo 8 caracteres');
     } else{
-        //Comprobamos que las contraseñas se corresponden
+       pwd1.setCustomValidity('');
+       //Comprobamos que las contraseñas se corresponden
         var pwd2 = document.getElementById('passwordr');
         if(pwd1.value != pwd2.value){
             pwd1.setCustomValidity('Las contraseñas deben ser iguales');
@@ -39,10 +42,10 @@ function checkLogin() {
    var dummyPwd = document.getElementById('password-login');
 
 
-    window.location.href = "../../MainFrame/mainFrame.html";
-
-
-   /*if(dummyUser.value == 'damian' && dummyPwd.value == 'Password1'){
-   }*/
+   if(dummyUser.value == 'damian' && dummyPwd.value == 'Password1'){
+       window.location.href = "../MainFrame/mainFrame.html";
+   }else{
+       dummyUser.setCustomValidity('Nombre de usuario y contraseña inválidos');
+   }
 
 }
