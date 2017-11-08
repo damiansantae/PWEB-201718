@@ -59,7 +59,7 @@ p.exercise{
     padding-right: 20px;
 }
 
-img {
+img.exercise {
     width: 25%;
     height: 99%;
     float: left;
