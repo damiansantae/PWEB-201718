@@ -44,6 +44,33 @@ audio:not([controls]) {
     height: 0
 }
 
+
+.w3-btn, .w3-button {
+    border: none;
+    display: inline-block;
+    outline: 0;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: darkred;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap
+}
+#btn-register{
+    margin-top: 20px;
+}
+
+.w3-red, .w3-hover-red:hover {
+    color: darkred !important;
+    background-color: white !important
+}
+.w3-round-large {
+    border-radius: 8px
+}
+
 /****************************************
 ********************HEADER****************
 ******************************************** */
@@ -249,4 +276,24 @@ div.tab button.active {
 #tabGymTrainer.disable {
     background-color: #7f8c8d;
     color: WHITE;
+}
+#user-login{
+    border-bottom: 1px solid #ccc;
+    width: 100px;
+    padding: 5px;
+
+}
+#password-login{
+    border-bottom: 1px solid #ccc;
+    width: 100px;
+    padding: 5px;
+}
+
+#login-form{
+    float: right;
+    padding-top: 24px;
+}
+
+.w3-border {
+    border: 1px solid #ccc !important
 }

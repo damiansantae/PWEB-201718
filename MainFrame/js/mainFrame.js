@@ -31,7 +31,6 @@ function openTab(evt, tabName) {
 }
 
 function checkLoginState() {
-    var a = document.getElementById('tabGymTrainer');
     var b = document.getElementById('loggedContent');
     var c = document.getElementById('notLoggedContent');
     var userAction = document.getElementById('logout');
@@ -39,8 +38,6 @@ function checkLoginState() {
 
     if (isLogged === false) {
 
-        a.className += " disable";
-        a.innerHTML = "My personal Trainer";
         b.style.display = "none";
         c.style.display = "block";
         userAction.style.display = "none";
@@ -52,7 +49,6 @@ function checkLoginState() {
 
         b.style.display = "block";
         c.style.display = "none";
-        a.className.replace(" disable", "");
         userAction.style.display = "block";
         loginForm.style.display = "none";
 
@@ -109,3 +105,8 @@ function checkLogin() {
 }
 
 
+function  logOut() {
+    setLoging(false);
+    checkLoginState();
+
+}
