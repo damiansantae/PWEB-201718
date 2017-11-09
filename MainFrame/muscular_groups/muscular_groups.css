@@ -63,7 +63,8 @@ h1.muscular_group{
     display: none;
     color: white;
     align-self: center;
-    padding-top: 125px;
+    padding-top: 130px;
+    font-family: Arial;
 }
 
 [class*="col-"]:hover .flipper, [class*="col-"].hover .flipper {
