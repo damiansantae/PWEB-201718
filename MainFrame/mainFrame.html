@@ -1,43 +1,55 @@
-
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/estilo.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="css/estilo.css"/>-->
+    <link rel="stylesheet" type="text/css" href="../assets/general.css">
+    <link rel="stylesheet" type="text/css" href="muscular_groups/muscular_groups.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/mainFrame.js"></script>
 
-    <link type="text/javascript" href="js/mainFrame.js">
+    <!--<link type="text/javascript" href="js/mainFrame.js">-->
 
     <title>XPort</title>
-        <link rel="stylesheet" type="text/css" href="../assets/general.css">
-        <link rel="stylesheet" type="text/css" href="muscular_groups/muscular_groups.css">
+
 
 </head>
-<body onload="checkLogin()">
+<body>
 <header class="hd-12">
-    <div id="logo" class="hd-3">
+    <div id="logo" class="hd-2">
         <img src="../index/assets/img/2ND%20LOGO.png" alt="logo" width="250" height="100"/>
     </div>
 
-    <div id="right-content" class="hd-9">
-        <div class="tab hd-19">
+    <div id="right-content" class="hd-10">
+        <div class="tab hd-7">
 
             <button class="tablinks" onclick="openTab(event, 'Intro')">Intro</button>
-            <button class="tablinks" onclick="openTab(event, 'Ejercicios')"> Ejercicios </button>
-            <button id="tabGymTrainer" class="tablinks" onclick="openTab(event, 'MyPersonalTrainer')">MyPersonalTrainer</button>
+            <button class="tablinks" onclick="openTab(event, 'Ejercicios')"> Ejercicios</button>
+            <button id="tabGymTrainer" class="tablinks" onclick="openTab(event, 'MyPersonalTrainer')">
+                MyPersonalTrainer
+            </button>
             <button class="tablinks" onclick="openTab(event, 'OtraCosa')">Otros</button>
         </div>
-        <div class="user-action hd-1">
+
+        <div id="logout" class="user-action hd-1">
             <div class="hd-6">
-                <img src="../index/assets/img/logout.png" class="icons-h" alt="logout"/>
+                <img src="../index/assets/img/logout.png" class="icons-h" alt="logout" id="logout-btn" onclick="logOut()"/>
             </div>
             <div class="hd-6">
                 <img src="../index/assets/img/settings-work-tool.png" id="icons-h" class="icons-h" alt="stt"/>
             </div>
-
-
         </div>
+
+        <form id="login-form" class="hd-3">
+            <input id="user-login" class="login-input w3-border w3-round-large" placeholder="Nombre de usuario o email"
+                   value="damian" required>
+            <input type="password" class="login-input w3-border w3-round-large" id="password-login"
+                   placeholder="Contraseña" value="Password1" required>
+            <input id="btn-login" type="button" class="w3-button w3-round-large w3-red" name="login" value="Login"
+                   onclick="checkLogin()">
+
+        </form>
     </div>
 
 
@@ -49,47 +61,23 @@
     <p>Página en construcción.</p>
 </div>
 <div id="Ejercicios" class="tabcontent">
-    <!--<h3>Ejercicios</h3>-->
-    <!--<p>Amplia gama de ejercicios -clasificados por grupo muscular- -->
-        <!--para que puedas incluir en tus rutinas aquellos que mejor se adapten a tus gustos o necesidades.</p>-->
-    <div class="row">
-        <div class="col-1">
-            <h1 class="muscular_group">Pecho</h1>
-        </div>
-        <div class="col-2">
-            <h1 class="muscular_group">Dorsales</h1>
-        </div>
-        <div class="col-3">
-            <h1 class="muscular_group">Bíceps</h1>
-        </div>
-        <div class="col-4">
-            <h1 class="muscular_group">Tríceps</h1>
-        </div>
-        <div class="col-5">
-            <h1 class="muscular_group">Deltoides</h1>
-        </div>
-        <div class="col-6">
-            <h1 class="muscular_group">Femorales</h1>
-        </div>
-        <div class="col-7">
-            <h1 class="muscular_group">Gemelos</h1>
-        </div>
-        <div class="col-8">
-            <h1 class="muscular_group">Abdominales</h1>
-        </div>
-    </div>
+    <iframe height="1080px" width="100%" src="muscular_groups/muscular_groups.html" name="iframe_m" style="border:none;"></iframe>
 </div>
 
 <div id="MyPersonalTrainer" class="tabcontent">
-    <h3>MyPersonalTrainer</h3>
-    <p>Aquí veremos las rutinas que tú mismo habrás configurado para cada día de la semana</p>
+    <div id="loggedContent">
+        <h1>Contenido en construccion </h1>
+    </div>
+    <div id="notLoggedContent">
+        <iframe height="1080px" width="100%" src="../index/index.html" name="iframe_a" style="border:none;"></iframe>
+    </div>
 </div>
+
 <div id="OtraCosa" class="tabcontent">
     <h3>OtraCosa</h3>
     <p>Aquí veremos otras cosas. Cosas diferentes, y tal y cual.</p>
 </div>
-<footer>
 
-</footer>
+<script>checkLoginState()</script>
 </body>
 </html>
