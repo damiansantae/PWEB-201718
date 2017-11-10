@@ -13,7 +13,7 @@
         <nav>
             <div id="header_col_exe" class="hd-12">
                 <h2 class="hd-9">Busca un ejercicio y arrástrarlo a tu tabla</h2>
-                <input type="text" id="searchBarInput" class="hd-3" onkeyup="searchExercise()" placeholder="Search for names..">
+                <input type="text" id="searchBarInput" class="hd-3" onkeyup="searchExercise()" placeholder="Buscar ejercicio..">
             </div>
             <ul id="exercises_list">
                 <li class="ex_row">
@@ -135,25 +135,31 @@
 
         </nav>
     </div>
-    <div class="gymtrainer-col-2">
-        <nav>
+    <div id="col-2" class="gymtrainer-col-2">
+        <nav id="routines_nav">
             <div id="header_col_routines" class="hd-12">
                 <h1>Seleccione la routina que desea editar</h1>
             </div>
 
-            <div class="routine_row">
+            <div id="routine_0" class="routine_row">
                 <div class="routine_master hd-12" >
                     <img src="../images/press_banca.JPG" class="hd-2">
                     <p>Routina 1</p>
                 </div>
                 <div class="routine_detail hd-12">
                     <table>
-                        <tr id="table_days">
-                            <td id="0"> <input type="button" value="add" onclick="insertDay()"> </td>
+                        <tr class="table_days">
+                            <td> <input id="routine_0_btn" type="button" value="add" onclick="insertDay(this.id)"> </td>
+                            <td id="routine_0_1"> 1</td>
                         </tr>
                     </table>
                 </div>
             </div>
+
+
+               <!--<input type="button" value="Add routine" onclick="insertRoutine()">-->
+
+
 
         </nav>
 
