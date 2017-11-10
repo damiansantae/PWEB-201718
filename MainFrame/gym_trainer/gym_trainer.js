@@ -59,3 +59,39 @@ divParent.appendChild(newRoutine);      //Añadimos la routina
     divParent.appendChild(btn);         //Añadimos el boton
 
 }
+
+/*
+function dragstart_handler(ev) {
+    console.log("dragStart");
+    // Add the target element's id to the data transfer object
+    ev.dataTransfer.setData("text/plain", ev.target.id);
+
+    ev.dataTransfer.dropEffect = "copy";
+}
+
+function dragover_handler(ev) {
+    ev.preventDefault();
+    // Set the dropEffect to move
+    ev.dataTransfer.dropEffect = "copy"
+}
+function drop_handler(ev) {
+    ev.preventDefault();
+    // Get the id of the target and add the moved element to the target's DOM
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}*/
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
