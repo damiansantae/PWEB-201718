@@ -24,7 +24,7 @@ function insertDay(id) {
     var nDays = table_parent.getElementsByTagName('td').length;
 
     var newDay = document.createElement('td');
-    var table = table_parent.getElementsByTagName('tr');
+    var table = table_parent.getElementsByTagName('tr').item(0);
 
     newDay.setAttribute('id','routine_'+routineNumber+'_'+nDays);
     newDay.innerHTML = "<p>"+nDays+"</p>";
@@ -35,6 +35,7 @@ function insertRoutine() {
     var divParent = document.getElementById("routines_nav");
     var newRoutine = document.createElement('div');
     var routineId = "routine_"+document.getElementsByClassName("routine_row").length;
+
     newRoutine.setAttribute('id',routineId);
     newRoutine.setAttribute('class', "routine_row");
     newRoutine.innerHTML = "hola";
