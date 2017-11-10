@@ -11,14 +11,14 @@
 <div class="row_chest_exercises">
     <div class="gymtrainer-col-1">
         <nav>
-            <div id="header_col_exe">
-                <input type="text" id="searchBarInput" onkeyup="searchExercise()" placeholder="Search for names..">
-                <h1>Busca un ejercicio y arrástrarlo a tu tabla</h1>
+            <div id="header_col_exe" class="hd-12">
+                <h2 class="hd-9">Busca un ejercicio y arrástrarlo a tu tabla</h2>
+                <input type="text" id="searchBarInput" class="hd-3" onkeyup="searchExercise()" placeholder="Search for names..">
             </div>
             <ul id="exercises_list">
                 <li class="ex_row">
                     <img src="../images/press_banca.JPG" class="hd-2">
-                    <h1>Press Banca</h1>
+                    <p>Press Banca</p>
                 </li>
                 <li class="ex_row">
                     <img src="../images/press_banca.JPG" class="hd-2">
@@ -58,19 +58,21 @@
     </div>
     <div class="gymtrainer-col-2">
         <nav>
-            <div id="header_col_routines">
-                <h1>Busca un ejercicio y arrástrarlo a tu tabla</h1>
+            <div id="header_col_routines" class="hd-12">
+                <h1>Seleccione la routina que desea editar</h1>
             </div>
 
             <div class="routine_row">
-                <div class="routine_master">
+                <div class="routine_master hd-12" >
                     <img src="../images/press_banca.JPG" class="hd-2">
-                    <h1>Press Banca</h1>
+                    <p>Routina 1</p>
                 </div>
-                <div class="routine_detail">
-                    <div class="colum-1"></div>
-
-
+                <div class="routine_detail hd-12">
+                    <table>
+                        <tr id="table_days">
+                            <td id="0"> <input type="button" value="add" onclick="insertDay()"> </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
 

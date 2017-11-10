@@ -35,27 +35,12 @@
 .row_chest_exercises{
 }
 
-.ex_row{
-    float: left;
-    height: 75px;
-    width: 100%;
-    text-align: left;
-    padding-top: 1%;
-    border: 1px solid darkred;
-    perspective: 3000px;
-}
+
 
 ul {
     list-style-type: none;
 }
 
-h1.ex_row{
-    color: darkred;
-    align-self: center;
-    padding-top: 60px;
-    z-index: 0;
-    font-family: "Arial";
-}
 
 
 img.ex_row {
@@ -74,7 +59,11 @@ nav{overflow:hidden; overflow-y:scroll;}
     font-size: 16px;
     padding: 12px 20px 12px 40px;
     border: 1px solid #ddd;
-    margin-bottom: 12px;
+    margin-top: 2%;
+
+}
+#header_col_exe{
+    padding: 2%;
 }
 #exercises_list {
     list-style-type: none;
@@ -82,10 +71,10 @@ nav{overflow:hidden; overflow-y:scroll;}
     margin: 0;
 }
 
-#exercises_list li h1 {
+#exercises_list li {
     border: 1px solid #ddd;
     margin-top: -1px; /* Prevent double borders */
-    background-color: #f6f6f6;
+    background-color: #ffffff;
     padding: 12px;
     text-decoration: none;
     font-size: 18px;
@@ -93,6 +82,29 @@ nav{overflow:hidden; overflow-y:scroll;}
     display: block
 }
 
-#exercises_list li h1:hover:not(.header) {
+#exercises_list li:hover:not(.header) {
     background-color: #eee;
+}
+
+#exercises_list li p {
+
+}
+p {
+    font-weight: normal;
+    color: #000000;
+    letter-spacing: 1pt;
+    word-spacing: 2pt;
+    font-size: 150%;;
+    font-family: verdana, sans-serif;
+    line-height: 1;
+}
+div{
+    border: 1px solid darkred;
+
+}
+td{
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    border: 1px solid darkred;
 }
