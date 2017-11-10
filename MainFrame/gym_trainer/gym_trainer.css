@@ -1,0 +1,98 @@
+
+
+.gymtrainer-col-1 {
+
+}
+.gymtrainer-col-2 {
+
+}
+.gymtrainer-col-3 {
+
+}
+
+
+[class*="gymtrainer-col-"] {
+    position: relative;
+    float: left;
+    height: 720px;
+    width: 33.2%;
+    text-align: center;
+    border: 1px solid darkred;
+    perspective: 3000px;
+}
+[class*="chest-col-"]:hover {
+
+}
+
+
+/*.row::after {
+    content: "";
+    clear: both;
+    display: table;
+
+}*/
+
+.row_chest_exercises{
+}
+
+.ex_row{
+    float: left;
+    height: 75px;
+    width: 100%;
+    text-align: left;
+    padding-top: 1%;
+    border: 1px solid darkred;
+    perspective: 3000px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+h1.ex_row{
+    color: darkred;
+    align-self: center;
+    padding-top: 60px;
+    z-index: 0;
+    font-family: "Arial";
+}
+
+
+img.ex_row {
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+nav{ position:absolute; height:100%; width:100%; right: 0; top: 0;}
+nav{overflow:hidden; overflow-y:scroll;}
+
+#myInput {
+    /*background-image: url('');*/
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+#exercises_list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#exercises_list li h1 {
+    border: 1px solid #ddd;
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block
+}
+
+#exercises_list li h1:hover:not(.header) {
+    background-color: #eee;
+}
