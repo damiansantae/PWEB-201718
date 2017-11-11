@@ -106,13 +106,12 @@ td{
     width: 100px;
     height: 20px;
     text-align: center;
-    border: 1px solid darkred;
 }
 td.img{
-    height: 50px;
+    height: 100px;
 }
 td div#div1{
     width: 100%;
-    height: 50px;
+    height: 100px;
 
 }

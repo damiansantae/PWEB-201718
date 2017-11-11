@@ -16,8 +16,8 @@
                 <input type="text" id="searchBarInput" class="hd-3" onkeyup="searchExercise()" placeholder="Buscar ejercicio..">
             </div>
             <ul id="exercises_list">
-                <li class="ex_row">
-                    <img src="../images/exercises/pressBanca.jpg" class="hd-2" draggable="true" ondragstart="drag(event)">
+                <li id="press_banca_li" class="ex_row" draggable="true" ondragstart="dragstart_handler(event)">
+                    <img id="press_banca_img" src="../images/exercises/pressBanca.jpg" class="hd-2" >
                     <p>Press Banca</p>
                 </li>
                 <li class="ex_row">
@@ -188,7 +188,7 @@
               <td class="hd-2"> Series</td>
           </tr>
           <tr>
-              <td class="hd-12 img"><div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+              <td class="hd-12 img"><div id="div1" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></div></td>
           </tr>
 
       </table>
