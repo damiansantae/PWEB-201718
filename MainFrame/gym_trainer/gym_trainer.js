@@ -76,12 +76,22 @@ function dragover_handler(ev) {
 }
 function drop_handler(ev) {
     ev.preventDefault();
+    var targetID= ev.target.id;
+    var rowNumber =targetID.substring(14, 15);
+
     // Get the id of the target and add the moved element to the target's DOM
     var data = ev.dataTransfer.getData("text");
 
     var nodeCopy = document.getElementById(data).cloneNode(true);
-    nodeCopy.id = "newId"; /* We cannot use the same ID */
+    nodeCopy.id = "exercise_"+rowNumber;
     ev.target.appendChild(nodeCopy);
+
+    //hacemos que no se pueda volver a hacer drop en la fila
+    var divDropped = document.getElementById(targetID);
+    divDropped.removeAttribute("ondrop");
+    divDropped.removeAttribute("ondragover");
+
+
 }
 
 
