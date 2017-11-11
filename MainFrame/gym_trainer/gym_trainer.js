@@ -26,7 +26,7 @@ function insertDay(id) {
     var newDay = document.createElement('td');
     var table = table_parent.getElementsByTagName('tr').item(0);
     newDay.setAttribute('id','routine_'+routineNumber+'_'+nDays);
-    newDay.innerHTML = "<p>"+nDays+"</p>";
+    newDay.innerHTML = "<h3>"+nDays+"</h3>";
     table.appendChild(newDay);
 }
 
@@ -47,7 +47,7 @@ function insertRoutine() {
       "                <div class=\"routine_detail hd-12\">\n" +
       "                    <table>\n" +
       "                        <tr class=\"table_days\">\n" +
-      "                            <td> <input id=\"routine_"+nRoutines+"_btn\" type=\"button\" value=\"add\" onclick=\"insertDay(this.id)\"> </td>\n" +
+      "                            <td> <input id=\"routine_"+nRoutines+"_btn\" class=\"w3-button w3-xlarge w3-circle w3-white w3-card-4\" type=\"button\" value=\"add\" onclick=\"insertDay(this.id)\"> </td>\n" +
       "                            <td id=\"routine_"+nRoutines+"_1\"> 1</td>\n" +
       "                        </tr>\n" +
       "                    </table>\n" +
@@ -121,6 +121,7 @@ function insertExercise(){
 function  isHovered(x) {
  var divToDisplay= x.lastElementChild;
  divToDisplay.style.display = 'block';
+
 
 }
 function finishHover(x){

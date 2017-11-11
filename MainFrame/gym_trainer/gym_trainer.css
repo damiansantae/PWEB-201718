@@ -181,11 +181,26 @@ td{
 }
 
 .routine_detail{
+    border: 1px solid darkred;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -ms-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+    background-color: darkred;
+    color: white;
     height: 50px;
     display: none;
 
 }
+.routine_detail:hover{
+    zoom: 1;
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
 
-div{
-    border: 1px solid darkred;
+.routine_detail td h3 {
+    color: white;
 }

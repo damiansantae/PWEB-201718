@@ -85,6 +85,23 @@ audio:not([controls]) {
     white-space: nowrap
 }
 
+.small_btn{
+    margin-bottom: 2px;
+   border: none;
+    display: inline-block;
+    outline: 0;
+    padding: 4px 10px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: darkred;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap
+
+}
+
 .w3-xlarge {
     font-size: 24px !important
 }
@@ -99,6 +116,10 @@ audio:not([controls]) {
 .w3-red, .w3-hover-red:hover {
     color: white !important;
     background-color: darkred !important
+}
+.w3-white, .w3-hover-white:hover {
+    color: darkred !important;
+    background-color: white !important
 }
 .w3-card-4, .w3-hover-shadow:hover {
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19)
