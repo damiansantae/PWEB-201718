@@ -90,6 +90,7 @@ function insertExercise(){
     var nRows = table.getElementsByTagName('tr').length;
     var newRow = document.createElement('tr');
     newRow.setAttribute('id','row_exercise_'+nRows);
+    newRow.setAttribute('class','d-12 exercise_row');
     newRow.innerHTML = "<td class=\"hd-8 img\" id=\"exer_descript_"+nRows+"\" ondrop=\"drop_handler(event);\" ondragover=\"dragover_handler(event);\"></td>\n" +
         "              <td class=\"hd-2\"></td>\n" +
         "              <td class=\"hd-2\"></td>";
