@@ -116,3 +116,11 @@ td{
     align-content: center;
     height: 50px;
 }
+.ex_row{
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
+.ex_row p{
+    margin-left: 40%;
+}
