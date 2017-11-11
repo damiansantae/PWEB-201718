@@ -48,9 +48,29 @@
             </div>
             <div class="back">
                 <p class="exercise">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <button onclick="openDetail()" class="video">Ver vídeo explicativo</button>
             </div>
         </div>
     </div>
     </div>
+<div id="detail-overlay">
+    <div id="detail-container">
+        <h1 class="detail-title">Peso muerto</h1>
+        <a onclick="off()" href="#close" title="Close" class="close">X</a>
+        <iframe class="detail-video"
+                src="https://www.youtube.com/embed/gB9_9ggQ5jA" frameborder="0" allowfullscreen>
+        </iframe>
+    </div>
+</div>
+
+<script>
+    function openDetail() {
+        document.getElementById("detail-overlay").style.display = "block";
+    }
+
+    function off() {
+        document.getElementById("detail-overlay").style.display = "none";
+    }
+</script>
 </body>
 </html>
