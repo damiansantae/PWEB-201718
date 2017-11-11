@@ -171,6 +171,7 @@ td{
     margin-top: 12px;
 }
 .routine_row {
+    border-bottom: 1px solid darkred;
     height: 50px;
     transition: height 0.2s linear 0s;
 

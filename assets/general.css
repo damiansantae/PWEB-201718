@@ -148,6 +148,13 @@ audio:not([controls]) {
     border-bottom: 1px solid #ccc;
     width: 30%
 }
+.short-input {
+  
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 50px;
+}
 
 /****************************************
 ********************HEADER****************

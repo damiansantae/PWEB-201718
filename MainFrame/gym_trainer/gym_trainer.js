@@ -107,8 +107,8 @@ function insertExercise(){
     newRow.setAttribute('id','row_exercise_'+nRows);
     newRow.setAttribute('class','d-12 exercise_row');
     newRow.innerHTML = "<td class=\"hd-8 img\" id=\"exer_descript_"+nRows+"\" ondrop=\"drop_handler(event);\" ondragover=\"dragover_handler(event);\"></td>\n" +
-        "              <td class=\"hd-2\"></td>\n" +
-        "              <td class=\"hd-2\"></td>";
+        "              <td class=\"hd-2\"> <input class=\"short-input\" type=\"number\" step=\"1\" placeholder=\"0\"></td>\n" +
+        "              <td class=\"hd-2\"><input class=\"short-input\" type=\"number\" step=\"1\" placeholder=\"0\"></td>";
 
 //Eliminamos boton de añadir para que no aparezca arriba de la nueva routina añadida
     var btn = document.getElementById("add_new_ex_row");
