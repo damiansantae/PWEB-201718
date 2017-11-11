@@ -85,18 +85,13 @@ function drop_handler(ev) {
 }
 
 
-/*
-function allowDrop(ev) {
-    ev.preventDefault();
-}
+function insertExercise(){
+    var table = document.getElementById('exercise_nav').getElementsByTagName('table');
+    var nRows = table.getElementsByTagName('tr').length;
+    var newRow = document.createElement('tr');
+    newRow.setAttribute('id','row_exercise_'+nRows);
+    newRow.innerHTML = "<td class=\"hd-8 img\" id=\"exer_descript_"+nRows+"\" ondrop=\"drop_handler(event);\" ondragover=\"dragover_handler(event);\"></td>\n" +
+        "              <td class=\"hd-2\"></td>\n" +
+        "              <td class=\"hd-2\"></td>"
 
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-    ev.dataTransfer.dropEffect = "copy";
 }
-
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
-}*/

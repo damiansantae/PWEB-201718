@@ -10,15 +10,17 @@
 <body>
 <div class="row_chest_exercises">
     <div class="gymtrainer-col-1">
+        <div id="header_col_exe" class="hd-12">
+            <h2 class="hd-9">Busca un ejercicio y arrástrarlo a tu tabla</h2>
+            <input type="text" id="searchBarInput" class="hd-3" onkeyup="searchExercise()" placeholder="Buscar ejercicio..">
+        </div>
         <nav>
-            <div id="header_col_exe" class="hd-12">
-                <h2 class="hd-9">Busca un ejercicio y arrástrarlo a tu tabla</h2>
-                <input type="text" id="searchBarInput" class="hd-3" onkeyup="searchExercise()" placeholder="Buscar ejercicio..">
-            </div>
             <ul id="exercises_list">
-                <li id="press_banca_li" class="ex_row" draggable="true" ondragstart="dragstart_handler(event)">
-                    <img id="press_banca_img" src="../images/exercises/pressBanca.jpg" class="hd-2" >
+                <li>
+                    <div id="press_banca_li" class="ex_row" draggable="true" ondragstart="dragstart_handler(event)">
+                        <img id="press_banca_img" src="../images/exercises/pressBanca.jpg" class="hd-2">
                     <p>Press Banca</p>
+                    </div>
                 </li>
                 <li class="ex_row">
                     <img src="../images/exercises/abdominalesPiernasElevadas.png" class="hd-2">
@@ -71,7 +73,7 @@
                 <img src="../images/exercises/jalonesMancuerna.jpg" class="hd-2">
                 <p>Jalones con mancuernas</p>
             </li>  <li class="ex_row">
-                <img src="../images/exercises/jumpingJack.jpg" class="hd-2">
+                <img src="../images/exercises/jumpingJack.jpg" class="hd-2" width="30" height="30">
                 <p>Jumping jack</p>
             </li>  <li class="ex_row">
                 <img src="../images/exercises/pectoralcontracto.gif" class="hd-2">
@@ -180,18 +182,22 @@
 
     </div>
     <div class="gymtrainer-col-3">
-        <nav>
+        <nav id="exercise_nav">
       <table class="hd-12">
           <tr>
               <td class="hd-8"> Ejercicios</td>
               <td class="hd-2">Repeticiones</td>
               <td class="hd-2"> Series</td>
           </tr>
-          <tr>
-              <td class="hd-12 img"><div id="div1" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></div></td>
+          <tr id="row_exercise_1" class="hd-12 exercise_row">
+              <td class="hd-8 img" id="exer_descript_1" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></td>
+              <td class="hd-2"></td>
+              <td class="hd-2"></td>
           </tr>
-
       </table>
+
+            <input id="add_new_ex_row" type="button" value="Add a new exer" onclick="insertExercise()">
+
         </nav>
 
     </div>
