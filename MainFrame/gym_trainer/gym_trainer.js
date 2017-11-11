@@ -114,3 +114,12 @@ function insertExercise(){
     table.appendChild(btn);         //Añadimos el boton
 }
 
+function  isHovered(x) {
+ var divToDisplay= x.lastElementChild;
+ divToDisplay.style.display = 'block';
+
+}
+function finishHover(x){
+    var divToDisplay= x.lastElementChild;
+    divToDisplay.style.display = 'none';
+}

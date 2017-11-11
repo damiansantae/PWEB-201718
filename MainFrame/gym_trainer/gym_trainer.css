@@ -170,3 +170,22 @@ td{
 #searchBarInput{
     margin-top: 12px;
 }
+.routine_row {
+    height: 50px;
+    transition: height 0.2s linear 0s;
+
+}
+.routine_row:hover{
+    height: 100px;
+
+}
+
+.routine_detail{
+    height: 50px;
+    display: none;
+
+}
+
+div{
+    border: 1px solid darkred;
+}
