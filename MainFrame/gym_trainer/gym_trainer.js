@@ -100,5 +100,5 @@ function insertExercise(){
     btn.parentNode.removeChild(btn);
 
     table.appendChild(newRow);//Añadimos nueva columna
-    divParent.appendChild(btn);         //Añadimos el boton
+    table.appendChild(btn);         //Añadimos el boton
 }
