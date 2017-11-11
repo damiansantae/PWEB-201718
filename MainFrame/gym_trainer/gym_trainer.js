@@ -74,6 +74,7 @@ function dragover_handler(ev) {
     // Set the dropEffect to move
     ev.dataTransfer.dropEffect = "copy"
 }
+
 function drop_handler(ev) {
     ev.preventDefault();
     var targetID= ev.target.id;
@@ -112,3 +113,4 @@ function insertExercise(){
     table.appendChild(newRow);//Añadimos nueva columna
     table.appendChild(btn);         //Añadimos el boton
 }
+

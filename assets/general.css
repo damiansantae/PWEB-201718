@@ -46,6 +46,7 @@ audio:not([controls]) {
 
 
 .w3-btn, .w3-button {
+    margin-top: 20px;
     border: none;
     display: inline-block;
     outline: 0;
@@ -59,16 +60,48 @@ audio:not([controls]) {
     cursor: pointer;
     white-space: nowrap
 }
+
+.w3-xlarge {
+    font-size: 24px !important
+}
+.w3-circle {
+    border-radius: 50%
+}
+
 #btn-register{
     margin-top: 20px;
 }
 
 .w3-red, .w3-hover-red:hover {
-    color: darkred !important;
-    background-color: white !important
+    color: white !important;
+    background-color: darkred !important
+}
+.w3-card-4, .w3-hover-shadow:hover {
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19)
 }
 .w3-round-large {
     border-radius: 8px
+}
+.w3-animate-input {
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    transition: width 0.4s ease-in-out
+}
+
+.w3-animate-input:focus {
+    width: 100% !important
+
+}
+.login-input {
+    padding: 8px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 30%
 }
 
 /****************************************

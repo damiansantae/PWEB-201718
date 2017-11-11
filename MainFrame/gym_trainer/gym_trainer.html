@@ -12,7 +12,7 @@
     <div class="gymtrainer-col-1">
         <div id="header_col_exe" class="hd-12">
             <h2 class="hd-9">Busca un ejercicio y arrástrarlo a tu tabla</h2>
-            <input type="text" id="searchBarInput" class="hd-3" onkeyup="searchExercise()" placeholder="Buscar ejercicio..">
+            <input type="text" id="searchBarInput" class="hd-3 w3-input w3-round-large w3-animate-input" onkeyup="searchExercise()" placeholder="Buscar ejercicio...">
         </div>
         <nav>
             <ul id="exercises_list">
@@ -241,7 +241,7 @@
             </div>
 
 
-               <input id="add_routine_btn" type="button" value="Add routine" onclick="insertRoutine()">
+            <button id="add_routine_btn" class="w3-button w3-xlarge w3-circle w3-red w3-card-4" type="button" value="Add routine" onclick="insertRoutine()">+</button>
 
 
 
@@ -257,13 +257,13 @@
               <td class="hd-2"> Series</td>
           </tr>
           <tr id="row_exercise_1" class="hd-12 exercise_row">
-              <td class="hd-8 img" id="exer_descript_1" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></td>
+              <td class="hd-8" id="exer_descript_1" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></td>
               <td class="hd-2"></td>
               <td class="hd-2"></td>
           </tr>
       </table>
 
-            <input id="add_new_ex_row" type="button" value="Add a new exer" onclick="insertExercise()">
+            <button id="add_new_ex_row" class="w3-button w3-xlarge w3-circle w3-red w3-card-4" onclick="insertExercise()">+</button>
 
         </nav>
 
