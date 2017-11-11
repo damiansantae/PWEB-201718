@@ -86,12 +86,18 @@ function drop_handler(ev) {
 
 
 function insertExercise(){
-    var table = document.getElementById('exercise_nav').getElementsByTagName('table');
+    var table = document.getElementById('exercise_nav').getElementsByTagName('table').item(0);
     var nRows = table.getElementsByTagName('tr').length;
     var newRow = document.createElement('tr');
     newRow.setAttribute('id','row_exercise_'+nRows);
     newRow.innerHTML = "<td class=\"hd-8 img\" id=\"exer_descript_"+nRows+"\" ondrop=\"drop_handler(event);\" ondragover=\"dragover_handler(event);\"></td>\n" +
         "              <td class=\"hd-2\"></td>\n" +
-        "              <td class=\"hd-2\"></td>"
+        "              <td class=\"hd-2\"></td>";
 
+//Eliminamos boton de añadir para que no aparezca arriba de la nueva routina añadida
+    var btn = document.getElementById("add_new_ex_row");
+    btn.parentNode.removeChild(btn);
+
+    table.appendChild(newRow);//Añadimos nueva columna
+    divParent.appendChild(btn);         //Añadimos el boton
 }
