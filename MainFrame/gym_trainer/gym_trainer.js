@@ -36,6 +36,8 @@ function insertRoutine() {
   var newRoutine = document.createElement('div');
   newRoutine.setAttribute('id','routine_'+nRoutines);
   newRoutine.setAttribute('class','routine_row');
+  newRoutine.setAttribute('onmouseover','isHovered(this)');
+  newRoutine.setAttribute('onmouseout','finishHover(this)');
   var routineName = nRoutines+1;
 
   newRoutine.innerHTML = "<div class=\"routine_master hd-12\" >\n" +
@@ -49,7 +51,9 @@ function insertRoutine() {
       "                            <td id=\"routine_"+nRoutines+"_1\"> 1</td>\n" +
       "                        </tr>\n" +
       "                    </table>\n" +
-      "                </div>"
+      "                </div>";
+
+
 
     //Eliminamos boton de añadir para que no aparezca arriba de la nueva routina añadida
     var btn = document.getElementById("add_routine_btn");
