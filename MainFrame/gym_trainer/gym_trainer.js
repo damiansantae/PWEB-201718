@@ -7,7 +7,7 @@ function searchExercise() {
     list = document.getElementById("exercises_list");
     exercises = list.getElementsByTagName("li");
     for (i = 0; i < exercises.length; i++) {
-        p = exercises[i].getElementsByTagName("p")[0];
+        p = exercises[i].getElementsByTagName("h3")[0];
         if (p.innerHTML.toUpperCase().indexOf(filter) > -1) {
             exercises[i].style.display = "";
         } else {
