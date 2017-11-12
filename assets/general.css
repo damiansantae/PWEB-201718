@@ -84,6 +84,22 @@ audio:not([controls]) {
     cursor: pointer;
     white-space: nowrap
 }
+.login-btn {
+    margin-left: 5px;
+    border: none;
+    display: inline-block;
+    outline: 0;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: darkred;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap
+}
+
 
 .small_btn{
     margin-bottom: 2px;
@@ -149,7 +165,7 @@ audio:not([controls]) {
     width: 30%
 }
 .short-input {
-  
+
     padding: 10px;
     border: none;
     border-bottom: 1px solid #ccc;
@@ -310,6 +326,7 @@ div.tab button.active {
 }
 
 .user-action{
+    cursor: pointer;
     padding-top: 1.6%;
     float: right;
     text-align: right;
