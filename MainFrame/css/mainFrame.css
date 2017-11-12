@@ -46,8 +46,6 @@ div.tab button:hover {
     tab-size:      4;
     background-color: white;
     color: darkred;
-
-
 }
 
 /* Create an active/current tablink class */
@@ -140,5 +138,9 @@ div.tab button.active {
     float: left;
     padding: 15px;
     /*border: 1px solid red;*/
+}
+
+iframe{
+    border: none;
 }
 
