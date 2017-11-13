@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="otros.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<h3>Encuentra aquí tu gimnasio más cercano</h3>
+<div id="map"></div>
+<script>
+    function initMap() {
+        var laspalmas = {lat: 28.1248, lng:  -15.43};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: laspalmas
+        });
+        var marker = new google.maps.Marker({
+            position: laspalmas,
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmbVrjBD-DXZt0v6bJVUrKGa_wIS1Eu_c&callback=initMap">
+</script>
+</body>
+</html>
