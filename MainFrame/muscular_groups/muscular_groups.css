@@ -102,5 +102,6 @@ h1.muscular_group{
 .back {
     transform: rotateY(180deg);
     background-color: darkred;
+    cursor: pointer;
 }
 

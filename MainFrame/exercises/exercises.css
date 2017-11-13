@@ -1,6 +1,4 @@
 * {
-    box-sizing: border-box;
-    width: 100%;
 }
 .chest-col-1 {
 
@@ -38,7 +36,7 @@
 
 }*/
 
-.row_chest_exercises{
+[class*="row_"] {
     margin-left: 22px;
     margin-top: 20px;
 
@@ -63,7 +61,7 @@ h1.detail-title {
 p.exercise{
     color: white;
     align-self: center;
-    padding-top: 25px;
+    padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
     font-family: Arial;
@@ -76,12 +74,14 @@ img.exercise {
     z-index: -2;
 }
 
-img.player_icon {
-    height: 35px;
-    width: 30px;
-    float: right;
-    padding-right: 10px;
-    padding-bottom: 15px;
+
+img.back_arrow {
+    height: 50px;
+    width: 50px;
+    float: left;
+    margin-right: 100%;
+    margin-bottom: 20px;
+    cursor: pointer;
 }
 
 button.video {
@@ -162,7 +162,7 @@ button.video:hover {
     position: absolute;
     width: 600px;
     height: 400px;
-    top: 40%;
+    top: 30%;
     left: 50%;
     font-size: 50px;
     color: white;
@@ -192,6 +192,5 @@ button.video:hover {
     -moz-border-radius: 12px;
     border-radius: 12px;
 }
-
 
 

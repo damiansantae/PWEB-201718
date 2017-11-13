@@ -47,8 +47,8 @@ function insertRoutine() {
       "                <div class=\"routine_detail hd-12\">\n" +
       "                    <table>\n" +
       "                        <tr class=\"table_days\">\n" +
-      "                            <td> <input id=\"routine_"+nRoutines+"_btn\" class=\"w3-button w3-xlarge w3-circle w3-white w3-card-4\" type=\"button\" value=\"add\" onclick=\"insertDay(this.id)\"> </td>\n" +
-      "                            <td id=\"routine_"+nRoutines+"_1\"> 1</td>\n" +
+      "                            <td> <button id=\"routine_"+nRoutines+"_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"  onclick=\"insertDay(this.id)\">+</button></td>\n" +
+      "                            <td id=\"routine_"+nRoutines+"_1\"> <h3>1</h3></td>\n" +
       "                        </tr>\n" +
       "                    </table>\n" +
       "                </div>";
@@ -107,8 +107,8 @@ function insertExercise(){
     newRow.setAttribute('id','row_exercise_'+nRows);
     newRow.setAttribute('class','d-12 exercise_row');
     newRow.innerHTML = "<td class=\"hd-8 img\" id=\"exer_descript_"+nRows+"\" ondrop=\"drop_handler(event);\" ondragover=\"dragover_handler(event);\"></td>\n" +
-        "              <td class=\"hd-2\"> <input class=\"short-input\" type=\"number\" step=\"1\" placeholder=\"0\"></td>\n" +
-        "              <td class=\"hd-2\"><input class=\"short-input\" type=\"number\" step=\"1\" placeholder=\"0\"></td>";
+        "              <td class=\"hd-2\"> <input class=\"short-input\" type=\"number\" step=\"1\" placeholder=\"0\" min=\"0\"></td>\n" +
+        "              <td class=\"hd-2\"><input class=\"short-input\" type=\"number\" step=\"1\" placeholder=\"0\" min=\"0\"></td>";
 
 //Eliminamos boton de añadir para que no aparezca arriba de la nueva routina añadida
     var btn = document.getElementById("add_new_ex_row");
