@@ -85,7 +85,7 @@ img.back_arrow {
 }
 
 button.video {
-    background-image: image("../images/music-player-play.png");
+    background-image: image("../assets/images/music-player-play.png");
     background-color: white;
     width: 200px;
     height: 40px;
