@@ -41,7 +41,7 @@ function insertRoutine() {
   var routineName = nRoutines+1;
 
   newRoutine.innerHTML = "<div class=\"routine_master hd-12\" >\n" +
-      "                    <img src=\"../images/press_banca.JPG\" class=\"hd-2\">\n" +
+      "                    <img src=\"../MainFrame/assets/images/press_banca.JPG\" class=\"hd-2\">\n" +
       "                    <p>Routina "+routineName+"</p>\n" +
       "                </div>\n" +
       "                <div class=\"routine_detail hd-12\">\n" +
