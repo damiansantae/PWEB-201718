@@ -111,6 +111,7 @@ img {
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
     pointer-events: none;
+    z-index: 99999;
 }
 
 .modalDialog:target {
@@ -121,17 +122,17 @@ img {
 
 .modalDialog > div {
     width: 475px;
-    position: relative;
+    position: absolute;
     margin: 10% auto;
     padding: 5px 20px 13px 20px;
-    border-radius: 12px;
+    border-radius: 0px;
     background: darkred;
     background: -moz-linear-gradient(#666666,#666666);
     background: -webkit-linear-gradient(#666666,#666666);
     background: -o-linear-gradient(#666666,#666666);
     max-height: calc(100vh - 210px);
     overflow-y: auto;
-    border: 7px solid #660000;
+    border: 0px solid #660000;
     outline-style: solid;
     outline-color: invert;
     z-index: 99999;
@@ -153,9 +154,9 @@ p{font-size: 13px}
     width: 23px;
     text-decoration: none;
     font-weight: 500;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    border-radius: 12px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
     -moz-box-shadow: 1px 1px 3px #000;
     -webkit-box-shadow: 1px 1px 3px #000;
     box-shadow: 1px 1px 3px #000;
@@ -173,3 +174,4 @@ p{font-size: 13px}
     text-decoration: none;
     display: inline-block;
     font-size: 16px;}
+

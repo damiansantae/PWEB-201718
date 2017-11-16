@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Place searches</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+
+    <style>
+        #map {
+            height: 580px;
+            width: 680px;
+            border: 10px solid darkred;
+            padding: 5px;
+            margin: 25px;
+        }
+
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1{
+            font-weight: 700;
+            color: #000000;
+            letter-spacing: 0.2pt;
+            word-spacing: 2pt;
+            font-size: 185%;;
+            font-family: verdana, sans-serif;
+            line-height: 1;
+            padding-left: 66px;
+            padding-bottom: -20px;
+            text-align:justify
+         }
+    </style>
+    <script>
+
+        var map;
+        var infoWindow;
+
+        function initMap() {
+            var pyrmont = {lat:43.364490, lng:-8.407406};
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: pyrmont,
+                zoom: 15
+            });
+
+            infowindow = new google.maps.InfoWindow({map:map});
+            var service = new google.maps.places.PlacesService(map);
+            service.nearbySearch({
+                location: pyrmont,
+                radius: 20000,
+                type: ['gym']
+            }, callback);
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+
+                    };
+
+
+                        map.setCenter(pos);
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent('Ubicación encontrada');
+
+
+
+
+                },
+                    function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+
+        }
+
+        function callback(results, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                    createMarker(results[i]);
+                }
+            }
+        }
+
+        function createMarker(place) {
+            var placeLoc = place.geometry.location;
+            var marker = new google.maps.Marker({
+                map: map,
+
+                position: place.geometry.location
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+                infoWindow.setPosition(pos);
+                infowindow.setContent(place.name);
+                infowindow.open(map, this);
+            });
+
+        }
+
+    </script>
+</head>
+<body>
+<header>
+    <h1>Encuentra tu gimnasio más próximo</h1>
+</header>
+<div id="map"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpppWMSZyB-CiM68Bx6y2CQmwcxvkXKMA&libraries=places,geometry&callback=initMap" async defer></script>
+</body>
+</html>
