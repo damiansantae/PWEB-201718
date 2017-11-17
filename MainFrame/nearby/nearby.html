@@ -46,7 +46,7 @@ var pos;
                 center: {lat: -34.397, lng: 150.644},
                 zoom: 12
             });
-            var infoWindow = new google.maps.InfoWindow({map: map});
+            infoWindow = new google.maps.InfoWindow({map: map});
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
@@ -104,8 +104,8 @@ var pos;
             });
 
             google.maps.event.addListener(marker, 'click', function() {
-                infowindow.setContent(place.name);
-                infowindow.open(map, this);
+                infoWindow.setContent(place.name);
+                infoWindow.open(map, this);
             });
 
         }
