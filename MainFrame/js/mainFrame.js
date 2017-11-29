@@ -44,7 +44,6 @@ function checkLoginState() {
         loginForm.style.display = "block";
 
 
-
     } else {
 
         b.style.display = "block";
@@ -105,8 +104,65 @@ function checkLogin() {
 }
 
 
-function  logOut() {
+function logOut() {
     setLoging(false);
     checkLoginState();
 
+}
+
+
+var xmlHttp = createXmlHttpRequestObject();
+
+function createXmlHttpRequestObject() {
+
+    try {
+        var xmlHttp = new XMLHttpRequest();
+    }
+    catch (e) {
+        xmlHttp = false;
+    }
+
+    if (!xmlHttp) alert('Error creating XMLHttpRequest object.');
+    else return xmlHttp;
+
+}
+
+// make asynchronous HTTP request using XMLHttpRequest object
+function process() {
+// proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+// retrieve name typed by user on form
+        name = encodeURIComponent(
+            document.getElementById("myName").value);
+// execute quickstart.php page from server
+        xmlHttp.open("GET", "quickstart.php?name=" + name, true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('process()', 1000);
+}
+
+function handleServerResponse() {
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+// extract XML retrieved from server
+            xmlResponse = xmlHttp.responseXML;
+// obtain document element (root element) of XML structure
+            xmlDocumentElement = xmlResponse.documentElement;
+// get text message (first child of document element)
+            helloMessage = xmlDocumentElement.firstChild.data;
+// display data received from server
+            document.getElementById("divMessage").innerHTML =
+                '<i>' + helloMessage + '</i>';
+            setTimeout('process()', 1000); // restart sequence
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
 }
