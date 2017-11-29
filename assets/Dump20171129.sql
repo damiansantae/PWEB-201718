@@ -26,7 +26,11 @@ CREATE TABLE `days_exercises` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_exercise` int(11) NOT NULL,
   `id_day` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `id_exercise` (`id_exercise`),
+  KEY `id_day` (`id_day`),
+  CONSTRAINT `days_exercises_ibfk_1` FOREIGN KEY (`id_exercise`) REFERENCES `exercises` (`id`),
+  CONSTRAINT `days_exercises_ibfk_2` FOREIGN KEY (`id_day`) REFERENCES `routines_days` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -90,27 +94,31 @@ LOCK TABLES `muscles` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `muscles-exercises`
+-- Table structure for table `muscles_exercises`
 --
 
-DROP TABLE IF EXISTS `muscles-exercises`;
+DROP TABLE IF EXISTS `muscles_exercises`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `muscles-exercises` (
+CREATE TABLE `muscles_exercises` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_muscles` int(11) NOT NULL,
   `id_exercises` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `id_muscles` (`id_muscles`),
+  KEY `id_exercises` (`id_exercises`),
+  CONSTRAINT `muscles_exercises_ibfk_1` FOREIGN KEY (`id_muscles`) REFERENCES `muscles` (`id`),
+  CONSTRAINT `muscles_exercises_ibfk_2` FOREIGN KEY (`id_exercises`) REFERENCES `exercises` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `muscles-exercises`
+-- Dumping data for table `muscles_exercises`
 --
 
-LOCK TABLES `muscles-exercises` WRITE;
-/*!40000 ALTER TABLE `muscles-exercises` DISABLE KEYS */;
-/*!40000 ALTER TABLE `muscles-exercises` ENABLE KEYS */;
+LOCK TABLES `muscles_exercises` WRITE;
+/*!40000 ALTER TABLE `muscles_exercises` DISABLE KEYS */;
+/*!40000 ALTER TABLE `muscles_exercises` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -124,7 +132,9 @@ CREATE TABLE `routines` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `id_user` (`id_user`),
+  CONSTRAINT `routines_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -148,7 +158,9 @@ CREATE TABLE `routines_days` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `id_routine` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `id_routine` (`id_routine`),
+  CONSTRAINT `routines_days_ibfk_1` FOREIGN KEY (`id_routine`) REFERENCES `routines` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -206,4 +218,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-28 19:19:38
+-- Dump completed on 2017-11-29 12:09:15
