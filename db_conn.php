@@ -6,12 +6,10 @@
  * Time: 8:32
  */
 
-define("DATABASE_LOCAL","localhost");
-define("DATABASE_NAME","pw_web_app");
+define("CONNECT_STRING","mysql:host=localhost;dbname=pw_web_app");
 define("DATABASE_USER","root");
 define ("DATABASE_PASSWD","root");
 
-$db = new mysqli(DATABASE_LOCAL,DATABASE_USER,DATABASE_PASSWD,DATABASE_NAME);
-
-
+$db = new PDO(CONNECT_STRING,DATABASE_USER,DATABASE_PASSWD);
+$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 ?>
