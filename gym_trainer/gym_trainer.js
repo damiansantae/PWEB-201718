@@ -30,25 +30,24 @@ function insertDay(id) {
     table.appendChild(newDay);
 }
 
-function insertRoutine() {
+function insertRoutine(name,id) {
   var divParent = document.getElementById('routines_nav');
   var nRoutines = divParent.getElementsByClassName('routine_row').length;
   var newRoutine = document.createElement('div');
-  newRoutine.setAttribute('id','routine_'+nRoutines);
+  newRoutine.setAttribute('id','routine_'+id);
   newRoutine.setAttribute('class','routine_row');
   newRoutine.setAttribute('onmouseover','isHovered(this)');
   newRoutine.setAttribute('onmouseout','finishHover(this)');
-  var routineName = nRoutines+1;
 
   newRoutine.innerHTML = "<div class=\"routine_master hd-12\" >\n" +
       "                    <img src=\"../MainFrame/assets/images/press_banca.JPG\" class=\"hd-2\">\n" +
-      "                    <p>Routina "+routineName+"</p>\n" +
+      "                    <p>Routina "+name+"</p>\n" +
       "                </div>\n" +
       "                <div class=\"routine_detail hd-12\">\n" +
       "                    <table>\n" +
       "                        <tr class=\"table_days\">\n" +
-      "                            <td> <button id=\"routine_"+nRoutines+"_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"  onclick=\"insertDay(this.id)\">+</button></td>\n" +
-      "                            <td id=\"routine_"+nRoutines+"_1\"> <h3>1</h3></td>\n" +
+      "                            <td> <button id=\"routine_"+id+"_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"  onclick=\"insertDay(this.id)\">+</button></td>\n" +
+      "                            <td id=\"routine_"+id+"_1\"> <h3>1</h3></td>\n" +
       "                        </tr>\n" +
       "                    </table>\n" +
       "                </div>";
@@ -127,4 +126,65 @@ function  isHovered(x) {
 function finishHover(x){
     var divToDisplay= x.lastElementChild;
     divToDisplay.style.display = 'none';
+}
+
+
+
+
+
+
+
+
+
+var xmlHttp = createXmlHttpRequestObject();
+
+function createXmlHttpRequestObject() {
+
+    try {
+        var xmlHttp = new XMLHttpRequest();
+    }
+    catch (e) {
+        xmlHttp = false;
+    }
+
+    if (!xmlHttp) alert('Error creating XMLHttpRequest object.');
+    else return xmlHttp;
+
+}
+
+// make asynchronous HTTP request using XMLHttpRequest object
+function process() {
+// proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+// retrieve name typed by user on form
+        name = encodeURIComponent(
+            document.getElementById("myName").value);
+// execute quickstart.php page from server
+        xmlHttp.open("GET", "getUserRoutines.php?user=" + name, true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('process()', 1000);
+}
+
+function handleServerResponse() {
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+// extract JSON retrieved from server
+            var jsonResponse = eval('('+xmlHttp.responseText+')');
+
+            for(var i=0;i<jsonResponse.routines.length;i++){
+                insertRoutine(jsonResponse.routines[i].name,jsonResponse.routines[i].id);
+            }
+
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
 }

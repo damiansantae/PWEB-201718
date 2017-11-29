@@ -10,6 +10,13 @@ define("CONNECT_STRING","mysql:host=localhost;dbname=pw_web_app");
 define("DATABASE_USER","root");
 define ("DATABASE_PASSWD","root");
 
-$db = new PDO(CONNECT_STRING,DATABASE_USER,DATABASE_PASSWD);
-$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+try{
+    $db = new PDO(CONNECT_STRING,DATABASE_USER,DATABASE_PASSWD);
+    $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+}
+catch (PDOException $exception){
+    die($exception->getMessage());
+}
+
 ?>
