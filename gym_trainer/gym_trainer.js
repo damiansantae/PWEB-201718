@@ -41,7 +41,7 @@ function insertRoutine(name,id) {
 
   newRoutine.innerHTML = "<div class=\"routine_master hd-12\" >\n" +
       "                    <img src=\"../MainFrame/assets/images/press_banca.JPG\" class=\"hd-2\">\n" +
-      "                    <p>Routina "+name+"</p>\n" +
+      "                    <p>"+name+"</p>\n" +
       "                </div>\n" +
       "                <div class=\"routine_detail hd-12\">\n" +
       "                    <table>\n" +
@@ -154,13 +154,13 @@ function createXmlHttpRequestObject() {
 
 // make asynchronous HTTP request using XMLHttpRequest object
 function process() {
+
 // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 // retrieve name typed by user on form
-        name = encodeURIComponent(
-            document.getElementById("myName").value);
+     id=1;
 // execute quickstart.php page from server
-        xmlHttp.open("GET", "getUserRoutines.php?user=" + name, true);
+        xmlHttp.open("GET", "php/get_user_routines.php?id=" + id, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerResponse;
 // make server request
@@ -179,8 +179,9 @@ function handleServerResponse() {
 // extract JSON retrieved from server
             var jsonResponse = eval('('+xmlHttp.responseText+')');
 
-            for(var i=0;i<jsonResponse.routines.length;i++){
-                insertRoutine(jsonResponse.routines[i].name,jsonResponse.routines[i].id);
+            for(var i=0;i<jsonResponse.length;i++){
+                console.log('routine with name '+jsonResponse[i].name+ ' and id: '+jsonResponse[i].id);
+                insertRoutine(jsonResponse[i].name,jsonResponse[i].id);
             }
 
         } else { // HTTP status different than 200 signals error
