@@ -45,13 +45,14 @@ function backToMuscularGroups(){
 }
 
 document.addEventListener("storage", displayExercises);
+
 function displayExercises(){
     var muscularGroup = sessionStorage.getItem("muscular_group");
     switch (muscularGroup){
-        case "Pecho":
+        case 'Pecho':
             document.getElementById("row_chest_exercises").style.display = "block";
             break;
-        case "Dorsales":
+        case 'Dorsales':
             document.getElementById("row_dorsals_exercises").style.display = "block";
             break;
     }
