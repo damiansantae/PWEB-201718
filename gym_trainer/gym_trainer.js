@@ -53,7 +53,7 @@ function insertRoutine(name, id) {
         "                <div class=\"routine_detail hd-12\">\n" +
         "                    <table>\n" +
         "                        <tr class=\"table_days\">\n" +
-        "                            <td> <button id=\"routine_" + id + "_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"  onclick=\"insertDayDB(this.id)\">+</button></td>\n" +
+        "                            <td> <button id=\"routine_" + id + "_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"  onclick=\"insertDayOnDB(this.id)\">+</button></td>\n" +
         "                        </tr>\n" +
         "                    </table>\n" +
         "                </div>";
@@ -137,12 +137,55 @@ function handleServerInsertExerciseResponse() {
 // status of 200 indicates transaction completed successfully
 
         if (xmlHttp.status == 200) {
-// extract JSON retrieved from server
-            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
-            
+
+
                 dayClicked(getCurrentDayId());
 
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
+}
 
+function insertDayOnDB(routine_id){
+
+
+
+
+    var n = routine_id.indexOf("_") + 1;
+    var l = routine_id.indexOf("_",n);
+    var routine_idf = routine_id.substring(n,l);
+
+
+// proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+// retrieve name typed by user on form
+        id = 1;
+// execute quickstart.php page from server
+        xmlHttp.open("GET", "php/insert_new_day.php?routine_id=" +routine_idf, true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerInsertDayResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('process()', 1000);
+
+}
+
+
+function handleServerInsertDayResponse() {
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+
+            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
+
+            for (var i = 0; i < jsonResponse.length; i++) {
+                insertDay(jsonResponse[i].name,jsonResponse[i].id,jsonResponse[i].routine_id);
+            }
 
 
 
@@ -151,7 +194,6 @@ function handleServerInsertExerciseResponse() {
         }
     }
 }
-
 function insertExercise(exercise_id,exercise_name,exercise_image_url,exercise_day_id) {
 
 
