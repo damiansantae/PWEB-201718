@@ -209,8 +209,8 @@ exercise_row.innerHTML = '<td class="hd-8" id="exer_descript_'+exercise_id+'"\n'
     '                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>\n' +
     '                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>';
 
-
 }
+
 
 
 
