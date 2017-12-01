@@ -5,12 +5,12 @@ header('Content-Type: text/json');
 
 
 require "../../db_conn.php";
-$routine_id = $_GET["routine_id"];
+$day_id = $_GET["day_id"];
 
 try {
     $db->beginTransaction();
-    $delete_routines = "delete from routines WHERE id=$routine_id";
-    $delete = $db->query($delete_routines);
+    $delete_day = "delete from routines_days WHERE id=$day_id";
+    $delete = $db->query($delete_day);
 
     echo $delete;
 
