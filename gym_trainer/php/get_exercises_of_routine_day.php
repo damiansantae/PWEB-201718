@@ -18,9 +18,14 @@ try {
     $exercises_id = $db->query($get_exercises_id);
 
     $exercise_data = array();
+
+
+
     while ($row = $exercises_id->fetch()) {
+
         $exercise_day_id = $row["id"];
-        $get_exercise = "SELECT * from exercises WHERE  id=$exercise_day_id";
+        $exercise_id = $row["id_exercise"];
+        $get_exercise = "SELECT * from exercises WHERE  id=$exercise_id";
         $exercise = $db->query($get_exercise);
 
         while ($row2 = $exercise->fetch()) {

@@ -85,8 +85,8 @@ function drop_handler(ev) {
     var data = ev.dataTransfer.getData("text");
     console.log(data);
     var n = day_id.indexOf("_") + 1;
-
     var exercise_id= day_id.substring(n);
+    insertExerciseDB(exercise_id);
 
 
     /*var nodeCopy = document.getElementById(data).cloneNode(true);
@@ -104,33 +104,24 @@ function drop_handler(ev) {
 
 function insertExercise(exercise_id,exercise_name,exercise_image_url,exercise_day_id) {
 
-    //TODO: LO DEJASTE AQUI
-    var table = document.getElementById('exercise_nav').getElementsByTagName('table').item(0);
-var exercise_row = table.getElementById('day_exercise_'+exercise_day_id);
+
+var exercise_row = document.getElementById('row-exercise_'+exercise_day_id);
 
 
-exercise_row.innerHTML = "<td class=\"hd-8\" id=\"exer_descript_"+exercise_id+"\"  \n" +
-    "                         ></td>\n" +
-    "                      <td class=\"hd-2\"><input class=\"short-input\" type=\"number\" step=\"1\" placeholder=\"0\" min=\"0\"></td>\n" +
-    "                      <td class=\"hd-2\"><input class=\"short-input\" type=\"number\" step=\"1\" placeholder=\"0\" min=\"0\"></td>"
-
+exercise_row.innerHTML = '<td class="hd-8" id="exer_descript_'+exercise_id+'"\n' +
+    '                          >' +
+    '<div id="exer_div_'+exercise_id+'" class="ex_row" \n' +
+    '                        >\n' +
+    '                        <h3>'+exercise_name+'</h3>\n' +
+    '                    </div></td>\n' +
+    '                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>\n' +
+    '                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>';
 
 
 }
 
-    newRow.setAttribute('id', 'row_exercise_' + nRows);
-    newRow.setAttribute('class', 'd-12 exercise_row');
-    newRow.innerHTML = "<td class=\"hd-8 img\" id=\"exer_descript_" + nRows + "\" ondrop=\"drop_handler(event);\" ondragover=\"dragover_handler(event);\"></td>\n" +
-        "              <td class=\"hd-2\"> <input class=\"short-input\" type=\"number\" step=\"1\" placeholder=\"0\" min=\"0\"></td>\n" +
-        "              <td class=\"hd-2\"><input class=\"short-input\" type=\"number\" step=\"1\" placeholder=\"0\" min=\"0\"></td>";
 
-//Eliminamos boton de añadir para que no aparezca arriba de la nueva routina añadida
-    var btn = document.getElementById("add_new_ex_row");
-    btn.parentNode.removeChild(btn);
 
-    table.appendChild(newRow);//Añadimos nueva columna
-    table.appendChild(btn);         //Añadimos el boton
-}
 
 function isHovered(x) {
     var divToDisplay = x.lastElementChild;
@@ -185,8 +176,8 @@ function dayClicked(day_id) {
     var l = day_id.indexOf("_", n);
     var startOfIndexDayId = day_id.indexOf("_", l);
     var day_index_id = day_id.substring(startOfIndexDayId + 1);
-    var parent =document.getElementById(exercise_nav);
-    var table = parent.getElementsByTagName(table);
+    var parent =document.getElementById('exercise_nav');
+    var table = parent.getElementsByTagName('table').item(0);
 
     var newTable =createNewTable(day_index_id);
     parent.replaceChild(newTable,table);
@@ -231,7 +222,7 @@ function handleServerExercisesIdResponse() {
 
 function getExercisesOfCurrentDay() {
     var exercise_nav = document.getElementById('exercise_nav');
-    var table = exercise_nav.getElementsByTagName('table');
+    var table = exercise_nav.getElementsByTagName('table').item(0);
     var table_id = table.id;
     var n = table_id.indexOf("_") + 1;
     var day_id= table_id.substring(n);
@@ -251,28 +242,25 @@ function getExercisesOfCurrentDay() {
         setTimeout('process()', 1000);
 
 
-
-
-
-
-
 }
 function insertExerciseRow(exercise_day_id) {
     var table = document.getElementById('exercise_nav').getElementsByTagName('table').item(0);
     var newRow = document.createElement('tr');
     newRow.setAttribute('id', 'row-exercise_' + exercise_day_id);
-    newRow.setAttribute('class', 'd-12 exercise_row');
+    newRow.setAttribute('class', 'hd-12 exercise_row');
 
 //Eliminamos boton de añadir para que no aparezca arriba de la nueva routina añadida
     var btn = document.getElementById("add_new_ex_row");
-    btn.parentNode.removeChild(btn);
+    var parent = btn.parentNode;
+    parent.removeChild(btn);
+
 
     table.appendChild(newRow);//Añadimos nueva columna
-    table.appendChild(btn);         //Añadimos el boton
+    parent.appendChild(btn);         //Añadimos el boton
 
 }
 function  createNewTable(day_id) {
-    var table = document.createElement(table);
+    var table = document.createElement('table');
     table.setAttribute('id','table_'+day_id);
     table.setAttribute('class','hd-12');
     table.setAttribute('style','margin-top: 50px');
