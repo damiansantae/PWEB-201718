@@ -16,6 +16,13 @@ function searchExercise() {
 
 
 }
+function getCurrentDayId(){
+    var exercise_nav = document.getElementById('exercise_nav');
+    var table = exercise_nav.getElementsByTagName('table').item(0);
+    var table_id = table.id;
+    var n = table_id.indexOf("_") + 1;
+    return table_id.substring(n);
+}
 
 function insertDay(name,id,routine_id) {
 
@@ -88,8 +95,8 @@ function drop_handler(ev) {
     // Get the id of the target and add the moved element to the target's DOM
     var data = ev.dataTransfer.getData("text");
     console.log(data);
-    var n = day_id.indexOf("_") + 1;
-    var exercise_id= day_id.substring(n);
+    var n = data.indexOf("_") + 1;
+    var exercise_id= data.substring(n);
     insertExerciseOnDB(exercise_id,day_id);
 
 
@@ -112,7 +119,7 @@ function insertExerciseOnDB(exercise_id,day_id){
 // retrieve name typed by user on form
         id = 1;
 // execute quickstart.php page from server
-        xmlHttp.open("GET", "php/insert_exercise.php?exercise_id=" +exercise_id+"&table_id="+day_id, true);
+        xmlHttp.open("GET", "php/insert_exercise.php?exercise_id=" +exercise_id+"&day_id="+day_id, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerInsertExerciseResponse;
 // make server request
@@ -132,10 +139,10 @@ function handleServerInsertExerciseResponse() {
         if (xmlHttp.status == 200) {
 // extract JSON retrieved from server
             var jsonResponse = eval('(' + xmlHttp.responseText + ')');
+            
+                dayClicked(getCurrentDayId());
 
-            for (var i = 0; i < jsonResponse.length; i++) {
-                insertExerciseRow(jsonResponse[i].id);
-            }
+
 
 
 
