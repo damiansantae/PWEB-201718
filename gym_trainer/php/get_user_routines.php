@@ -17,12 +17,17 @@ try {
     $db->beginTransaction();
     $get_routines = "SELECT * FROM routines WHERE id_user=$id";
     $routines = $db->query($get_routines);
+
+
     $routines_data = array();
     while ($row = $routines->fetch()) {
+
         $routines_data[] = array(
             'name' => $row["name"],
-            'id' => $row["id"]
+            'id' => $row["id"],
+            'days' => array()
         );
+
     }
 
     echo json_encode($routines_data);

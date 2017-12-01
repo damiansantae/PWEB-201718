@@ -17,15 +17,16 @@ function searchExercise() {
 
 }
 
-function insertDay(id) {
-    var routineNumber = id.substring(8, 9);
-    var table_parent = document.getElementById('routine_' + routineNumber);
-    var nDays = table_parent.getElementsByTagName('td').length;
+function insertDay(name,id,routine_id) {
+
+
+    var table_parent = document.getElementById('routine_' + routine_id);
 
     var newDay = document.createElement('td');
     var table = table_parent.getElementsByTagName('tr').item(0);
-    newDay.setAttribute('id', 'routine_' + routineNumber + '_' + nDays);
-    newDay.innerHTML = "<h3>" + nDays + "</h3>";
+    newDay.setAttribute('id', 'routine_' + routine_id + '_' + id);
+    newDay.setAttribute('onclick','dayClicked(this.id)');
+    newDay.innerHTML = "<h3>" + name+ "</h3>";
     table.appendChild(newDay);
 }
 
@@ -45,8 +46,7 @@ function insertRoutine(name, id) {
         "                <div class=\"routine_detail hd-12\">\n" +
         "                    <table>\n" +
         "                        <tr class=\"table_days\">\n" +
-        "                            <td> <button id=\"routine_" + id + "_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"  onclick=\"insertDay(this.id)\">+</button></td>\n" +
-        "                            <td id=\"routine_" + id + "_1\"> <h3>1</h3></td>\n" +
+        "                            <td> <button id=\"routine_" + id + "_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"  onclick=\"insertDayDB(this.id)\">+</button></td>\n" +
         "                        </tr>\n" +
         "                    </table>\n" +
         "                </div>";
@@ -163,8 +163,8 @@ function process() {
 }
 
 
-function dayClicked(day) {
-    var day_id = day.id;
+function dayClicked(day_id) {
+
     var n = day_id.indexOf("_") + 1;
     var l = day_id.indexOf("_", n);
     var routine_id = day_id.substring(n, l);
@@ -177,7 +177,7 @@ function dayClicked(day) {
 // retrieve name typed by user on form
         id = 1;
 // execute quickstart.php page from server
-        xmlHttp.open("GET", "php/get_exercises_of_routine_day.php?routine_id=" + routine_id+"&day_id="+day_index_id, true);
+        xmlHttp.open("GET", "php/get_exercises_of_routine_day.php?day_id="+day_index_id, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerExercisesResponse;
 // make server request
@@ -203,11 +203,52 @@ function handleServerResponse() {
                 insertRoutine(jsonResponse[i].name, jsonResponse[i].id);
             }
 
+            getDaysOfRoutines()
+
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
         }
     }
 }
+
+function getDaysOfRoutines(){
+
+
+    // proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+// retrieve name typed by user on form
+        id = 1;
+// execute quickstart.php page from server
+        xmlHttp.open("GET", "php/get_days_of_routines.php", true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerDaysOfRoutineResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('process()', 1000);
+
+}
+
+function handleServerDaysOfRoutineResponse() {
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+// extract JSON retrieved from server
+            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
+
+            for (var i = 0; i < jsonResponse.length; i++) {
+                insertDay(jsonResponse[i].name,jsonResponse[i].id,jsonResponse[i].routine_id);
+            }
+
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
+}
+
 
 function handleServerExercisesResponse() {
 
@@ -219,8 +260,8 @@ function handleServerExercisesResponse() {
             var jsonResponse = eval('(' + xmlHttp.responseText + ')');
 
             for (var i = 0; i < jsonResponse.length; i++) {
-                insertRoutine(jsonResponse[i].name, jsonResponse[i].id);
-                insertExercise()
+
+                insertExercise(jsonResponse[i].id);
             }
 
         } else { // HTTP status different than 200 signals error
@@ -228,3 +269,6 @@ function handleServerExercisesResponse() {
         }
     }
 }
+
+
+
