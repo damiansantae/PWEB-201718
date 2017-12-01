@@ -79,28 +79,45 @@ function dragover_handler(ev) {
 function drop_handler(ev) {
     ev.preventDefault();
     var targetID = ev.target.id;
-    var rowNumber = targetID.substring(14, 15);
+
 
     // Get the id of the target and add the moved element to the target's DOM
     var data = ev.dataTransfer.getData("text");
+    console.log(data);
+    var n = day_id.indexOf("_") + 1;
 
-    var nodeCopy = document.getElementById(data).cloneNode(true);
+    var exercise_id= day_id.substring(n);
+
+
+    /*var nodeCopy = document.getElementById(data).cloneNode(true);
     nodeCopy.id = "exercise_" + rowNumber;
     ev.target.appendChild(nodeCopy);
 
     //hacemos que no se pueda volver a hacer drop en la fila
     var divDropped = document.getElementById(targetID);
     divDropped.removeAttribute("ondrop");
-    divDropped.removeAttribute("ondragover");
+    divDropped.removeAttribute("ondragover");*/
 
 
 }
 
 
-function insertExercise() {
+function insertExercise(exercise_id,exercise_name,exercise_image_url,exercise_day_id) {
+
+    //TODO: LO DEJASTE AQUI
     var table = document.getElementById('exercise_nav').getElementsByTagName('table').item(0);
-    var nRows = table.getElementsByTagName('tr').length;
-    var newRow = document.createElement('tr');
+var exercise_row = table.getElementById('day_exercise_'+exercise_day_id);
+
+
+exercise_row.innerHTML = "<td class=\"hd-8\" id=\"exer_descript_"+exercise_id+"\"  \n" +
+    "                         ></td>\n" +
+    "                      <td class=\"hd-2\"><input class=\"short-input\" type=\"number\" step=\"1\" placeholder=\"0\" min=\"0\"></td>\n" +
+    "                      <td class=\"hd-2\"><input class=\"short-input\" type=\"number\" step=\"1\" placeholder=\"0\" min=\"0\"></td>"
+
+
+
+}
+
     newRow.setAttribute('id', 'row_exercise_' + nRows);
     newRow.setAttribute('class', 'd-12 exercise_row');
     newRow.innerHTML = "<td class=\"hd-8 img\" id=\"exer_descript_" + nRows + "\" ondrop=\"drop_handler(event);\" ondragover=\"dragover_handler(event);\"></td>\n" +
@@ -164,20 +181,67 @@ function process() {
 
 
 function dayClicked(day_id) {
-
     var n = day_id.indexOf("_") + 1;
     var l = day_id.indexOf("_", n);
-    var routine_id = day_id.substring(n, l);
     var startOfIndexDayId = day_id.indexOf("_", l);
     var day_index_id = day_id.substring(startOfIndexDayId + 1);
+    var parent =document.getElementById(exercise_nav);
+    var table = parent.getElementsByTagName(table);
+
+    var newTable =createNewTable(day_index_id);
+    parent.replaceChild(newTable,table);
+
+    // proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+
+
+        xmlHttp.open("GET", "php/get_id_of_exercises_day.php?day_id="+day_index_id, true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerExercisesIdResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('process()', 1000);
+
+
+}
+
+
+function handleServerExercisesIdResponse() {
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+// extract JSON retrieved from server
+            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
+
+            for (var i = 0; i < jsonResponse.length; i++) {
+                insertExerciseRow(jsonResponse[i].id);
+            }
+
+            getExercisesOfCurrentDay();
+
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
+}
+
+function getExercisesOfCurrentDay() {
+    var exercise_nav = document.getElementById('exercise_nav');
+    var table = exercise_nav.getElementsByTagName('table');
+    var table_id = table.id;
+    var n = table_id.indexOf("_") + 1;
+    var day_id= table_id.substring(n);
 
 
     // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
-// retrieve name typed by user on form
-        id = 1;
-// execute quickstart.php page from server
-        xmlHttp.open("GET", "php/get_exercises_of_routine_day.php?day_id="+day_index_id, true);
+
+
+        xmlHttp.open("GET", "php/get_exercises_of_routine_day.php?day_id="+day_id, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerExercisesResponse;
 // make server request
@@ -185,6 +249,39 @@ function dayClicked(day_id) {
     } else
 // if connection is busy, try again after one second
         setTimeout('process()', 1000);
+
+
+
+
+
+
+
+}
+function insertExerciseRow(exercise_day_id) {
+    var table = document.getElementById('exercise_nav').getElementsByTagName('table').item(0);
+    var newRow = document.createElement('tr');
+    newRow.setAttribute('id', 'row-exercise_' + exercise_day_id);
+    newRow.setAttribute('class', 'd-12 exercise_row');
+
+//Eliminamos boton de añadir para que no aparezca arriba de la nueva routina añadida
+    var btn = document.getElementById("add_new_ex_row");
+    btn.parentNode.removeChild(btn);
+
+    table.appendChild(newRow);//Añadimos nueva columna
+    table.appendChild(btn);         //Añadimos el boton
+
+}
+function  createNewTable(day_id) {
+    var table = document.createElement(table);
+    table.setAttribute('id','table_'+day_id);
+    table.setAttribute('class','hd-12');
+    table.setAttribute('style','margin-top: 50px');
+    table.innerHTML= " <tr>\n" +
+        "                    <td class=\"hd-8\"><h3>Ejercicios</h3></td>\n" +
+        "                    <td class=\"hd-2\"><h3>Repeticiones</h3></td>\n" +
+        "                    <td class=\"hd-2\"><h3>Series</h3></td>\n" +
+        "                </tr>";
+    return table;
 
 
 }
@@ -261,7 +358,7 @@ function handleServerExercisesResponse() {
 
             for (var i = 0; i < jsonResponse.length; i++) {
 
-                insertExercise(jsonResponse[i].id);
+                insertExercise(jsonResponse[i].id,jsonResponse[i].name,jsonResponse[i].image_url,jsonResponse[i].exercise_day_id);
             }
 
         } else { // HTTP status different than 200 signals error

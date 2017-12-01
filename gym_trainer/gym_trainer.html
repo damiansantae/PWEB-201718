@@ -276,17 +276,20 @@
                     <td class="hd-2"><h3>Repeticiones</h3></td>
                     <td class="hd-2"><h3>Series</h3></td>
                 </tr>
-                <tr id="row_exercise_1" class="hd-12 exercise_row">
-                    <td class="hd-8" id="exer_descript_1" ondrop="drop_handler(event);"
-                        ondragover="dragover_handler(event);"></td>
-                    <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>
-                    <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>
-                </tr>
+
+
+                <!--  <tr id="row_exercise_1" class="hd-12 exercise_row">
+                      <td class="hd-8" id="exer_descript_1"
+                          ondragover="dragover_handler(event);"></td>
+                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>
+                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>
+                  </tr>-->
+
             </table>
 
-            <button id="add_new_ex_row" class="w3-button w3-xlarge w3-circle w3-red w3-card-4"
-                    onclick="insertExercise()">+
-            </button>
+                <button id="add_new_ex_row" class="w3-button w3-xlarge w3-circle w3-red w3-card-4"
+                        ondragover="dragover_handler(event)" ondrop="drop_handler(event)">+
+                </button>
 
         </nav>
 

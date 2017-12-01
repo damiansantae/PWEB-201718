@@ -107,7 +107,7 @@ p {
     line-height: 1;
 }
 div{
-    border: 1px solid white;
+    border: 1px solid red;
 }
 td{
     width: 100px;
