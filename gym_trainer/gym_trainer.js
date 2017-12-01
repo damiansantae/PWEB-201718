@@ -79,14 +79,18 @@ function dragover_handler(ev) {
 function drop_handler(ev) {
     ev.preventDefault();
     var targetID = ev.target.id;
-
+    var exercise_nav = document.getElementById('exercise_nav');
+    var table = exercise_nav.getElementsByTagName('table').item(0);
+    var table_id = table.id;
+    var n = table_id.indexOf("_") + 1;
+    var day_id= table_id.substring(n);
 
     // Get the id of the target and add the moved element to the target's DOM
     var data = ev.dataTransfer.getData("text");
     console.log(data);
     var n = day_id.indexOf("_") + 1;
     var exercise_id= day_id.substring(n);
-    insertExerciseDB(exercise_id);
+    insertExerciseOnDB(exercise_id,day_id);
 
 
     /*var nodeCopy = document.getElementById(data).cloneNode(true);
@@ -101,6 +105,45 @@ function drop_handler(ev) {
 
 }
 
+function insertExerciseOnDB(exercise_id,day_id){
+
+// proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+// retrieve name typed by user on form
+        id = 1;
+// execute quickstart.php page from server
+        xmlHttp.open("GET", "php/insert_exercise.php?exercise_id=" +exercise_id+"&table_id="+day_id, true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerInsertExerciseResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('process()', 1000);
+
+}
+
+
+function handleServerInsertExerciseResponse() {
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+// extract JSON retrieved from server
+            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
+
+            for (var i = 0; i < jsonResponse.length; i++) {
+                insertExerciseRow(jsonResponse[i].id);
+            }
+
+
+
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
+}
 
 function insertExercise(exercise_id,exercise_name,exercise_image_url,exercise_day_id) {
 
