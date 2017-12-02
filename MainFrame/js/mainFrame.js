@@ -47,7 +47,6 @@ function checkLoginState() {
         loginForm.style.display = "block";
 
 
-
     } else {
 
         b.style.display = "block";
@@ -108,8 +107,9 @@ function checkLogin() {
 }
 
 
-function  logOut() {
+function logOut() {
     setLoging(false);
     checkLoginState();
 
 }
+
