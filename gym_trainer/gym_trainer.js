@@ -922,3 +922,55 @@ function changeSetAndRepValue(day_exercise_id, set_value, rep_value) {
 
 }
 
+function openDetail() {
+    document.getElementById("detail-overlay").style.display = "block";
+}
+
+function closeDetail() {
+    document.getElementById("detail-overlay").style.display = "none";
+    document.getElementById("input-name").value = "";
+}
+
+function insertNewRoutine() {
+    var routineName = document.getElementById("input-name").value;
+    var userID = 1;
+    insertNewRoutineIntoDB(routineName, userID);
+}
+function insertNewRoutineIntoDB(name, id) {
+
+
+// proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+
+// execute quickstart.php page from server
+        xmlHttp.open("GET", "php/insert_routine.php?name=" + name + "&id=" + id, true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerInsertNewRoutineIntoDBResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('insertNewRoutineIntoDB(name, id)', 1000);
+
+}
+
+/**
+ * Una vez que el servidor añade a la base de datos un nuevo ejercicio a un dia de una rutina
+ * se dispara esta función que llama al método dayClicked pasandole por parámetro el día que se
+ * encuentra mostrado en pantalla actualmente, con el fin de refrescar los ejercicios
+ */
+function handleServerInsertNewRoutineIntoDBResponse() {
+        console.log("Holaaa");
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+            console.log("Status 200 OK");
+                process();
+
+
+        } else { // HTTP status different than 200 signals error
+        }
+    }
+}

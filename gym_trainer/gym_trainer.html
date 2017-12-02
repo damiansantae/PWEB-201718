@@ -72,7 +72,7 @@
 
 
             <button id="add_routine_btn" class="w3-button w3-xlarge w3-circle w3-red w3-card-4" type="button"
-                    value="Add routine" onclick="insertRoutine()">+
+                    value="Add routine" onclick="openDetail()">+
             </button>
             <div class="loader" id="col-2_loader"></div>
 
@@ -114,11 +114,12 @@
 
 <div id="detail-overlay">
     <div id="detail-container">
-        <h1>Set the name of your new Routine</h1>
+        <h1 id="add_routine_title">Introduce el nombre de la nueva rutina</h1>
+        <form id="routine_name_form">
+            <input id="input-name" name="nombre"  class="w3-border w3-round-large" placeholder="Nombre" required> <br>
+            <button onclick="insertNewRoutine()" class="add_routine">Añadir rutina</button>
+        </form>
         <a onclick="closeDetail()" href="#close" title="Close" class="close">X</a>
-        <iframe id="video" class="detail-video"
-                frameborder="0" allowfullscreen>
-        </iframe>
     </div>
 </div>
 
