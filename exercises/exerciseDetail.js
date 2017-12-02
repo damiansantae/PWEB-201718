@@ -1,36 +1,9 @@
-function openDetail(exerciseName) {
-    document.getElementById("detail-overlay").style.display = "block";
 
-    switch (exerciseName) {
-        case "Press de banca":
-            document.getElementById("video").src = "https://www.youtube.com/embed/bUUTESuUlwM";
-            document.getElementById("exerciseTitle").innerHTML = "Press banca";
-            break;
-        case "Pectoral contracto":
-            document.getElementById("video").src = "https://www.youtube.com/embed/K1RyiaLtlvY";
-            document.getElementById("exerciseTitle").innerHTML = "Pectoral contracto";
-            break;
-        case "Press banca inclinado":
-            document.getElementById("video").src = "https://www.youtube.com/embed/2bKcaD7lHLs";
-            document.getElementById("exerciseTitle").innerHTML = "Press banca inclinado";
-            break;
-        case "Push ups":
-            document.getElementById("video").src = "https://www.youtube.com/embed/IODxDxX7oi4";
-            document.getElementById("exerciseTitle").innerHTML = "Push ups";
-            break;
-        case "Peso muerto":
-            document.getElementById("video").src = "https://www.youtube.com/embed/gB9_9ggQ5jA";
-            document.getElementById("exerciseTitle").innerHTML = "Peso muerto";
-            break;
-        case "Remo barra":
-            document.getElementById("video").src = "https://www.youtube.com/embed/P_kNA_HElgA";
-            document.getElementById("exerciseTitle").innerHTML = "Remo barra";
-            break;
-        case "Aperturas espalda":
-            document.getElementById("video").src = "https://www.youtube.com/embed/w2bnly8LGlE";
-            document.getElementById("exerciseTitle").innerHTML = "Aperturas espalda";
-            break;
-    }
+function openDetail(name, videoUrl) {
+
+    document.getElementById("video").src = videoUrl;
+    document.getElementById("exerciseTitle").innerHTML = name;
+    document.getElementById("detail-overlay").style.display = "block";
 }
 
 function closeDetail() {
@@ -47,13 +20,94 @@ function backToMuscularGroups(){
 document.addEventListener("storage", displayExercises);
 
 function displayExercises(){
-    var muscularGroup = sessionStorage.getItem("muscular_group");
-    switch (muscularGroup){
-        case 'Pecho':
-            document.getElementById("row_chest_exercises").style.display = "block";
-            break;
-        case 'Dorsales':
-            document.getElementById("row_dorsals_exercises").style.display = "block";
-            break;
+    var divParent = document.getElementById("row_exercises");
+    while(divParent.firstChild){
+        divParent.removeChild(divParent.firstChild)
     }
+    var muscularGroupID = sessionStorage.getItem("muscular_group_id");
+    console.log("Id recuperado: " + muscularGroupID);
+    process(muscularGroupID);
+    document.getElementById("row_exercises").style.display = "block";
+
+}
+
+
+
+
+
+
+
+
+var xmlHttp = createXmlHttpRequestObject();
+
+function createXmlHttpRequestObject() {
+
+    try {
+        var xmlHttp = new XMLHttpRequest();
+    }
+    catch (e) {
+        xmlHttp = false;
+    }
+
+    if (!xmlHttp) alert('Error creating XMLHttpRequest object.');
+    else return xmlHttp;
+
+}
+
+// make asynchronous HTTP request using XMLHttpRequest object
+function process(muscularGroupID) {
+
+// proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+
+// execute quickstart.php page from server
+        xmlHttp.open("GET", "php/get_exercises.php?id=" + muscularGroupID, true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('process()', 1000);
+}
+
+function handleServerResponse() {
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+// extract JSON retrieved from server
+            var jsonResponse = eval('('+xmlHttp.responseText+')');
+
+            for(var i=0;i<jsonResponse.length;i++){
+                console.log('Longitud respuesta json: ' + jsonResponse.length);
+                insertExercise(jsonResponse[i].id,jsonResponse[i].name, jsonResponse[i].video_url, jsonResponse[i].description, jsonResponse[i].image_url);
+            }
+
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
+}
+
+function insertExercise(id, name, video_url, description, image_url) {
+    var divParent = document.getElementById('row_exercises');
+    var newExercise = document.createElement('div');
+    newExercise.setAttribute('id','muscular_group_'+ id);
+
+    newExercise.innerHTML =  "<div class=\"exercise-col-\">\n" +
+        "        <div class=\"flipper\">\n" +
+        "            <div class=\"front\">\n" +
+        "            <img class=\"exercise\" src='" + image_url + "'>\n" +
+        "                <h1 class=\"exercise\">" + name + "</h1>\n" +
+        "            </div>\n" +
+        "            <div class=\"back\">\n" +
+        "                <p class=\"exercise\">" + description + "</p>\n" +
+        "                <button onclick=\"openDetail('" + name + "','" + video_url + "')\" class=\"video\">Ver vídeo explicativo</button>\n" +
+        "            </div>\n" +
+        "        </div>\n" +
+        "    </div>";
+
+    divParent.appendChild(newExercise);      //Añadimos el nuevo grupo muscular
 }

@@ -1,20 +1,7 @@
 * {
 }
-.chest-col-1 {
 
-}
-.chest-col-2 {
-
-}
-.chest-col-3 {
-
-}
-.chest-col-4 {
-
-}
-
-
-[class*="chest-col-"] {
+[class*="exercise-col-"] {
     float: left;
     height: 200px;
     width: 800px;
@@ -24,7 +11,7 @@
     border: 1px solid darkred;
     perspective: 3000px;
 }
-[class*="chest-col-"]:hover {
+[class*="exercise-col-"]:hover {
 
 }
 
@@ -105,7 +92,7 @@ button.video:hover {
 
 
 /* flip the pane when hovered */
-[class*="chest-col-"]:hover .flipper, [class*="chest-col-"].hover .flipper {
+[class*="exercise-col-"]:hover .flipper, [class*="exercise-col-"].hover .flipper {
     transform: rotateY(180deg);
 }
 

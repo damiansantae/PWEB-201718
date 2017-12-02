@@ -1,11 +1,11 @@
 
 
-function showExercises(muscularGroup) {
-    sessionStorage.setItem("muscular_group", muscularGroup);
-    console.log(sessionStorage.getItem("muscular_group"));
+function showExercises(muscularGroupID) {
+    sessionStorage.setItem("muscular_group_id", muscularGroupID);
+    console.log("Muscula group selected id: " + muscularGroupID);
+    parent.document.getElementById("exercises").contentWindow.displayExercises();
     parent.document.getElementById("muscular_groups").style.display = "none";
     parent.document.getElementById("exercises").style.display = "block";
-    parent.document.getElementById("exercises").contentWindow.displayExercises();
 }
 
 var xmlHttp = createXmlHttpRequestObject();
@@ -64,21 +64,19 @@ function handleServerResponse() {
 function insertMuscularGroup(id, name, image_url) {
     var divParent = document.getElementById('rows');
     var newMuscularGroup = document.createElement('div');
-    newMuscularGroup.setAttribute('id','muscular_group_'+id);
+    newMuscularGroup.setAttribute('id','muscular_group_'+ id);
 
     newMuscularGroup.innerHTML =  "<div class='col-'>\n" +
         "                       <div class='flipper'>\n" +
         "                           <div class='front'>\n" +
         "                               <img class='muscular_group' src='" + image_url + "'>\n" +
         "                           </div>\n" +
-        "                           <div class='back' onclick=\"showExercises('"+ name +"')\">\n" +
+        "                           <div class='back' onclick=\"showExercises('"+ id +"')\">\n" +
         "                               <h1 class='muscular_group'>"+ name +"</h1>\n" +
         "                           </div>\n" +
         "                       </div>\n" +
         "   </div>";
 
-
-    console.log("                           <div class='back' onclick='showExercises("+ name +")'>\n");
     divParent.appendChild(newMuscularGroup);      //Añadimos el nuevo grupo muscular
 }
 
