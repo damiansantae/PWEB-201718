@@ -591,5 +591,64 @@ function removeRoutine(routine_id) {
    var routine_div = document.getElementById('routine_' + routine_id);
    routine_div.parentNode.removeChild(routine_div);
 
+}
+
+/**
+ * Funcion que se conecta con el servidor para eliminar un dia de una rutina determinada
+ * @param btn_id
+ */
+function deleteDay(btn_id) {
+    var n = btn_id.indexOf("_") + 1;
+    var l = btn_id.indexOf("_", n);
+    var day_id = btn_id.substring(n, l);
+
+    // proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+
+// execute quickstart.php page from server
+        xmlHttp.open("GET", "php/delete_day.php?day_id=" + day_id, true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerDayDeleteResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('process()', 1000);
+
+}
+
+/**
+ * Funcion que se dispara tras recibir una respuesta del servidor
+ * una vez que ha eliminado un dia de una rutina.
+ * Llama a la funcion removeDay(day_id) para actualizar el html,
+ * eliminando los elementos relacionados con dicho dia
+ */
+function handleServerDayDeleteResponse() {
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+// extract JSON retrieved from server
+            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
+
+            removeDay(jsonResponse.day_id,jsonResponse.routine_id);
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
+}
+
+/**
+ * Funcion que elimina el elemento del HTML e hijos del dia que se le pasa por
+ * parametro
+ * @param day_id
+ * @param routine_id
+ */
+function removeDay(day_id, routine_id) {
+    var dayToDelete = document.getElementById('routine_'+routine_id+'_'+day_id);
+    var parent = dayToDelete.parentNode;
+    parent.removeChild(dayToDelete);
+
 
 }
