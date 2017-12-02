@@ -7,25 +7,27 @@
  */
 
 header('Content-Type: text/json');
-
+include 'ChromePhp.php';
 
 require "../../db_conn.php";
 
 
 try {
     $db->beginTransaction();
-    $get_muscular_groups = "SELECT * FROM muscles";
-    $muscular_groups = $db->query($get_muscular_groups);
-    $muscular_groups_data = array();
-    while ($row = $muscular_groups->fetch()) {
-        $muscular_groups_data[] = array(
+    $get_exercises = "SELECT * FROM exercises";
+    $exercises = $db->query($get_exercises);
+    $exercises_data = array();
+    while ($row = $exercises->fetch()) {
+        $exercises_data[] = array(
             'id' => $row["id"],
             'name' => $row["name"],
+            'video_url' => $row["video_url"],
+            'description' => $row["description"],
             'image_url' => $row["image_url"]
         );
     }
-
-    echo json_encode($muscular_groups_data);
+    ChromePhp::log("Hola xd");
+    echo json_encode($exercises_data);
 
 
     $db->commit();

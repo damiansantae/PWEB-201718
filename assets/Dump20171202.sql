@@ -26,6 +26,8 @@ CREATE TABLE `days_exercises` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_exercise` int(11) NOT NULL,
   `id_day` int(11) NOT NULL,
+  `sets` int(11) DEFAULT NULL,
+  `reps` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_exercise` (`id_exercise`),
   KEY `id_day` (`id_day`),
@@ -57,7 +59,7 @@ CREATE TABLE `exercises` (
   `description` varchar(500) DEFAULT NULL,
   `image_url` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,6 +68,7 @@ CREATE TABLE `exercises` (
 
 LOCK TABLES `exercises` WRITE;
 /*!40000 ALTER TABLE `exercises` DISABLE KEYS */;
+INSERT INTO `exercises` VALUES (1,'Press de banca','https://www.youtube.com/embed/bUUTESuUlwM','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','../assets/images/muscles/PW_Press_Banca.jpg'),(2,'Pectoral contracto','https://www.youtube.com/embed/K1RyiaLtlvY','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','../assets/images/exercises/pectoralcontracto.gif'),(3,'Peso muerto','https://www.youtube.com/embed/gB9_9ggQ5jA','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','../assets/images/muscles/PW_Peso_Muerto.jpg'),(4,'Remo barra','https://www.youtube.com/embed/P_kNA_HElgA','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','../assets/images/exercises/remo_barra.jpg');
 /*!40000 ALTER TABLE `exercises` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +84,7 @@ CREATE TABLE `muscles` (
   `name` varchar(20) DEFAULT NULL,
   `image_url` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,6 +93,7 @@ CREATE TABLE `muscles` (
 
 LOCK TABLES `muscles` WRITE;
 /*!40000 ALTER TABLE `muscles` DISABLE KEYS */;
+INSERT INTO `muscles` VALUES (1,'Pecho','../assets/images/muscles/pecho_PW_ajustada.jpg'),(2,'Dorsales','../assets/images/muscles/dorsales-PW_ajustada.jpg'),(3,'Bíceps','../assets/images/muscles/bicpes_PW_ajustada.jpg'),(4,'Tríceps','../assets/images/muscles/tricpes_PW_ajustada.jpg'),(5,'Deltoides','../assets/images/muscles/deltoides_PW_ajustada.jpg'),(6,'Femorales','../assets/images/muscles/femorales_PW_ajustada.jpg'),(7,'Gemelos','../assets/images/muscles/gemelos_PW_ajustada.jpg'),(8,'Abdominales','../assets/images/muscles/abdominales_PW_ajustada.jpg');
 /*!40000 ALTER TABLE `muscles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,7 +113,7 @@ CREATE TABLE `muscles_exercises` (
   KEY `id_exercises` (`id_exercises`),
   CONSTRAINT `muscles_exercises_ibfk_1` FOREIGN KEY (`id_muscles`) REFERENCES `muscles` (`id`),
   CONSTRAINT `muscles_exercises_ibfk_2` FOREIGN KEY (`id_exercises`) REFERENCES `exercises` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,6 +122,7 @@ CREATE TABLE `muscles_exercises` (
 
 LOCK TABLES `muscles_exercises` WRITE;
 /*!40000 ALTER TABLE `muscles_exercises` DISABLE KEYS */;
+INSERT INTO `muscles_exercises` VALUES (5,1,1),(6,1,2),(7,2,3),(8,2,4);
 /*!40000 ALTER TABLE `muscles_exercises` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +140,7 @@ CREATE TABLE `routines` (
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`),
   CONSTRAINT `routines_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,6 +149,7 @@ CREATE TABLE `routines` (
 
 LOCK TABLES `routines` WRITE;
 /*!40000 ALTER TABLE `routines` DISABLE KEYS */;
+INSERT INTO `routines` VALUES (1,1,'Mi rutina');
 /*!40000 ALTER TABLE `routines` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,14 +188,17 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) DEFAULT NULL,
-  `lastnames` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
+  `firstname` varchar(30) DEFAULT NULL,
+  `lastname` varchar(100) DEFAULT NULL,
+  `email_address` varchar(100) DEFAULT NULL,
   `password` varchar(30) DEFAULT NULL,
-  `genre` varchar(6) DEFAULT NULL,
-  `birthyear` int(11) DEFAULT NULL,
+  `gender` varchar(6) DEFAULT NULL,
+  `birth_year` int(4) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `weight` int(3) DEFAULT NULL,
+  `weight_unit` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -198,6 +207,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Ivan','Gónzalez Hernández','ivanglez1996@gmail.com','pepe','male',25,'IvanGlez1996',56,'kg');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,4 +228,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-29 12:09:15
+-- Dump completed on 2017-12-02 17:38:01

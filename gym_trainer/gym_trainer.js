@@ -260,6 +260,7 @@ function process() {
     } else
 // if connection is busy, try again after one second
         setTimeout('process()', 1000);
+
 }
 
 
@@ -445,6 +446,56 @@ function handleServerExercisesResponse() {
             alert("Problem accesing the server: " + xmlHttp.statusText);
         }
     }
+}
+
+function loadAllExercises(){
+
+console.log("Hola llego aqui")
+    // proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+// retrieve name typed by user on form
+        id = 1;
+// execute quickstart.php page from server
+        xmlHttp.open("GET", "php/get_all_exercises.php", true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerGetAllExercisesResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('loadAllExercises()', 1000);
+
+}
+
+function handleServerGetAllExercisesResponse() {
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+// extract JSON retrieved from server
+            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
+
+            for (var i = 0; i < jsonResponse.length; i++) {
+                insertLeftColumnExercise(jsonResponse[i].id,jsonResponse[i].name, jsonResponse[i].image_url);
+            }
+
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
+}
+
+function insertLeftColumnExercise(id, name, imageURL) {
+    var divParent = document.getElementById('exercises_list');
+    var newExercise = document.createElement('li');
+
+    newExercise.innerHTML =  "<div id='exercise_" + id + "' class=\"ex_row\" draggable=\"true\" ondragstart=\"dragstart_handler(event)\"\n" +
+        "                         style=\"background-image: url('" + imageURL + "')\">\n" +
+        "                        <h3>" + name + "</h3>\n" +
+        "                    </div>";
+
+    divParent.appendChild(newExercise);      //Añadimos el ejercicio
 }
 
 

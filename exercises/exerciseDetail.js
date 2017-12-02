@@ -68,7 +68,7 @@ function process(muscularGroupID) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('process(muscularGroupID)', 1000);
 }
 
 function handleServerResponse() {
