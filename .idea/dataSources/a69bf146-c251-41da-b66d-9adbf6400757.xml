@@ -36,203 +36,211 @@
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="20" parent="10" name="id_day">
+    <column id="20" parent="10" name="sets">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="21" parent="10" name="reps">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="22" parent="10" name="id_day">
       <ColNames>id_day</ColNames>
     </index>
-    <index id="21" parent="10" name="id_exercise">
+    <index id="23" parent="10" name="id_exercise">
       <ColNames>id_exercise</ColNames>
     </index>
-    <key id="22" parent="10" name="PRIMARY">
+    <key id="24" parent="10" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="23" parent="10" name="days_exercises_ibfk_1">
+    <foreign-key id="25" parent="10" name="days_exercises_ibfk_1">
       <ColNames>id_exercise</ColNames>
       <RefSchemaName>pw_web_app</RefSchemaName>
       <RefTableName>exercises</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="24" parent="10" name="days_exercises_ibfk_2">
+    <foreign-key id="26" parent="10" name="days_exercises_ibfk_2">
       <ColNames>id_day</ColNames>
       <RefSchemaName>pw_web_app</RefSchemaName>
       <RefTableName>routines_days</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="25" parent="11" name="id">
+    <column id="27" parent="11" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="26" parent="11" name="name">
+    <column id="28" parent="11" name="name">
       <Position>2</Position>
       <DataType>varchar(40)|0</DataType>
     </column>
-    <column id="27" parent="11" name="video_url">
+    <column id="29" parent="11" name="video_url">
       <Position>3</Position>
       <DataType>varchar(200)|0</DataType>
     </column>
-    <column id="28" parent="11" name="description">
+    <column id="30" parent="11" name="description">
       <Position>4</Position>
       <DataType>varchar(500)|0</DataType>
     </column>
-    <column id="29" parent="11" name="image_url">
+    <column id="31" parent="11" name="image_url">
       <Position>5</Position>
       <DataType>varchar(500)|0</DataType>
     </column>
-    <key id="30" parent="11" name="PRIMARY">
+    <key id="32" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="31" parent="12" name="id">
+    <column id="33" parent="12" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="32" parent="12" name="name">
+    <column id="34" parent="12" name="name">
       <Position>2</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="33" parent="12" name="image_url">
+    <column id="35" parent="12" name="image_url">
       <Position>3</Position>
       <DataType>varchar(500)|0</DataType>
     </column>
-    <key id="34" parent="12" name="PRIMARY">
+    <key id="36" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="35" parent="13" name="id">
+    <column id="37" parent="13" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="36" parent="13" name="id_muscles">
+    <column id="38" parent="13" name="id_muscles">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="37" parent="13" name="id_exercises">
+    <column id="39" parent="13" name="id_exercises">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="38" parent="13" name="id_exercises">
+    <index id="40" parent="13" name="id_exercises">
       <ColNames>id_exercises</ColNames>
     </index>
-    <index id="39" parent="13" name="id_muscles">
+    <index id="41" parent="13" name="id_muscles">
       <ColNames>id_muscles</ColNames>
     </index>
-    <key id="40" parent="13" name="PRIMARY">
+    <key id="42" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="41" parent="13" name="muscles_exercises_ibfk_1">
+    <foreign-key id="43" parent="13" name="muscles_exercises_ibfk_1">
       <ColNames>id_muscles</ColNames>
       <RefSchemaName>pw_web_app</RefSchemaName>
       <RefTableName>muscles</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="42" parent="13" name="muscles_exercises_ibfk_2">
+    <foreign-key id="44" parent="13" name="muscles_exercises_ibfk_2">
       <ColNames>id_exercises</ColNames>
       <RefSchemaName>pw_web_app</RefSchemaName>
       <RefTableName>exercises</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="43" parent="14" name="id">
+    <column id="45" parent="14" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="44" parent="14" name="id_user">
+    <column id="46" parent="14" name="id_user">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="45" parent="14" name="name">
+    <column id="47" parent="14" name="name">
       <Position>3</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <index id="46" parent="14" name="id_user">
+    <index id="48" parent="14" name="id_user">
       <ColNames>id_user</ColNames>
     </index>
-    <key id="47" parent="14" name="PRIMARY">
+    <key id="49" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="48" parent="14" name="routines_ibfk_1">
+    <foreign-key id="50" parent="14" name="routines_ibfk_1">
       <ColNames>id_user</ColNames>
       <RefSchemaName>pw_web_app</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="49" parent="15" name="id">
+    <column id="51" parent="15" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="50" parent="15" name="name">
+    <column id="52" parent="15" name="name">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="51" parent="15" name="id_routine">
+    <column id="53" parent="15" name="id_routine">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="52" parent="15" name="id_routine">
+    <index id="54" parent="15" name="id_routine">
       <ColNames>id_routine</ColNames>
     </index>
-    <key id="53" parent="15" name="PRIMARY">
+    <key id="55" parent="15" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="54" parent="15" name="routines_days_ibfk_1">
+    <foreign-key id="56" parent="15" name="routines_days_ibfk_1">
       <ColNames>id_routine</ColNames>
       <RefSchemaName>pw_web_app</RefSchemaName>
       <RefTableName>routines</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="55" parent="16" name="id">
+    <column id="57" parent="16" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="56" parent="16" name="name">
+    <column id="58" parent="16" name="name">
       <Position>2</Position>
       <DataType>varchar(30)|0</DataType>
     </column>
-    <column id="57" parent="16" name="lastnames">
+    <column id="59" parent="16" name="lastnames">
       <Position>3</Position>
       <DataType>varchar(100)|0</DataType>
     </column>
-    <column id="58" parent="16" name="email">
+    <column id="60" parent="16" name="email">
       <Position>4</Position>
       <DataType>varchar(100)|0</DataType>
     </column>
-    <column id="59" parent="16" name="password">
+    <column id="61" parent="16" name="password">
       <Position>5</Position>
       <DataType>varchar(30)|0</DataType>
     </column>
-    <column id="60" parent="16" name="genre">
+    <column id="62" parent="16" name="genre">
       <Position>6</Position>
       <DataType>varchar(6)|0</DataType>
     </column>
-    <column id="61" parent="16" name="birthyear">
+    <column id="63" parent="16" name="birthyear">
       <Position>7</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <key id="62" parent="16" name="PRIMARY">
+    <key id="64" parent="16" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
