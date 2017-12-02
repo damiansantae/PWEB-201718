@@ -109,15 +109,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) DEFAULT NULL,
   `gender` enum('hombre','mujer') DEFAULT NULL,
   `birth_year` int(11) DEFAULT NULL,
-  `weigh` decimal(10,0) DEFAULT NULL,
-  `weigh_unit` enum('lb','kg') NOT NULL
+  `weight` decimal(10,0) DEFAULT NULL,
+  `weight_unit` enum('lb','kg') NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `email_address`, `username`, `password`, `gender`, `birth_year`, `weigh`, `weigh_unit`) VALUES
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `email_address`, `username`, `password`, `gender`, `birth_year`, `weight`, `weight_unit`) VALUES
 (11, 'Jomin', 'George', 'jomink@yahoo.co.uk', 'root', '123456789aS', 'hombre', 1994, '100', 'kg');
 
 --
