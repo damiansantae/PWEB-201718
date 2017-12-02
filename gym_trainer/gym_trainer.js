@@ -50,11 +50,10 @@ function finishHover(x) {
  *****************************************************************************************************/
 function insertDay(name, id, routine_id) {
     var table_parent = document.getElementById('routine_' + routine_id);
-
     var newDay = document.createElement('td');
     var table = table_parent.getElementsByTagName('tr').item(0);
     newDay.setAttribute('id', 'routine_' + routine_id + '_' + id);
-    newDay.innerHTML = "<div id=\"day_" + id + "\" onclick=\"dayClicked(this.id)\">\n" +
+    newDay.innerHTML = "<div id=\"day_" + id + "\" onclick=\"dayClicked(this.id)\" style='cursor: pointer'>\n" +
         "                                    <p>" + name + "</p>\n" +
         "                                </div>\n" +
         "                               <div> <button id=\"day_" + id + "_delete_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"\n" +
@@ -71,7 +70,6 @@ function insertDay(name, id, routine_id) {
  ******************************************************************************************************/
 function insertRoutine(name, id) {
     var divParent = document.getElementById('routines_nav');
-    var nRoutines = divParent.getElementsByClassName('routine_row').length;
     var newRoutine = document.createElement('div');
     newRoutine.setAttribute('id', 'routine_' + id);
     newRoutine.setAttribute('class', 'routine_row');
@@ -271,9 +269,9 @@ function insertExercise(exercise_id, exercise_name, exercise_image_url, exercise
         '                        >\n' +
         '                        <h3>' + exercise_name + '</h3>\n' +
         '                    </div></td>\n' +
-        '                      <td  class="hd-2"><input id="repetitions_'+exercise_day_id+'" class="short-input" type="number" step="1" placeholder="0" min="0" onchange="repetitionChange(this.id)"></td>\n' +
-        '                      <td  class="hd-2"><input id=sets_'+exercise_day_id+'" class="short-input" type="number" step="1" placeholder="0" min="0" onchange="setChange(this.id)"></td>' +
-        '   <td class="hd-2"> <button id="delete_'+exercise_day_id+'_btn" class="w3-button w3-xlarge w3-circle w3-red w3-card-4" type="button"\n' +
+        '                      <td  class="hd-2"><input id="repetitions_' + exercise_day_id + '" class="short-input" type="number" step="1" placeholder="0" min="0" onchange="repetitionChange(this.id)"></td>\n' +
+        '                      <td  class="hd-2"><input id=sets_' + exercise_day_id + '" class="short-input" type="number" step="1" placeholder="0" min="0" onchange="setChange(this.id)"></td>' +
+        '   <td class="hd-2"> <button id="delete_' + exercise_day_id + '_btn" class="w3-button w3-xlarge w3-circle w3-red w3-card-4" type="button"\n' +
         '                                                 onclick="deleteExercise(this.id)">-\n' +
         '                      </button>';
 
@@ -466,7 +464,7 @@ function createNewTable(day_id) {
         "                    <td class=\"hd-6\"><h3>Ejercicios</h3></td>\n" +
         "                    <td class=\"hd-2\"><h3>Repeticiones</h3></td>\n" +
         "                    <td class=\"hd-2\"><h3>Series</h3></td>\n" +
-        "<td class='hd-2'></td>"+
+        "<td class='hd-2'></td>" +
         "                </tr>";
     return table;
 
@@ -709,7 +707,7 @@ function handleServerExerciseOfDayDeleteResponse() {
  */
 function removeExercise(exercise_day_id) {
 
-    var exercise_row =document.getElementById('row-exercise_'+exercise_day_id);
+    var exercise_row = document.getElementById('row-exercise_' + exercise_day_id);
     var parent = exercise_row.parentNode;
     parent.removeChild(exercise_row);
 
@@ -720,7 +718,7 @@ function removeExercise(exercise_day_id) {
  * un determinado ejercicio
  * @param exercise_day_id
  */
-function repetitionChange(exercise_day_id){
+function repetitionChange(exercise_day_id) {
     var rep_input = document.getElementById(exercise_day_id);
     var rep_value = rep_input.value;
     var n = exercise_day_id.indexOf("_") + 1;
@@ -730,7 +728,7 @@ function repetitionChange(exercise_day_id){
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 
 // execute quickstart.php page from server
-        xmlHttp.open("GET", "php/update_reps.php?exercise_day_id=" + exercise_day_idf+"value="+rep_value, true);
+        xmlHttp.open("GET", "php/update_reps.php?exercise_day_id=" + exercise_day_idf + "value=" + rep_value, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerRepetitionChangeResponse;
 // make server request
@@ -756,12 +754,13 @@ function handleServerRepetitionChangeResponse() {
         }
     }
 }
+
 /**
  * Funcion que es llamada tras cambiar el numero de repeticiones de
  * un determinado ejercicio
  * @param exercise_day_id
  */
-function setChange(exercise_day_id){
+function setChange(exercise_day_id) {
     var set_input = document.getElementById(exercise_day_id);
     var set_value = set_input.value;
     var exercise_day_idf = exercise_day_id.substring(n);
@@ -770,7 +769,7 @@ function setChange(exercise_day_id){
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 
 // execute quickstart.php page from server
-        xmlHttp.open("GET", "php/update_sets.php?exercise_day_id=" + exercise_day_idf+"value="+set_value, true);
+        xmlHttp.open("GET", "php/update_sets.php?exercise_day_id=" + exercise_day_idf + "value=" + set_value, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerSetChangeResponse;
 // make server request
@@ -862,11 +861,12 @@ function handleServerStepsAndRepsResponse() {
  * @param rep_value
  */
 function changeSetAndRepValue(day_exercise_id, set_value, rep_value) {
-    var rep_input = document.getElementById('repetitions_'+day_exercise_id);
-    var set_input = document.getElementById('sets_'+day_exercise_id);
+    var rep_input = document.getElementById('repetitions_' + day_exercise_id);
+    var set_input = document.getElementById('sets_' + day_exercise_id);
 
     rep_input.value = rep_value;
     set_input.value = set_value;
 
 
 }
+
