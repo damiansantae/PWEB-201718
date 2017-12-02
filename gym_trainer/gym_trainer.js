@@ -533,6 +533,7 @@ function handleServerExercisesResponse() {
                 insertExercise(jsonResponse[i].id, jsonResponse[i].name, jsonResponse[i].image_url, jsonResponse[i].exercise_day_id);
             }
 
+            getStepsAndReps();
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
         }
@@ -714,10 +715,158 @@ function removeExercise(exercise_day_id) {
 
 }
 
+/**
+ * Funcion que es llamada tras cambiar el numero de repeticiones de
+ * un determinado ejercicio
+ * @param exercise_day_id
+ */
 function repetitionChange(exercise_day_id){
-    alert('repetition change of exercise_id: '+exercise_day_id)
+    var rep_input = document.getElementById(exercise_day_id);
+    var rep_value = rep_input.value;
+    var n = exercise_day_id.indexOf("_") + 1;
+    var exercise_day_idf = exercise_day_id.substring(n);
+
+    // proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+
+// execute quickstart.php page from server
+        xmlHttp.open("GET", "php/update_reps.php?exercise_day_id=" + exercise_day_idf+"value="+rep_value, true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerRepetitionChangeResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('process()', 1000);
 }
 
+/**
+ * Funcion dispara tras la respuesta del servidor al actualizar el valor de
+ * las repeticiones de un determinado ejercicio
+ */
+function handleServerRepetitionChangeResponse() {
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
+}
+/**
+ * Funcion que es llamada tras cambiar el numero de repeticiones de
+ * un determinado ejercicio
+ * @param exercise_day_id
+ */
 function setChange(exercise_day_id){
-    alert('set change of exercise_id: '+exercise_day_id)
+    var set_input = document.getElementById(exercise_day_id);
+    var set_value = set_input.value;
+    var exercise_day_idf = exercise_day_id.substring(n);
+
+    // proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+
+// execute quickstart.php page from server
+        xmlHttp.open("GET", "php/update_sets.php?exercise_day_id=" + exercise_day_idf+"value="+set_value, true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerSetChangeResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('process()', 1000);
+}
+
+
+/**
+ * Funcion dispara tras la respuesta del servidor al actualizar el valor de
+ * las series de un determinado ejercicio
+ */
+function handleServerSetChangeResponse() {
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
+}
+
+/**
+ * Funcion que solicita al servidor las repeticiones y las series
+ * de los ejercicios del dia mostrado
+ */
+function getStepsAndReps() {
+    var exercise_nav = document.getElementById('exercise_nav');
+    var table = exercise_nav.getElementsByTagName('table').item(0);
+    var table_id = table.id;
+    var n = table_id.indexOf("_") + 1;
+    var day_id = table_id.substring(n);
+
+
+    // proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+
+
+        xmlHttp.open("GET", "php/get_reps_and_sets.php?day_id=" + day_id, true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerStepsAndRepsResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('process()', 1000);
+}
+
+
+/**
+ * Funcion que se dispara al recibir la respuesta del servidor
+ * al solicitar las repeticiones y series de los ejercicios del dia
+ * mostrado en pantalla
+ */
+function handleServerStepsAndRepsResponse() {
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+// extract JSON retrieved from server
+            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
+
+            for (var i = 0; i < jsonResponse.length; i++) {
+
+                changeSetAndRepValue(jsonResponse[i].day_exercise_id, jsonResponse[i].set_value, jsonResponse[i].rep_value);
+            }
+
+            getStepsAndReps();
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
+}
+
+
+/**
+ * Funcion que actualiza el valor de las repeticiones y series mostrados en los inputs
+ correspondientes a los guardados en la base de datos del ejercicio correspondiente
+ al id pasado por parametros
+
+ * @param day_exercise_id
+ * @param set_value
+ * @param rep_value
+ */
+function changeSetAndRepValue(day_exercise_id, set_value, rep_value) {
+    var rep_input = document.getElementById('repetitions_'+day_exercise_id);
+    var set_input = document.getElementById('sets_'+day_exercise_id);
+
+    rep_input.value = rep_value;
+    set_input.value = set_value;
+
+
 }
