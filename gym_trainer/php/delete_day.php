@@ -12,7 +12,7 @@ try {
     $delete_day = "delete from routines_days WHERE id=$day_id";
     $delete = $db->query($delete_day);
 
-    echo $delete;
+    echo json_encode($delete);
 
 
     $db->commit();

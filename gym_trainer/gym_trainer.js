@@ -77,6 +77,9 @@ function insertRoutine(name, id) {
     newRoutine.innerHTML = "<div class=\"routine_master hd-12\" >\n" +
         "                    <img src=\"../MainFrame/assets/images/press_banca.JPG\" class=\"hd-2\">\n" +
         "                    <p>" + name + "</p>\n" +
+        " <button id=\"delete_" + id + "_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"\n" +
+        "                            onclick=\"deleteRoutine(this.id)\">-\n" +
+        "                    </button>" +
         "                </div>\n" +
         "                <div class=\"routine_detail hd-12\">\n" +
         "                    <table>\n" +
@@ -506,5 +509,61 @@ function handleServerExercisesResponse() {
     }
 }
 
+/**
+ * Funcion llamada tras pulsar en el botón eliminar de una rutina específica.
+ * Se comunica con el servidor, para eliminar la rutina correspondiente
+ * de la base de datos
+ * @param btn_id
+ */
+function deleteRoutine(btn_id) {
+
+    var n = btn_id.indexOf("_") + 1;
+    var l = btn_id.indexOf("_", n);
+    var routine_id = btn_id.substring(n, l);
+
+    // proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+
+// execute quickstart.php page from server
+        xmlHttp.open("GET", "php/delete_routine.php?routine_id=" + routine_id, true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerRoutineDeleteResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('process()', 1000);
+}
+
+/**
+ * Funcion disparada tras eliminar una rutina de la base de datos.
+ * Llama a la funcion removeRoutine, para quitar el la rutina eliminada
+ * y sus hijos del HTML
+ */
+function handleServerRoutineDeleteResponse() {
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+// extract JSON retrieved from server
+            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
+
+            removeRoutine(jsonResponse[0]);
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
+}
+
+/**
+ * Funcion que elimina el los elementos correspondientes a la rutina pasada por
+ * parámetro del HTML (el elemento y sus hijos)
+ * @param routine_id
+ */
+function removeRoutine(routine_id) {
+   var routine_div = document.getElementById('routine_' + routine_id);
+   routine_div.parentNode.removeChild(routine_div);
 
 
+}
