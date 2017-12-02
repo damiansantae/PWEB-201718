@@ -271,8 +271,8 @@ function insertExercise(exercise_id, exercise_name, exercise_image_url, exercise
         '                        >\n' +
         '                        <h3>' + exercise_name + '</h3>\n' +
         '                    </div></td>\n' +
-        '                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>\n' +
-        '                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>' +
+        '                      <td  class="hd-2"><input id="repetitions_'+exercise_day_id+'" class="short-input" type="number" step="1" placeholder="0" min="0" onchange="repetitionChange(this.id)"></td>\n' +
+        '                      <td  class="hd-2"><input id=sets_'+exercise_day_id+'" class="short-input" type="number" step="1" placeholder="0" min="0" onchange="setChange(this.id)"></td>' +
         '   <td class="hd-2"> <button id="delete_'+exercise_day_id+'_btn" class="w3-button w3-xlarge w3-circle w3-red w3-card-4" type="button"\n' +
         '                                                 onclick="deleteExercise(this.id)">-\n' +
         '                      </button>';
@@ -714,3 +714,10 @@ function removeExercise(exercise_day_id) {
 
 }
 
+function repetitionChange(exercise_day_id){
+    alert('repetition change of exercise_id: '+exercise_day_id)
+}
+
+function setChange(exercise_day_id){
+    alert('set change of exercise_id: '+exercise_day_id)
+}
