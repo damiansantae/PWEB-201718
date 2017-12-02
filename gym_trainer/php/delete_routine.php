@@ -12,7 +12,8 @@ try {
     $delete_routines = "delete from routines WHERE id=$routine_id";
     $delete = $db->query($delete_routines);
 
-    echo $delete;
+    echo json_encode($routine_id);
+
 
 
     $db->commit();
