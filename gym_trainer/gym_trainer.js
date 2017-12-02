@@ -466,7 +466,7 @@ function createNewTable(day_id) {
         "                    <td class=\"hd-6\"><h3>Ejercicios</h3></td>\n" +
         "                    <td class=\"hd-2\"><h3>Repeticiones</h3></td>\n" +
         "                    <td class=\"hd-2\"><h3>Series</h3></td>\n" +
-        "<td></td>"+
+        "<td class='hd-2'></td>"+
         "                </tr>";
     return table;
 
