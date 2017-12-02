@@ -18,7 +18,7 @@
         <nav>
             <ul id="exercises_list">
                 <li>
-                    <div id="press_banca_li" class="ex_row" draggable="true" ondragstart="dragstart_handler(event)"
+                    <div id="exercise_1" class="ex_row" draggable="true" ondragstart="dragstart_handler(event)"
                          style="background-image: url('../assets/images/exercises/pressBanca.jpg')">
                         <h3>Press Banca</h3>
                     </div>
@@ -248,10 +248,12 @@
                         <tr class="table_days">
                             <td>
                                 <button id="routine_0_btn" class="small_btn w3-xlarge w3-circle w3-white w3-card-4"
-                                        onclick="insertDay(this.id)">+
+                                        onclick="insertDayDB(this.id)">+
                                 </button>
                             </td>
-                            <td id="routine_0_1"><h3>1</h3></td>
+                            <td id="routine_0_1" onclick="dayClicked(this.id)">
+                                <h3>1</h3>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -274,17 +276,20 @@
                     <td class="hd-2"><h3>Repeticiones</h3></td>
                     <td class="hd-2"><h3>Series</h3></td>
                 </tr>
-                <tr id="row_exercise_1" class="hd-12 exercise_row">
-                    <td class="hd-8" id="exer_descript_1" ondrop="drop_handler(event);"
-                        ondragover="dragover_handler(event);"></td>
-                    <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>
-                    <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>
-                </tr>
+
+
+                <!--  <tr id="row_exercise_1" class="hd-12 exercise_row">
+                      <td class="hd-8" id="exer_descript_1"
+                          ondragover="dragover_handler(event);"></td>
+                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>
+                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>
+                  </tr>-->
+
             </table>
 
-            <button id="add_new_ex_row" class="w3-button w3-xlarge w3-circle w3-red w3-card-4"
-                    onclick="insertExercise()">+
-            </button>
+                <button id="add_new_ex_row" class="w3-button w3-xlarge w3-circle w3-red w3-card-4"
+                        ondragover="dragover_handler(event)" ondrop="drop_handler(event)">+
+                </button>
 
         </nav>
 
