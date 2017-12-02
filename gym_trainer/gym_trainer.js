@@ -1,3 +1,6 @@
+/**********************************
+ * Filtro de busqueda de ejercicio***
+ *************************************/
 function searchExercise() {
     var input, filter, list, exercises, p, i;
     input = document.getElementById("searchBarInput");
@@ -13,10 +16,12 @@ function searchExercise() {
 
         }
     }
-
-
 }
-function getCurrentDayId(){
+
+/************************************************************
+ * Función que retorna el día actual mostrado en la pantalla***
+ ****************************************************************/
+function getCurrentDayId() {
     var exercise_nav = document.getElementById('exercise_nav');
     var table = exercise_nav.getElementsByTagName('table').item(0);
     var table_id = table.id;
@@ -24,19 +29,42 @@ function getCurrentDayId(){
     return table_id.substring(n);
 }
 
-function insertDay(name,id,routine_id) {
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Funciones de animación para mostrar los ejercicios de una determinada rutina
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+function isHovered(x) {
+    var divToDisplay = x.lastElementChild;
+    divToDisplay.style.display = 'block';
+}
 
+function finishHover(x) {
+    var divToDisplay = x.lastElementChild;
+    divToDisplay.style.display = 'none';
+}
 
+/*****************************************************************************************************
+ * Crea una nueva columna con el nombre del dia dentro de la fila correspondiente a la rutina del dia*
+ * @param name                                                                                       *
+ * @param id                                                                                         *
+ * @param routine_id                                                                                 *
+ *****************************************************************************************************/
+function insertDay(name, id, routine_id) {
     var table_parent = document.getElementById('routine_' + routine_id);
 
     var newDay = document.createElement('td');
     var table = table_parent.getElementsByTagName('tr').item(0);
     newDay.setAttribute('id', 'routine_' + routine_id + '_' + id);
-    newDay.setAttribute('onclick','dayClicked(this.id)');
-    newDay.innerHTML = "<h3>" + name+ "</h3>";
+    newDay.setAttribute('onclick', 'dayClicked(this.id)');
+    newDay.innerHTML = "<h3>" + name + "</h3>";
     table.appendChild(newDay);
 }
 
+/******************************************************************************************************
+ * Inserta un nuevo div correspondiente a una nueva rutina de usuario, con su correspondiente tabla   *
+ * de días                                                                                            *
+ * @param name                                                                                        *
+ * @param id                                                                                          *
+ ******************************************************************************************************/
 function insertRoutine(name, id) {
     var divParent = document.getElementById('routines_nav');
     var nRoutines = divParent.getElementsByClassName('routine_row').length;
@@ -68,6 +96,9 @@ function insertRoutine(name, id) {
 
 }
 
+/*+++++++++++++++++++++++++++++++++++++++
+Eventos de Drag&Drop para ejercicios+++++
+ ++++++++++++++++++++++++++++++++++++++++*/
 
 function dragstart_handler(ev) {
     console.log("dragStart");
@@ -76,6 +107,7 @@ function dragstart_handler(ev) {
 
     ev.dataTransfer.dropEffect = "copy";
 }
+
 
 function dragover_handler(ev) {
     ev.preventDefault();
@@ -90,14 +122,14 @@ function drop_handler(ev) {
     var table = exercise_nav.getElementsByTagName('table').item(0);
     var table_id = table.id;
     var n = table_id.indexOf("_") + 1;
-    var day_id= table_id.substring(n);
+    var day_id = table_id.substring(n);
 
     // Get the id of the target and add the moved element to the target's DOM
     var data = ev.dataTransfer.getData("text");
     console.log(data);
     var n = data.indexOf("_") + 1;
-    var exercise_id= data.substring(n);
-    insertExerciseOnDB(exercise_id,day_id);
+    var exercise_id = data.substring(n);
+    insertExerciseOnDB(exercise_id, day_id);
 
 
     /*var nodeCopy = document.getElementById(data).cloneNode(true);
@@ -112,14 +144,22 @@ function drop_handler(ev) {
 
 }
 
-function insertExerciseOnDB(exercise_id,day_id){
+
+/**
+ * Una vez arrastrado un ejercicio hacia el botón de añadir en un dia de una rutina,
+ * se dispara esta función, que se comunica con el servidor, con el fin de añadir
+ * dicho ejercicio a la base de datos
+ * @param exercise_id
+ * @param day_id
+ */
+function insertExerciseOnDB(exercise_id, day_id) {
 
 // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 // retrieve name typed by user on form
         id = 1;
 // execute quickstart.php page from server
-        xmlHttp.open("GET", "php/insert_exercise.php?exercise_id=" +exercise_id+"&day_id="+day_id, true);
+        xmlHttp.open("GET", "php/insert_exercise.php?exercise_id=" + exercise_id + "&day_id=" + day_id, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerInsertExerciseResponse;
 // make server request
@@ -130,7 +170,11 @@ function insertExerciseOnDB(exercise_id,day_id){
 
 }
 
-
+/**
+ * Una vez que el servidor añade a la base de datos un nuevo ejercicio a un dia de una rutina
+ * se dispara esta función que llama al método dayClicked pasandole por parámetro el día que se
+ * encuentra mostrado en pantalla actualmente, con el fin de refrescar los ejercicios
+ */
 function handleServerInsertExerciseResponse() {
 
     if (xmlHttp.readyState == 4) { // transaction has completed
@@ -139,7 +183,7 @@ function handleServerInsertExerciseResponse() {
         if (xmlHttp.status == 200) {
 
 
-                dayClicked(getCurrentDayId());
+            dayClicked(getCurrentDayId());
 
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
@@ -147,14 +191,17 @@ function handleServerInsertExerciseResponse() {
     }
 }
 
-function insertDayOnDB(routine_id){
-
-
+/**
+ * Función de comunicación cliente-servidor, para añadir un nuevo día de una rutina
+ * a la base de datos
+ * @param routine_id
+ */
+function insertDayOnDB(routine_id) {
 
 
     var n = routine_id.indexOf("_") + 1;
-    var l = routine_id.indexOf("_",n);
-    var routine_idf = routine_id.substring(n,l);
+    var l = routine_id.indexOf("_", n);
+    var routine_idf = routine_id.substring(n, l);
 
 
 // proceed only if xmlHttp object isn't busy
@@ -162,7 +209,7 @@ function insertDayOnDB(routine_id){
 // retrieve name typed by user on form
         id = 1;
 // execute quickstart.php page from server
-        xmlHttp.open("GET", "php/insert_new_day.php?routine_id=" +routine_idf, true);
+        xmlHttp.open("GET", "php/insert_new_day.php?routine_id=" + routine_idf, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerInsertDayResponse;
 // make server request
@@ -173,7 +220,10 @@ function insertDayOnDB(routine_id){
 
 }
 
-
+/**
+ * Funcion disparada tras añadir un nuevo día a una rutina específica.
+ * Llama al método insertDay para añadir al html dicho nuevo día
+ */
 function handleServerInsertDayResponse() {
 
     if (xmlHttp.readyState == 4) { // transaction has completed
@@ -184,9 +234,8 @@ function handleServerInsertDayResponse() {
             var jsonResponse = eval('(' + xmlHttp.responseText + ')');
 
             for (var i = 0; i < jsonResponse.length; i++) {
-                insertDay(jsonResponse[i].name,jsonResponse[i].id,jsonResponse[i].routine_id);
+                insertDay(jsonResponse[i].name, jsonResponse[i].id, jsonResponse[i].routine_id);
             }
-
 
 
         } else { // HTTP status different than 200 signals error
@@ -194,37 +243,30 @@ function handleServerInsertDayResponse() {
         }
     }
 }
-function insertExercise(exercise_id,exercise_name,exercise_image_url,exercise_day_id) {
+
+/**
+ * Inserta en el html un determinado ejercicio (imagen, nombre,repeticiones y series) dentro de la columna de ejercicios de un
+ * determinado día de una rutina.
+ * @param exercise_id
+ * @param exercise_name
+ * @param exercise_image_url
+ * @param exercise_day_id
+ */
+function insertExercise(exercise_id, exercise_name, exercise_image_url, exercise_day_id) {
 
 
-var exercise_row = document.getElementById('row-exercise_'+exercise_day_id);
+    var exercise_row = document.getElementById('row-exercise_' + exercise_day_id);
 
 
-exercise_row.innerHTML = '<td class="hd-8" id="exer_descript_'+exercise_id+'"\n' +
-    '                          >' +
-    '<div id="exer_div_'+exercise_id+'" class="ex_row" \n' +
-    '                        >\n' +
-    '                        <h3>'+exercise_name+'</h3>\n' +
-    '                    </div></td>\n' +
-    '                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>\n' +
-    '                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>';
+    exercise_row.innerHTML = '<td class="hd-8" id="exer_descript_' + exercise_id + '"\n' +
+        '                          >' +
+        '<div id="exer_div_' + exercise_id + '" class="ex_row" \n' +
+        '                        >\n' +
+        '                        <h3>' + exercise_name + '</h3>\n' +
+        '                    </div></td>\n' +
+        '                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>\n' +
+        '                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>';
 
-}
-
-
-
-
-
-function isHovered(x) {
-    var divToDisplay = x.lastElementChild;
-    divToDisplay.style.display = 'block';
-
-
-}
-
-function finishHover(x) {
-    var divToDisplay = x.lastElementChild;
-    divToDisplay.style.display = 'none';
 }
 
 
@@ -244,7 +286,11 @@ function createXmlHttpRequestObject() {
 
 }
 
-// make asynchronous HTTP request using XMLHttpRequest object
+/**
+ * Función llamada cuando se selecciona la página de MyGymTrainer que carga las rutinas del
+ * usuario logueado y los días de dichas rutinas, para ello se comunica con el servidor para
+ * obtener las rutinas de la base de datos
+ */
 function process() {
 
 // proceed only if xmlHttp object isn't busy
@@ -262,23 +308,49 @@ function process() {
         setTimeout('process()', 1000);
 }
 
+/**
+ * Función que se dispara tras recibir una respuesta del servidor con las rutinas del usuario.
+ * Llama al método insertRoutine(name,id) y a continuacin llama al metodo getDaysOfRoutines()
+ * con el objetivo de obtener los días de la las rutinas mostradas de la DB
+ */
+function handleServerResponse() {
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+// extract JSON retrieved from server
+            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
+
+            for (var i = 0; i < jsonResponse.length; i++) {
+                console.log('routine with name ' + jsonResponse[i].name + ' and id: ' + jsonResponse[i].id);
+                insertRoutine(jsonResponse[i].name, jsonResponse[i].id);
+            }
+
+            getDaysOfRoutines()
+
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
+}
 
 function dayClicked(day_id) {
     var n = day_id.indexOf("_") + 1;
     var l = day_id.indexOf("_", n);
     var startOfIndexDayId = day_id.indexOf("_", l);
     var day_index_id = day_id.substring(startOfIndexDayId + 1);
-    var parent =document.getElementById('exercise_nav');
+    var parent = document.getElementById('exercise_nav');
     var table = parent.getElementsByTagName('table').item(0);
 
-    var newTable =createNewTable(day_index_id);
-    parent.replaceChild(newTable,table);
+    var newTable = createNewTable(day_index_id);
+    parent.replaceChild(newTable, table);
 
     // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 
 
-        xmlHttp.open("GET", "php/get_id_of_exercises_day.php?day_id="+day_index_id, true);
+        xmlHttp.open("GET", "php/get_id_of_exercises_day.php?day_id=" + day_index_id, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerExercisesIdResponse;
 // make server request
@@ -317,14 +389,14 @@ function getExercisesOfCurrentDay() {
     var table = exercise_nav.getElementsByTagName('table').item(0);
     var table_id = table.id;
     var n = table_id.indexOf("_") + 1;
-    var day_id= table_id.substring(n);
+    var day_id = table_id.substring(n);
 
 
     // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 
 
-        xmlHttp.open("GET", "php/get_exercises_of_routine_day.php?day_id="+day_id, true);
+        xmlHttp.open("GET", "php/get_exercises_of_routine_day.php?day_id=" + day_id, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerExercisesResponse;
 // make server request
@@ -335,6 +407,7 @@ function getExercisesOfCurrentDay() {
 
 
 }
+
 function insertExerciseRow(exercise_day_id) {
     var table = document.getElementById('exercise_nav').getElementsByTagName('table').item(0);
     var newRow = document.createElement('tr');
@@ -351,12 +424,13 @@ function insertExerciseRow(exercise_day_id) {
     parent.appendChild(btn);         //Añadimos el boton
 
 }
-function  createNewTable(day_id) {
+
+function createNewTable(day_id) {
     var table = document.createElement('table');
-    table.setAttribute('id','table_'+day_id);
-    table.setAttribute('class','hd-12');
-    table.setAttribute('style','margin-top: 50px');
-    table.innerHTML= " <tr>\n" +
+    table.setAttribute('id', 'table_' + day_id);
+    table.setAttribute('class', 'hd-12');
+    table.setAttribute('style', 'margin-top: 50px');
+    table.innerHTML = " <tr>\n" +
         "                    <td class=\"hd-8\"><h3>Ejercicios</h3></td>\n" +
         "                    <td class=\"hd-2\"><h3>Repeticiones</h3></td>\n" +
         "                    <td class=\"hd-2\"><h3>Series</h3></td>\n" +
@@ -366,29 +440,10 @@ function  createNewTable(day_id) {
 
 }
 
-function handleServerResponse() {
-
-    if (xmlHttp.readyState == 4) { // transaction has completed
-// status of 200 indicates transaction completed successfully
-
-        if (xmlHttp.status == 200) {
-// extract JSON retrieved from server
-            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
-
-            for (var i = 0; i < jsonResponse.length; i++) {
-                console.log('routine with name ' + jsonResponse[i].name + ' and id: ' + jsonResponse[i].id);
-                insertRoutine(jsonResponse[i].name, jsonResponse[i].id);
-            }
-
-            getDaysOfRoutines()
-
-        } else { // HTTP status different than 200 signals error
-            alert("Problem accesing the server: " + xmlHttp.statusText);
-        }
-    }
-}
-
-function getDaysOfRoutines(){
+/**
+ * Función de comunicación cliente-servidor para obtener los días de las rutinas
+ */
+function getDaysOfRoutines() {
 
 
     // proceed only if xmlHttp object isn't busy
@@ -407,6 +462,10 @@ function getDaysOfRoutines(){
 
 }
 
+/**
+ * Funcion que se dispara tras la respuesta del servidor con los dias de las rutinas
+ * Llama al método insertDay para insertar dentro de la estructura html dichos días
+ */
 function handleServerDaysOfRoutineResponse() {
 
     if (xmlHttp.readyState == 4) { // transaction has completed
@@ -417,7 +476,7 @@ function handleServerDaysOfRoutineResponse() {
             var jsonResponse = eval('(' + xmlHttp.responseText + ')');
 
             for (var i = 0; i < jsonResponse.length; i++) {
-                insertDay(jsonResponse[i].name,jsonResponse[i].id,jsonResponse[i].routine_id);
+                insertDay(jsonResponse[i].name, jsonResponse[i].id, jsonResponse[i].routine_id);
             }
 
         } else { // HTTP status different than 200 signals error
@@ -438,7 +497,7 @@ function handleServerExercisesResponse() {
 
             for (var i = 0; i < jsonResponse.length; i++) {
 
-                insertExercise(jsonResponse[i].id,jsonResponse[i].name,jsonResponse[i].image_url,jsonResponse[i].exercise_day_id);
+                insertExercise(jsonResponse[i].id, jsonResponse[i].name, jsonResponse[i].image_url, jsonResponse[i].exercise_day_id);
             }
 
         } else { // HTTP status different than 200 signals error
