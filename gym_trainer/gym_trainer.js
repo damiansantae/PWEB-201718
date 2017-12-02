@@ -54,8 +54,12 @@ function insertDay(name, id, routine_id) {
     var newDay = document.createElement('td');
     var table = table_parent.getElementsByTagName('tr').item(0);
     newDay.setAttribute('id', 'routine_' + routine_id + '_' + id);
-    newDay.setAttribute('onclick', 'dayClicked(this.id)');
-    newDay.innerHTML = "<h3>" + name + "</h3>";
+    newDay.innerHTML ="<div id=\"day_"+id+"\" onclick=\"dayClicked(this.id)\">\n" +
+        "                                    <p>"+name+"</p>\n" +
+        "                                </div>\n" +
+        "                               <div> <button id=\"day_"+id+"_delete_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"\n" +
+        "                                         onclick=\"deleteDay(this.id)\">-\n" +
+        "                                </button> </div>";
     table.appendChild(newDay);
 }
 
@@ -186,7 +190,7 @@ function handleServerInsertExerciseResponse() {
         if (xmlHttp.status == 200) {
 
 
-            dayClicked(getCurrentDayId());
+            refreshExercisesOfDay(getCurrentDayId());
 
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
@@ -340,9 +344,7 @@ function handleServerResponse() {
 
 function dayClicked(day_id) {
     var n = day_id.indexOf("_") + 1;
-    var l = day_id.indexOf("_", n);
-    var startOfIndexDayId = day_id.indexOf("_", l);
-    var day_index_id = day_id.substring(startOfIndexDayId + 1);
+    var day_index_id = day_id.substring(n);
     var parent = document.getElementById('exercise_nav');
     var table = parent.getElementsByTagName('table').item(0);
 
@@ -354,6 +356,30 @@ function dayClicked(day_id) {
 
 
         xmlHttp.open("GET", "php/get_id_of_exercises_day.php?day_id=" + day_index_id, true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerExercisesIdResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('process()', 1000);
+
+
+}
+
+function refreshExercisesOfDay(day_id) {
+
+    var parent = document.getElementById('exercise_nav');
+    var table = parent.getElementsByTagName('table').item(0);
+
+    var newTable = createNewTable(day_id);
+    parent.replaceChild(newTable, table);
+
+    // proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+
+
+        xmlHttp.open("GET", "php/get_id_of_exercises_day.php?day_id=" + day_id, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerExercisesIdResponse;
 // make server request

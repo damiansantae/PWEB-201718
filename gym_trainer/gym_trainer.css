@@ -177,7 +177,7 @@ td{
 
 }
 .routine_row:hover{
-    height: 100px;
+    height: 150px;
 
 }
 
@@ -192,7 +192,7 @@ td{
     transition: opacity 0.5s ease-in-out;
     background-color: darkred;
     color: white;
-    height: 50px;
+    height: 100px;
     display: none;
 
 }
