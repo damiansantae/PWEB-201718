@@ -7,7 +7,6 @@
  */
 
 header('Content-Type: text/json');
-include 'ChromePhp.php';
 
 require "../../db_conn.php";
 
@@ -26,7 +25,6 @@ try {
             'image_url' => $row["image_url"]
         );
     }
-    ChromePhp::log("Hola xd");
     echo json_encode($exercises_data);
 
 
