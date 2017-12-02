@@ -334,7 +334,8 @@ function handleServerResponse() {
                 console.log('routine with name ' + jsonResponse[i].name + ' and id: ' + jsonResponse[i].id);
                 insertRoutine(jsonResponse[i].name, jsonResponse[i].id);
             }
-
+            document.getElementById("col-2_loader").style.display = "none";
+            document.getElementById("add_routine_btn").style.display = "inline-block";
             getDaysOfRoutines()
 
         } else { // HTTP status different than 200 signals error
@@ -531,7 +532,7 @@ function handleServerExercisesResponse() {
                 insertExercise(jsonResponse[i].id, jsonResponse[i].name, jsonResponse[i].image_url, jsonResponse[i].exercise_day_id);
             }
 
-            getStepsAndReps();
+            //getStepsAndReps();
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
         }
