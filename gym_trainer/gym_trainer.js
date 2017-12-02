@@ -54,10 +54,10 @@ function insertDay(name, id, routine_id) {
     var newDay = document.createElement('td');
     var table = table_parent.getElementsByTagName('tr').item(0);
     newDay.setAttribute('id', 'routine_' + routine_id + '_' + id);
-    newDay.innerHTML ="<div id=\"day_"+id+"\" onclick=\"dayClicked(this.id)\">\n" +
-        "                                    <p>"+name+"</p>\n" +
+    newDay.innerHTML = "<div id=\"day_" + id + "\" onclick=\"dayClicked(this.id)\">\n" +
+        "                                    <p>" + name + "</p>\n" +
         "                                </div>\n" +
-        "                               <div> <button id=\"day_"+id+"_delete_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"\n" +
+        "                               <div> <button id=\"day_" + id + "_delete_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"\n" +
         "                                         onclick=\"deleteDay(this.id)\">-\n" +
         "                                </button> </div>";
     table.appendChild(newDay);
@@ -265,14 +265,17 @@ function insertExercise(exercise_id, exercise_name, exercise_image_url, exercise
     var exercise_row = document.getElementById('row-exercise_' + exercise_day_id);
 
 
-    exercise_row.innerHTML = '<td class="hd-8" id="exer_descript_' + exercise_id + '"\n' +
+    exercise_row.innerHTML = '<td class="hd-6" id="exer_descript_' + exercise_id + '"\n' +
         '                          >' +
         '<div id="exer_div_' + exercise_id + '" class="ex_row" \n' +
         '                        >\n' +
         '                        <h3>' + exercise_name + '</h3>\n' +
         '                    </div></td>\n' +
         '                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>\n' +
-        '                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>';
+        '                      <td class="hd-2"><input class="short-input" type="number" step="1" placeholder="0" min="0"></td>' +
+        '   <td class="hd-2"> <button id="delete_'+exercise_day_id+'_btn" class="w3-button w3-xlarge w3-circle w3-red w3-card-4" type="button"\n' +
+        '                                                 onclick="deleteExercise(this.id)">-\n' +
+        '                      </button>';
 
 }
 
@@ -460,9 +463,10 @@ function createNewTable(day_id) {
     table.setAttribute('class', 'hd-12');
     table.setAttribute('style', 'margin-top: 50px');
     table.innerHTML = " <tr>\n" +
-        "                    <td class=\"hd-8\"><h3>Ejercicios</h3></td>\n" +
+        "                    <td class=\"hd-6\"><h3>Ejercicios</h3></td>\n" +
         "                    <td class=\"hd-2\"><h3>Repeticiones</h3></td>\n" +
         "                    <td class=\"hd-2\"><h3>Series</h3></td>\n" +
+        "<td></td>"+
         "                </tr>";
     return table;
 
@@ -588,8 +592,8 @@ function handleServerRoutineDeleteResponse() {
  * @param routine_id
  */
 function removeRoutine(routine_id) {
-   var routine_div = document.getElementById('routine_' + routine_id);
-   routine_div.parentNode.removeChild(routine_div);
+    var routine_div = document.getElementById('routine_' + routine_id);
+    routine_div.parentNode.removeChild(routine_div);
 
 }
 
@@ -632,7 +636,7 @@ function handleServerDayDeleteResponse() {
 // extract JSON retrieved from server
             var jsonResponse = eval('(' + xmlHttp.responseText + ')');
 
-            removeDay(jsonResponse.day_id,jsonResponse.routine_id);
+            removeDay(jsonResponse.day_id, jsonResponse.routine_id);
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
         }
@@ -646,9 +650,67 @@ function handleServerDayDeleteResponse() {
  * @param routine_id
  */
 function removeDay(day_id, routine_id) {
-    var dayToDelete = document.getElementById('routine_'+routine_id+'_'+day_id);
+    var dayToDelete = document.getElementById('routine_' + routine_id + '_' + day_id);
     var parent = dayToDelete.parentNode;
     parent.removeChild(dayToDelete);
 
 
 }
+
+/**
+ * Funtion que se comunica con el servidor para eliminar un ejercicio de un determinado
+ * dia de una rutina de la base de datos
+ * @param btn_id
+ */
+function deleteExercise(btn_id) {
+    var n = btn_id.indexOf("_") + 1;
+    var l = btn_id.indexOf("_", n);
+    var exercise_day_id = btn_id.substring(n, l);
+
+
+    // proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+
+// execute quickstart.php page from server
+        xmlHttp.open("GET", "php/delete_exercise_day.php?exercise_day_id=" + exercise_day_id, true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleServerExerciseOfDayDeleteResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('process()', 1000);
+}
+
+/**
+ * Funcion que se dispara tras recibir una respuesta del servidor tras eliminar un determinado ejercicio
+ * de la tabla de ejercicios de un dia
+ */
+function handleServerExerciseOfDayDeleteResponse() {
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+// extract JSON retrieved from server
+            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
+            removeExercise(jsonResponse);
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
+}
+
+/**
+ * Funcion que elimina el ejercicio pasado por parametro
+ * de la estructura HTML
+ * @param exercise_day_id
+ */
+function removeExercise(exercise_day_id) {
+
+    var exercise_row =document.getElementById('row-exercise_'+exercise_day_id);
+    var parent = exercise_row.parentNode;
+    parent.removeChild(exercise_row);
+
+}
+
