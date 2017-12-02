@@ -87,6 +87,7 @@ function insertRoutine(name, id) {
         "                    <table>\n" +
         "                        <tr class=\"table_days\">\n" +
         "                            <td> <button id=\"routine_" + id + "_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"  onclick=\"insertDayOnDB(this.id)\">+</button></td>\n" +
+        "<td class='loader' id='loader-routine_"+id+"' style='display: none'> </td>         "+
         "                        </tr>\n" +
         "                    </table>\n" +
         "                </div>";
@@ -204,10 +205,16 @@ function handleServerInsertExerciseResponse() {
 function insertDayOnDB(routine_id) {
 
 
+
     var n = routine_id.indexOf("_") + 1;
     var l = routine_id.indexOf("_", n);
     var routine_idf = routine_id.substring(n, l);
 
+    var btn = document.getElementById('routine_' + routine_idf+ '_btn');
+   var parent =  btn.parentNode;
+   parent.style.display = "none";
+    var loader = document.getElementById('loader-routine_'+routine_idf);
+    loader.style.display = "inline-block";
 
 // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
@@ -241,6 +248,13 @@ function handleServerInsertDayResponse() {
             for (var i = 0; i < jsonResponse.length; i++) {
                 insertDay(jsonResponse[i].name, jsonResponse[i].id, jsonResponse[i].routine_id);
             }
+
+            var btn = document.getElementById('routine_' + jsonResponse[0].routine_id+ '_btn');
+            var parent =  btn.parentNode;
+            parent.style.display = "inline-block";
+            var loader = document.getElementById('loader-routine_'+jsonResponse[0].routine_id);
+            loader.style.display = "none";
+
 
 
         } else { // HTTP status different than 200 signals error
@@ -854,7 +868,6 @@ function handleServerStepsAndRepsResponse() {
 
 function loadAllExercises(){
 
-console.log("Hola llego aqui")
     // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 // retrieve name typed by user on form
@@ -883,6 +896,7 @@ function handleServerGetAllExercisesResponse() {
             for (var i = 0; i < jsonResponse.length; i++) {
                 insertLeftColumnExercise(jsonResponse[i].id,jsonResponse[i].name, jsonResponse[i].image_url);
             }
+            document.getElementById('col-1_loader').style.display = "none";
 
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
