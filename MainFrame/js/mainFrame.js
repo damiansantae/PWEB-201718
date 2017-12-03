@@ -9,6 +9,10 @@ function setLoging(islogged) {
 }
 
 
+
+
+
+
 function openTab(evt, tabName) {
     // Declare all variables
     var i, tabcontent, tablinks;
