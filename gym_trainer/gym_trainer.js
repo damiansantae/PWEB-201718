@@ -42,6 +42,27 @@ function finishHover(x) {
     divToDisplay.style.display = 'none';
 }
 
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Creacion y definicion del objeto xmlHttpt para poder hacer peticiones al servidor +
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ +*/
+
+var xmlHttp = createXmlHttpRequestObject();
+
+function createXmlHttpRequestObject() {
+
+    try {
+        var xmlHttp = new XMLHttpRequest();
+    }
+    catch (e) {
+        xmlHttp = false;
+    }
+
+    if (!xmlHttp) alert('Error creating XMLHttpRequest object.');
+    else return xmlHttp;
+
+}
+
 /*****************************************************************************************************
  * Crea una nueva columna con el nombre del dia dentro de la fila correspondiente a la rutina del dia*
  * @param name                                                                                       *
@@ -78,7 +99,7 @@ function insertRoutine(name, id) {
 
     newRoutine.innerHTML = "<div class=\"routine_master hd-12\" >\n" +
         "                    <img src=\"../MainFrame/assets/images/press_banca.JPG\" class=\"hd-2\">\n" +
-        "                    <p>" + name + "</p>\n" +
+        "                    <h2>" + name + "</h2>\n" +
         " <button id=\"delete_" + id + "_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"\n" +
         "                            onclick=\"deleteRoutine(this.id)\">-\n" +
         "                    </button>" +
@@ -87,6 +108,7 @@ function insertRoutine(name, id) {
         "                    <table>\n" +
         "                        <tr class=\"table_days\">\n" +
         "                            <td> <button id=\"routine_" + id + "_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"  onclick=\"insertDayOnDB(this.id)\">+</button></td>\n" +
+        "<td class='loader' id='loader-routine_" + id + "' style='display: none'> </td>         " +
         "                        </tr>\n" +
         "                    </table>\n" +
         "                </div>";
@@ -107,10 +129,18 @@ Eventos de Drag&Drop para ejercicios+++++
 
 function dragstart_handler(ev) {
     console.log("dragStart");
+
+    var img = new Image();
+    img.src = '../assets/images/weight.png';
+    img.height = '50px';
+    img.width = '50px';
+    ev.dataTransfer.setDragImage(img,10,10);
+
     // Add the target element's id to the data transfer object
     ev.dataTransfer.setData("text/plain", ev.target.id);
-
     ev.dataTransfer.dropEffect = "copy";
+
+
 }
 
 
@@ -171,7 +201,7 @@ function insertExerciseOnDB(exercise_id, day_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('insertExerciseOnDB(exercise_id, day_id)', 1000);
 
 }
 
@@ -208,6 +238,11 @@ function insertDayOnDB(routine_id) {
     var l = routine_id.indexOf("_", n);
     var routine_idf = routine_id.substring(n, l);
 
+    var btn = document.getElementById('routine_' + routine_idf + '_btn');
+    var parent = btn.parentNode;
+    parent.style.display = "none";
+    var loader = document.getElementById('loader-routine_' + routine_idf);
+    loader.style.display = "inline-block";
 
 // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
@@ -221,7 +256,7 @@ function insertDayOnDB(routine_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('insertDayOnDB(routine_id)', 1000);
 
 }
 
@@ -241,6 +276,12 @@ function handleServerInsertDayResponse() {
             for (var i = 0; i < jsonResponse.length; i++) {
                 insertDay(jsonResponse[i].name, jsonResponse[i].id, jsonResponse[i].routine_id);
             }
+
+            var btn = document.getElementById('routine_' + jsonResponse[0].routine_id + '_btn');
+            var parent = btn.parentNode;
+            parent.style.display = "table-cell";
+            var loader = document.getElementById('loader-routine_' + jsonResponse[0].routine_id);
+            loader.style.display = "none";
 
 
         } else { // HTTP status different than 200 signals error
@@ -270,29 +311,13 @@ function insertExercise(exercise_id, exercise_name, exercise_image_url, exercise
         '                        <h3>' + exercise_name + '</h3>\n' +
         '                    </div></td>\n' +
         '                      <td  class="hd-2"><input id="repetitions_' + exercise_day_id + '" class="short-input" type="number" step="1" placeholder="0" min="0" onchange="repetitionChange(this.id)"></td>\n' +
-        '                      <td  class="hd-2"><input id=sets_' + exercise_day_id + '" class="short-input" type="number" step="1" placeholder="0" min="0" onchange="setChange(this.id)"></td>' +
+        '                      <td  class="hd-2"><input id="sets_' + exercise_day_id + '" class="short-input" type="number" step="1" placeholder="0" min="0" onchange="setChange(this.id)"></td>' +
         '   <td class="hd-2"> <button id="delete_' + exercise_day_id + '_btn" class="w3-button w3-xlarge w3-circle w3-red w3-card-4" type="button"\n' +
         '                                                 onclick="deleteExercise(this.id)">-\n' +
         '                      </button>';
 
 }
 
-
-var xmlHttp = createXmlHttpRequestObject();
-
-function createXmlHttpRequestObject() {
-
-    try {
-        var xmlHttp = new XMLHttpRequest();
-    }
-    catch (e) {
-        xmlHttp = false;
-    }
-
-    if (!xmlHttp) alert('Error creating XMLHttpRequest object.');
-    else return xmlHttp;
-
-}
 
 /**
  * Función llamada cuando se selecciona la página de MyGymTrainer que carga las rutinas del
@@ -346,6 +371,9 @@ function handleServerResponse() {
 }
 
 function dayClicked(day_id) {
+
+    document.getElementById('col_3_loader').style.display = "inline-table";
+    document.getElementById('add_new_ex_row').style.display = "none";
     var n = day_id.indexOf("_") + 1;
     var day_index_id = day_id.substring(n);
     var parent = document.getElementById('exercise_nav');
@@ -365,12 +393,15 @@ function dayClicked(day_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('dayClicked(day_id)', 1000);
 
 
 }
 
 function refreshExercisesOfDay(day_id) {
+    document.getElementById('col_3_loader').style.display = "inline-table";
+    document.getElementById('add_new_ex_row').style.display = "none";
+
 
     var parent = document.getElementById('exercise_nav');
     var table = parent.getElementsByTagName('table').item(0);
@@ -389,7 +420,7 @@ function refreshExercisesOfDay(day_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('refreshExercisesOfDay(day_id)', 1000);
 
 
 }
@@ -435,7 +466,7 @@ function getExercisesOfCurrentDay() {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('getExercisesOfCurrentDay()', 1000);
 
 
 }
@@ -491,7 +522,7 @@ function getDaysOfRoutines() {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('getDaysOfRoutines()', 1000);
 
 }
 
@@ -532,8 +563,11 @@ function handleServerExercisesResponse() {
 
                 insertExercise(jsonResponse[i].id, jsonResponse[i].name, jsonResponse[i].image_url, jsonResponse[i].exercise_day_id);
             }
+            document.getElementById('col_3_loader').style.display = "none";
 
-            //getStepsAndReps();
+            var add_btn = document.getElementById('add_new_ex_row');
+            add_btn.style.display = "inline-table";
+            getStepsAndReps();
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
         }
@@ -563,7 +597,7 @@ function deleteRoutine(btn_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('deleteRoutine(btn_id)', 1000);
 }
 
 /**
@@ -618,7 +652,7 @@ function deleteDay(btn_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('deleteDay(btn_id)', 1000);
 
 }
 
@@ -680,7 +714,7 @@ function deleteExercise(btn_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('deleteExercise(btn_id)', 1000);
 }
 
 /**
@@ -730,14 +764,14 @@ function repetitionChange(exercise_day_id) {
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 
 // execute quickstart.php page from server
-        xmlHttp.open("GET", "php/update_reps.php?exercise_day_id=" + exercise_day_idf + "value=" + rep_value, true);
+        xmlHttp.open("GET", "php/update_reps.php?exercise_day_id=" + exercise_day_idf + "&value=" + rep_value, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerRepetitionChangeResponse;
 // make server request
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('repetitionChange(exercise_day_id)', 1000);
 }
 
 /**
@@ -750,7 +784,7 @@ function handleServerRepetitionChangeResponse() {
 // status of 200 indicates transaction completed successfully
 
         if (xmlHttp.status == 200) {
-
+            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
         }
@@ -765,20 +799,24 @@ function handleServerRepetitionChangeResponse() {
 function setChange(exercise_day_id) {
     var set_input = document.getElementById(exercise_day_id);
     var set_value = set_input.value;
+
+
+    var n = exercise_day_id.indexOf("_") + 1;
+
     var exercise_day_idf = exercise_day_id.substring(n);
 
     // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 
 // execute quickstart.php page from server
-        xmlHttp.open("GET", "php/update_sets.php?exercise_day_id=" + exercise_day_idf + "value=" + set_value, true);
+        xmlHttp.open("GET", "php/update_sets.php?exercise_day_id=" + exercise_day_idf + "&value=" + set_value, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerSetChangeResponse;
 // make server request
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('setChange(exercise_day_id)', 1000);
 }
 
 
@@ -792,6 +830,8 @@ function handleServerSetChangeResponse() {
 // status of 200 indicates transaction completed successfully
 
         if (xmlHttp.status == 200) {
+
+            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
 
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
@@ -822,7 +862,7 @@ function getStepsAndReps() {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('getStepsAndReps()', 1000);
 }
 
 
@@ -845,16 +885,19 @@ function handleServerStepsAndRepsResponse() {
                 changeSetAndRepValue(jsonResponse[i].day_exercise_id, jsonResponse[i].set_value, jsonResponse[i].rep_value);
             }
 
-            getStepsAndReps();
+
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
         }
     }
 }
 
-function loadAllExercises(){
+/**
+ * Función llamada al iniciar la página GymTrainer para cargar los ejercicios
+ * que el usuario podra añadir a sus rutinas
+ */
+function loadAllExercises() {
 
-console.log("Hola llego aqui")
     // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 // retrieve name typed by user on form
@@ -871,6 +914,10 @@ console.log("Hola llego aqui")
 
 }
 
+/**
+ * Funcion disparada al recibir una respuesta por parte del servidor
+ * tras haber solicitado todos los ejercicios que existen en la base de datos
+ */
 function handleServerGetAllExercisesResponse() {
 
     if (xmlHttp.readyState == 4) { // transaction has completed
@@ -881,8 +928,9 @@ function handleServerGetAllExercisesResponse() {
             var jsonResponse = eval('(' + xmlHttp.responseText + ')');
 
             for (var i = 0; i < jsonResponse.length; i++) {
-                insertLeftColumnExercise(jsonResponse[i].id,jsonResponse[i].name, jsonResponse[i].image_url);
+                insertLeftColumnExercise(jsonResponse[i].id, jsonResponse[i].name, jsonResponse[i].image_url);
             }
+            document.getElementById('col-1_loader').style.display = "none";
 
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
@@ -890,11 +938,12 @@ function handleServerGetAllExercisesResponse() {
     }
 }
 
+
 function insertLeftColumnExercise(id, name, imageURL) {
     var divParent = document.getElementById('exercises_list');
     var newExercise = document.createElement('li');
 
-    newExercise.innerHTML =  "<div id='exercise_" + id + "' class=\"ex_row\" draggable=\"true\" ondragstart=\"dragstart_handler(event)\"\n" +
+    newExercise.innerHTML = "<div id='exercise_" + id + "' class=\"ex_row\" draggable=\"true\" ondragstart=\"dragstart_handler(event)\"\n" +
         "                         style=\"background-image: url('" + imageURL + "')\">\n" +
         "                        <h3>" + name + "</h3>\n" +
         "                    </div>";
@@ -936,6 +985,7 @@ function insertNewRoutine() {
     var userID = 1;
     insertNewRoutineIntoDB(routineName, userID);
 }
+
 function insertNewRoutineIntoDB(name, id) {
 
 
@@ -960,7 +1010,6 @@ function insertNewRoutineIntoDB(name, id) {
  * encuentra mostrado en pantalla actualmente, con el fin de refrescar los ejercicios
  */
 function handleServerInsertNewRoutineIntoDBResponse() {
-        console.log("Holaaa");
 
     if (xmlHttp.readyState == 4) { // transaction has completed
 // status of 200 indicates transaction completed successfully
@@ -968,7 +1017,6 @@ function handleServerInsertNewRoutineIntoDBResponse() {
         if (xmlHttp.status == 200) {
             console.log("Status 200 OK");
                 process();
-
 
         } else { // HTTP status different than 200 signals error
         }
