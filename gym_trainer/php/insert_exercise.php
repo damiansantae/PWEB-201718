@@ -19,7 +19,7 @@ try {
     $db->beginTransaction();
 
 
-    $insert_new_exercise_day = "insert into days_exercises (id_exercise, id_day) VALUES ($exercise_id,$day_id)";
+    $insert_new_exercise_day = "insert into days_exercises (id_exercise, id_day, sets,reps) VALUES ($exercise_id,$day_id,0,0)";
 
     $db->query($insert_new_exercise_day);
     $new_exercise_day = $db->lastInsertId();

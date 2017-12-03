@@ -17,11 +17,14 @@
 <div class="row_chest_exercises">
     <div class="gymtrainer-col-1">
         <div id="header_col_exe" class="hd-12">
+
             <h2 class="hd-9">Busca un ejercicio y arrástrarlo a tu tabla</h2>
             <input type="text" id="searchBarInput" class="hd-3 w3-round-large w3-animate-input"
                    onkeyup="searchExercise()" placeholder="Buscar ejercicio...">
         </div>
+
         <nav>
+            <div class="loader" id="col-1_loader"></div>
             <ul id="exercises_list">
 
 
@@ -37,42 +40,11 @@
             <h2 class="hd-12"> Seleccione la routina que desea editar </h2>
         </div>
         <nav id="routines_nav">
-            <div id="routine_0" class="routine_row" onmouseover="isHovered(this)" onmouseout="finishHover(this)">
-                <div class="routine_master hd-12">
-                    <img src="../assets/images/press_banca.JPG" class="hd-2">
-                    <p>Routina 1</p>
-                    <button id="delete_0_btn" class="small_btn w3-xlarge w3-circle w3-white w3-card-4"
-                            onclick="deleteRoutine(this.id)">-
-                    </button>
-                </div>
-                <div class="routine_detail hd-12">
-                    <table>
-                        <tr class="table_days">
-                            <td>
-                                <button id="routine_0_btn" class="small_btn w3-xlarge w3-circle w3-white w3-card-4"
-                                        onclick="insertDayDB(this.id)">+
-                                </button>
-                            </td>
-                            <td id="routine_0_1">
-                                <div  onclick="dayClicked(this.id)">
-                                    <p>1</p>
-                                </div>
-                                <div>
-                                    <button id="day_1_delete_btn" class="small_btn w3-xlarge w3-circle w3-white w3-card-4"
-                                            onclick="deleteDay(this.id)">-
-                                    </button>
-                                </div>
 
-                            </td>
-                        </tr>
-
-                    </table>
-                </div>
-            </div>
 
 
             <button id="add_routine_btn" class="w3-button w3-xlarge w3-circle w3-red w3-card-4" type="button"
-                    value="Add routine" onclick="insertRoutine()">+
+                    value="Add routine" onclick="openDetail()">+
             </button>
             <div class="loader" id="col-2_loader"></div>
 
@@ -83,11 +55,7 @@
     <div class="gymtrainer-col-3">
         <nav id="exercise_nav">
             <table class="hd-12" style="margin-top: 50px">
-                <tr>
-                    <td class="hd-8"><h3>Ejercicios</h3></td>
-                    <td class="hd-2"><h3>Repeticiones</h3></td>
-                    <td class="hd-2"><h3>Series</h3></td>
-                </tr>
+             <tr><td><h1><---Selecciona un día de tu rutina para ver los ejercicios</h1></td></tr>
 
 
                 <!--  <tr id="row_exercise_1" class="hd-12 exercise_row">
@@ -102,6 +70,7 @@
 
             </table>
 
+            <div class="loader" id="col_3_loader"></div>
                 <button id="add_new_ex_row" class="w3-button w3-xlarge w3-circle w3-red w3-card-4"
                         ondragover="dragover_handler(event)" ondrop="drop_handler(event)">+
                 </button>
@@ -114,11 +83,12 @@
 
 <div id="detail-overlay">
     <div id="detail-container">
-        <h1>Set the name of your new Routine</h1>
+        <h1 id="add_routine_title">Introduce el nombre de la nueva rutina</h1>
+        <form id="routine_name_form">
+            <input id="input-name" name="nombre"  class="w3-border w3-round-large" placeholder="Nombre" required> <br>
+            <button onclick="insertNewRoutine()" class="add_routine">Añadir rutina</button>
+        </form>
         <a onclick="closeDetail()" href="#close" title="Close" class="close">X</a>
-        <iframe id="video" class="detail-video"
-                frameborder="0" allowfullscreen>
-        </iframe>
     </div>
 </div>
 

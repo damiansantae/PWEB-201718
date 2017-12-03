@@ -57,6 +57,7 @@ function createXmlHttpRequestObject() {
 // make asynchronous HTTP request using XMLHttpRequest object
 function process(muscularGroupID) {
 
+    document.getElementById("loader").style.display = "block";
 // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 
@@ -84,6 +85,7 @@ function handleServerResponse() {
                 console.log('Longitud respuesta json: ' + jsonResponse.length);
                 insertExercise(jsonResponse[i].id,jsonResponse[i].name, jsonResponse[i].video_url, jsonResponse[i].description, jsonResponse[i].image_url);
             }
+            document.getElementById("loader").style.display = "none";
 
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
