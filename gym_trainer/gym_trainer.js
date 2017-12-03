@@ -99,7 +99,7 @@ function insertRoutine(name, id) {
 
     newRoutine.innerHTML = "<div class=\"routine_master hd-12\" >\n" +
         "                    <img src=\"../MainFrame/assets/images/press_banca.JPG\" class=\"hd-2\">\n" +
-        "                    <p>" + name + "</p>\n" +
+        "                    <h2>" + name + "</h2>\n" +
         " <button id=\"delete_" + id + "_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"\n" +
         "                            onclick=\"deleteRoutine(this.id)\">-\n" +
         "                    </button>" +
@@ -985,6 +985,7 @@ function insertNewRoutine() {
     var userID = 1;
     insertNewRoutineIntoDB(routineName, userID);
 }
+
 function insertNewRoutineIntoDB(name, id) {
 
 
@@ -1009,7 +1010,6 @@ function insertNewRoutineIntoDB(name, id) {
  * encuentra mostrado en pantalla actualmente, con el fin de refrescar los ejercicios
  */
 function handleServerInsertNewRoutineIntoDBResponse() {
-        console.log("Holaaa");
 
     if (xmlHttp.readyState == 4) { // transaction has completed
 // status of 200 indicates transaction completed successfully
@@ -1017,7 +1017,6 @@ function handleServerInsertNewRoutineIntoDBResponse() {
         if (xmlHttp.status == 200) {
             console.log("Status 200 OK");
                 process();
-
 
         } else { // HTTP status different than 200 signals error
         }
