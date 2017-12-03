@@ -8,11 +8,8 @@
 
     <style>
         #map {
-            height: 580px;
-            width: 680px;
-            border: 10px solid darkred;
-            padding: 5px;
-            margin: 25px;
+            height: 80%;
+            width: 100%;
         }
 
         html, body {
@@ -57,6 +54,7 @@ var pos;
                     infoWindow.setPosition(pos);
                     infoWindow.setContent('Location found.');
                     map.setCenter(pos);
+                    searchGyms();
                 }, function () {
                     handleLocationError(true, infoWindow, map.getCenter());
                 });

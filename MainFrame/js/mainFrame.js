@@ -9,6 +9,10 @@ function setLoging(islogged) {
 }
 
 
+
+
+
+
 function openTab(evt, tabName) {
     // Declare all variables
     var i, tabcontent, tablinks;
@@ -45,7 +49,6 @@ function checkLoginState() {
         c.style.display = "block";
         userAction.style.display = "none";
         loginForm.style.display = "block";
-
 
 
     } else {
@@ -108,8 +111,9 @@ function checkLogin() {
 }
 
 
-function  logOut() {
+function logOut() {
     setLoging(false);
     checkLoginState();
 
 }
+
