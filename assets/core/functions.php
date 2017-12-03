@@ -1,5 +1,4 @@
 <?php
-
 function get() {
     $db = new mysqli('localhost', 'root', 'root', 'pw_web_app');
     return $db;
@@ -42,6 +41,7 @@ function createUserRecord ($userData) {
     $data = '`' . implode('`, `', array_keys($userData)) . '`';
     $fields= '\''.implode('\',\'',$userData).'\'';
 
+
     $sql = <<<SQL
 INSERT INTO `users` ($data) VALUES ($fields)
 SQL;
@@ -49,7 +49,6 @@ SQL;
     $result = get()->query($sql);
 
     mail($userData['email_address'],'Cuenta creada con exito',"Hello " . $userData['first_name'] . ",\n\nAqui estan tus credenciales:\n\n Usuario : ".$userData['username']." \n Contrasena : ".$chosenPassword." ",'From: tafiradesarrolladores@tafira.es');
-
     return ($result ? "SUCCESS" : "FAILED");
 }
 

@@ -415,8 +415,6 @@ div.tab button.active {
     width: 100%;
     background-color: darkred;
     color: white;
-
-
 }
 
 #copyright{
@@ -425,5 +423,7 @@ div.tab button.active {
     font-size: 12px;
     display: inline-block;
 }
+
+
 
 

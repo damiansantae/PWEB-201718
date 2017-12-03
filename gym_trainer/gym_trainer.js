@@ -336,7 +336,8 @@ function process() {
 // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 // retrieve name typed by user on form
-        id = userid;
+        var id = userid;
+        console.log(id);
 // execute quickstart.php page from server
         xmlHttp.open("GET", "php/get_user_routines.php?id=" + id, true);
 // define method to handle server responses
