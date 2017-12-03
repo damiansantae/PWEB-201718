@@ -423,17 +423,4 @@ div.tab button.active {
     display: inline-block;
 }
 
-#Contact{
-    float: left;
-    margin-left: 40px;
-    font-size: 12px;
-    display: inline-block;
-}
-
-#Facebook{
-    font-size: 12px;
-    display: inline-block;
-    margin-left: 20px;
-}
-
 

@@ -220,5 +220,9 @@
 
 
 </script>
+
+<div class="footer">
+    <p id="copyright">Copyright by XDroid Inc.</p>
+</div>
 </body>
 </html>
