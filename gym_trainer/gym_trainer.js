@@ -87,7 +87,7 @@ function insertRoutine(name, id) {
         "                    <table>\n" +
         "                        <tr class=\"table_days\">\n" +
         "                            <td> <button id=\"routine_" + id + "_btn\" class=\"small_btn w3-xlarge w3-circle w3-white w3-card-4\"  onclick=\"insertDayOnDB(this.id)\">+</button></td>\n" +
-        "<td class='loader' id='loader-routine_"+id+"' style='display: none'> </td>         "+
+        "<td class='loader' id='loader-routine_" + id + "' style='display: none'> </td>         " +
         "                        </tr>\n" +
         "                    </table>\n" +
         "                </div>";
@@ -205,15 +205,14 @@ function handleServerInsertExerciseResponse() {
 function insertDayOnDB(routine_id) {
 
 
-
     var n = routine_id.indexOf("_") + 1;
     var l = routine_id.indexOf("_", n);
     var routine_idf = routine_id.substring(n, l);
 
-    var btn = document.getElementById('routine_' + routine_idf+ '_btn');
-   var parent =  btn.parentNode;
-   parent.style.display = "none";
-    var loader = document.getElementById('loader-routine_'+routine_idf);
+    var btn = document.getElementById('routine_' + routine_idf + '_btn');
+    var parent = btn.parentNode;
+    parent.style.display = "none";
+    var loader = document.getElementById('loader-routine_' + routine_idf);
     loader.style.display = "inline-block";
 
 // proceed only if xmlHttp object isn't busy
@@ -249,12 +248,11 @@ function handleServerInsertDayResponse() {
                 insertDay(jsonResponse[i].name, jsonResponse[i].id, jsonResponse[i].routine_id);
             }
 
-            var btn = document.getElementById('routine_' + jsonResponse[0].routine_id+ '_btn');
-            var parent =  btn.parentNode;
-            parent.style.display = "inline-block";
-            var loader = document.getElementById('loader-routine_'+jsonResponse[0].routine_id);
+            var btn = document.getElementById('routine_' + jsonResponse[0].routine_id + '_btn');
+            var parent = btn.parentNode;
+            parent.style.display = "table-cell";
+            var loader = document.getElementById('loader-routine_' + jsonResponse[0].routine_id);
             loader.style.display = "none";
-
 
 
         } else { // HTTP status different than 200 signals error
@@ -360,6 +358,7 @@ function handleServerResponse() {
 }
 
 function dayClicked(day_id) {
+    document.getElementById('col_3_loader').style.display = "inline-table";
     var n = day_id.indexOf("_") + 1;
     var day_index_id = day_id.substring(n);
     var parent = document.getElementById('exercise_nav');
@@ -385,6 +384,9 @@ function dayClicked(day_id) {
 }
 
 function refreshExercisesOfDay(day_id) {
+    document.getElementById('col_3_loader').style.display = "inline-table";
+    document.getElementById('add_new_ex_row').style.display = "none";
+
 
     var parent = document.getElementById('exercise_nav');
     var table = parent.getElementsByTagName('table').item(0);
@@ -546,7 +548,10 @@ function handleServerExercisesResponse() {
 
                 insertExercise(jsonResponse[i].id, jsonResponse[i].name, jsonResponse[i].image_url, jsonResponse[i].exercise_day_id);
             }
+            document.getElementById('col_3_loader').style.display = "none";
 
+            var add_btn = document.getElementById('add_new_ex_row');
+            add_btn.style.display = "inline-table";
             //getStepsAndReps();
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
@@ -866,7 +871,7 @@ function handleServerStepsAndRepsResponse() {
     }
 }
 
-function loadAllExercises(){
+function loadAllExercises() {
 
     // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
@@ -894,7 +899,7 @@ function handleServerGetAllExercisesResponse() {
             var jsonResponse = eval('(' + xmlHttp.responseText + ')');
 
             for (var i = 0; i < jsonResponse.length; i++) {
-                insertLeftColumnExercise(jsonResponse[i].id,jsonResponse[i].name, jsonResponse[i].image_url);
+                insertLeftColumnExercise(jsonResponse[i].id, jsonResponse[i].name, jsonResponse[i].image_url);
             }
             document.getElementById('col-1_loader').style.display = "none";
 
@@ -908,7 +913,7 @@ function insertLeftColumnExercise(id, name, imageURL) {
     var divParent = document.getElementById('exercises_list');
     var newExercise = document.createElement('li');
 
-    newExercise.innerHTML =  "<div id='exercise_" + id + "' class=\"ex_row\" draggable=\"true\" ondragstart=\"dragstart_handler(event)\"\n" +
+    newExercise.innerHTML = "<div id='exercise_" + id + "' class=\"ex_row\" draggable=\"true\" ondragstart=\"dragstart_handler(event)\"\n" +
         "                         style=\"background-image: url('" + imageURL + "')\">\n" +
         "                        <h3>" + name + "</h3>\n" +
         "                    </div>";

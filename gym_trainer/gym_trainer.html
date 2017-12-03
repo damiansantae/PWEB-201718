@@ -17,11 +17,14 @@
 <div class="row_chest_exercises">
     <div class="gymtrainer-col-1">
         <div id="header_col_exe" class="hd-12">
+
             <h2 class="hd-9">Busca un ejercicio y arrástrarlo a tu tabla</h2>
             <input type="text" id="searchBarInput" class="hd-3 w3-round-large w3-animate-input"
                    onkeyup="searchExercise()" placeholder="Buscar ejercicio...">
         </div>
+
         <nav>
+            <div class="loader" id="col-1_loader"></div>
             <ul id="exercises_list">
 
 
@@ -83,11 +86,7 @@
     <div class="gymtrainer-col-3">
         <nav id="exercise_nav">
             <table class="hd-12" style="margin-top: 50px">
-                <tr>
-                    <td class="hd-8"><h3>Ejercicios</h3></td>
-                    <td class="hd-2"><h3>Repeticiones</h3></td>
-                    <td class="hd-2"><h3>Series</h3></td>
-                </tr>
+             <tr><td><h1><---Selecciona un día de tu rutina para ver los ejercicios</h1></td></tr>
 
 
                 <!--  <tr id="row_exercise_1" class="hd-12 exercise_row">
@@ -102,6 +101,7 @@
 
             </table>
 
+            <div class="loader" id="col_3_loader"></div>
                 <button id="add_new_ex_row" class="w3-button w3-xlarge w3-circle w3-red w3-card-4"
                         ondragover="dragover_handler(event)" ondrop="drop_handler(event)">+
                 </button>
