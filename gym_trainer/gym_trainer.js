@@ -42,6 +42,27 @@ function finishHover(x) {
     divToDisplay.style.display = 'none';
 }
 
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Creacion y definicion del objeto xmlHttpt para poder hacer peticiones al servidor +
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ +*/
+
+var xmlHttp = createXmlHttpRequestObject();
+
+function createXmlHttpRequestObject() {
+
+    try {
+        var xmlHttp = new XMLHttpRequest();
+    }
+    catch (e) {
+        xmlHttp = false;
+    }
+
+    if (!xmlHttp) alert('Error creating XMLHttpRequest object.');
+    else return xmlHttp;
+
+}
+
 /*****************************************************************************************************
  * Crea una nueva columna con el nombre del dia dentro de la fila correspondiente a la rutina del dia*
  * @param name                                                                                       *
@@ -172,7 +193,7 @@ function insertExerciseOnDB(exercise_id, day_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('insertExerciseOnDB(exercise_id, day_id)', 1000);
 
 }
 
@@ -227,7 +248,7 @@ function insertDayOnDB(routine_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('insertDayOnDB(routine_id)', 1000);
 
 }
 
@@ -289,22 +310,6 @@ function insertExercise(exercise_id, exercise_name, exercise_image_url, exercise
 
 }
 
-
-var xmlHttp = createXmlHttpRequestObject();
-
-function createXmlHttpRequestObject() {
-
-    try {
-        var xmlHttp = new XMLHttpRequest();
-    }
-    catch (e) {
-        xmlHttp = false;
-    }
-
-    if (!xmlHttp) alert('Error creating XMLHttpRequest object.');
-    else return xmlHttp;
-
-}
 
 /**
  * Función llamada cuando se selecciona la página de MyGymTrainer que carga las rutinas del
@@ -380,7 +385,7 @@ function dayClicked(day_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('dayClicked(day_id)', 1000);
 
 
 }
@@ -407,7 +412,7 @@ function refreshExercisesOfDay(day_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('refreshExercisesOfDay(day_id)', 1000);
 
 
 }
@@ -453,7 +458,7 @@ function getExercisesOfCurrentDay() {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('getExercisesOfCurrentDay()', 1000);
 
 
 }
@@ -509,7 +514,7 @@ function getDaysOfRoutines() {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('getDaysOfRoutines()', 1000);
 
 }
 
@@ -584,7 +589,7 @@ function deleteRoutine(btn_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('deleteRoutine(btn_id)', 1000);
 }
 
 /**
@@ -639,7 +644,7 @@ function deleteDay(btn_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('deleteDay(btn_id)', 1000);
 
 }
 
@@ -701,7 +706,7 @@ function deleteExercise(btn_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('deleteExercise(btn_id)', 1000);
 }
 
 /**
@@ -758,7 +763,7 @@ function repetitionChange(exercise_day_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('repetitionChange(exercise_day_id)', 1000);
 }
 
 /**
@@ -803,7 +808,7 @@ function setChange(exercise_day_id) {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('setChange(exercise_day_id)', 1000);
 }
 
 
@@ -849,7 +854,7 @@ function getStepsAndReps() {
         xmlHttp.send(null);
     } else
 // if connection is busy, try again after one second
-        setTimeout('process()', 1000);
+        setTimeout('getStepsAndReps()', 1000);
 }
 
 
@@ -879,6 +884,10 @@ function handleServerStepsAndRepsResponse() {
     }
 }
 
+/**
+ * Función llamada al iniciar la página GymTrainer para cargar los ejercicios
+ * que el usuario podra añadir a sus rutinas
+ */
 function loadAllExercises() {
 
     // proceed only if xmlHttp object isn't busy
@@ -897,6 +906,10 @@ function loadAllExercises() {
 
 }
 
+/**
+ * Funcion disparada al recibir una respuesta por parte del servidor
+ * tras haber solicitado todos los ejercicios que existen en la base de datos
+ */
 function handleServerGetAllExercisesResponse() {
 
     if (xmlHttp.readyState == 4) { // transaction has completed
@@ -916,6 +929,7 @@ function handleServerGetAllExercisesResponse() {
         }
     }
 }
+
 
 function insertLeftColumnExercise(id, name, imageURL) {
     var divParent = document.getElementById('exercises_list');
