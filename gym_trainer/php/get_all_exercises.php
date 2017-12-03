@@ -8,7 +8,6 @@
 
 header('Content-Type: text/json');
 
-
 require "../../db_conn.php";
 
 
@@ -26,7 +25,6 @@ try {
             'image_url' => $row["image_url"]
         );
     }
-
     echo json_encode($exercises_data);
 
 

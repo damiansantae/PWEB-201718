@@ -1,5 +1,4 @@
 <?php
-include 'ChromePhp.php';
 header('Content-Type: text/json');
 
 
@@ -14,9 +13,7 @@ try {
     $exercises_id_data = array();
     while ($row = $exercises_id->fetch()) {
         $exercises_id_data[] = $row[2];
-        ChromePhp::log($row[2]);
     }
-    ChromePhp::log(sizeof($exercises_id_data));
     $db->commit();
 } catch (Exception $e) {
     $db->rollBack();
@@ -29,7 +26,6 @@ try{
     $get_exercises = "SELECT * FROM exercises WHERE id=$ids";
     $exercises = $db->query($get_exercises);
         while ($row = $exercises->fetch()) {
-            ChromePhp::log($row["name"]);
             $exercises_data[] = array(
                 'id' => $row["id"],
                 'name' => $row["name"],
@@ -41,7 +37,6 @@ try{
 
     }
 
-    ChromePhp::log($exercises_data);
     unset($ids);
 
     echo json_encode($exercises_data);
