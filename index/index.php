@@ -125,7 +125,19 @@
 
                             else if (result == "failed to created") {
                                 swal("Unable to create the account!", "Please try again later!", "error");
-                            }
+                            } /*else{
+                                swal({
+                                    title: "Successfully created account!",
+                                    text: " Your account has been created successfully.",
+                                    type: "success",
+                                    confirmButtonColor: "#289a36",
+                                    confirmButtonText: "Okay",
+                                    closeOnConfirm: false,
+                                    html: false
+                                }, function(){
+                                    window.location.replace("../MainFrame/mainFrame.php");
+                                });
+                            }*/
                         }
                     });
                 });
