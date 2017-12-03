@@ -60,12 +60,14 @@
       <RefSchemaName>pw_web_app</RefSchemaName>
       <RefTableName>exercises</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="26" parent="10" name="days_exercises_ibfk_2">
       <ColNames>id_day</ColNames>
       <RefSchemaName>pw_web_app</RefSchemaName>
       <RefTableName>routines_days</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="27" parent="11" name="id">
       <Position>1</Position>
@@ -145,12 +147,14 @@
       <RefSchemaName>pw_web_app</RefSchemaName>
       <RefTableName>muscles</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="44" parent="13" name="muscles_exercises_ibfk_2">
       <ColNames>id_exercises</ColNames>
       <RefSchemaName>pw_web_app</RefSchemaName>
       <RefTableName>exercises</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="45" parent="14" name="id">
       <Position>1</Position>
@@ -180,6 +184,7 @@
       <RefSchemaName>pw_web_app</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="51" parent="15" name="id">
       <Position>1</Position>
@@ -209,6 +214,7 @@
       <RefSchemaName>pw_web_app</RefSchemaName>
       <RefTableName>routines</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="57" parent="16" name="id">
       <Position>1</Position>

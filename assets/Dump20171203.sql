@@ -31,9 +31,9 @@ CREATE TABLE `days_exercises` (
   PRIMARY KEY (`id`),
   KEY `id_exercise` (`id_exercise`),
   KEY `id_day` (`id_day`),
-  CONSTRAINT `days_exercises_ibfk_1` FOREIGN KEY (`id_exercise`) REFERENCES `exercises` (`id`),
-  CONSTRAINT `days_exercises_ibfk_2` FOREIGN KEY (`id_day`) REFERENCES `routines_days` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `days_exercises_ibfk_1` FOREIGN KEY (`id_exercise`) REFERENCES `exercises` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `days_exercises_ibfk_2` FOREIGN KEY (`id_day`) REFERENCES `routines_days` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `days_exercises` (
 
 LOCK TABLES `days_exercises` WRITE;
 /*!40000 ALTER TABLE `days_exercises` DISABLE KEYS */;
+INSERT INTO `days_exercises` VALUES (3,1,3,NULL,NULL),(4,2,3,NULL,NULL);
 /*!40000 ALTER TABLE `days_exercises` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,8 +112,8 @@ CREATE TABLE `muscles_exercises` (
   PRIMARY KEY (`id`),
   KEY `id_muscles` (`id_muscles`),
   KEY `id_exercises` (`id_exercises`),
-  CONSTRAINT `muscles_exercises_ibfk_1` FOREIGN KEY (`id_muscles`) REFERENCES `muscles` (`id`),
-  CONSTRAINT `muscles_exercises_ibfk_2` FOREIGN KEY (`id_exercises`) REFERENCES `exercises` (`id`)
+  CONSTRAINT `muscles_exercises_ibfk_1` FOREIGN KEY (`id_muscles`) REFERENCES `muscles` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `muscles_exercises_ibfk_2` FOREIGN KEY (`id_exercises`) REFERENCES `exercises` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -139,8 +140,8 @@ CREATE TABLE `routines` (
   `name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`),
-  CONSTRAINT `routines_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  CONSTRAINT `routines_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,7 +150,7 @@ CREATE TABLE `routines` (
 
 LOCK TABLES `routines` WRITE;
 /*!40000 ALTER TABLE `routines` DISABLE KEYS */;
-INSERT INTO `routines` VALUES (1,1,'Mi rutina');
+INSERT INTO `routines` VALUES (2,1,'Rutina Ivan');
 /*!40000 ALTER TABLE `routines` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,8 +167,8 @@ CREATE TABLE `routines_days` (
   `id_routine` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_routine` (`id_routine`),
-  CONSTRAINT `routines_days_ibfk_1` FOREIGN KEY (`id_routine`) REFERENCES `routines` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `routines_days_ibfk_1` FOREIGN KEY (`id_routine`) REFERENCES `routines` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,6 +177,7 @@ CREATE TABLE `routines_days` (
 
 LOCK TABLES `routines_days` WRITE;
 /*!40000 ALTER TABLE `routines_days` DISABLE KEYS */;
+INSERT INTO `routines_days` VALUES (3,'1',2),(4,'2',2),(5,'3',2),(6,'4',2);
 /*!40000 ALTER TABLE `routines_days` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,4 +230,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-02 17:38:01
+-- Dump completed on 2017-12-03 12:30:58
