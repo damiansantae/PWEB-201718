@@ -129,10 +129,18 @@ Eventos de Drag&Drop para ejercicios+++++
 
 function dragstart_handler(ev) {
     console.log("dragStart");
+
+    var img = new Image();
+    img.src = '../assets/images/weight.png';
+    img.height = '50px';
+    img.width = '50px';
+    ev.dataTransfer.setDragImage(img,10,10);
+
     // Add the target element's id to the data transfer object
     ev.dataTransfer.setData("text/plain", ev.target.id);
-
     ev.dataTransfer.dropEffect = "copy";
+
+
 }
 
 
