@@ -48,7 +48,7 @@ SQL;
 
     $result = get()->query($sql);
 
-    mail($userData['email_address'],'Successfully Created Account !',"Hello " . $userData['first_name'] . ",\n\nYou have successfully created your online account, here is your login credentials below, please keep them safe:\n\n Username : ".$userData['username']." \n Password : ".$chosenPassword." ",'From: info@jomingeorge.co.uk');
+    mail($userData['email_address'],'Cuenta creada con exito',"Hello " . $userData['first_name'] . ",\n\nAqui estan tus credenciales:\n\n Usuario : ".$userData['username']." \n Contrasena : ".$chosenPassword." ",'From: tafiradesarrolladores@tafira.es');
 
     return ($result ? "SUCCESS" : "FAILED");
 }
@@ -90,11 +90,13 @@ SQL;
     $result = mysqli_fetch_assoc(get()->query($sql));
 
     if (!empty($result)) {
-        mail($result['email_address'],'Password Retrieval',"Hello " . $result['first_name'] . ",\n\nYou have recently requested to view your login credentials, please keep them safe:\n\n Username : ".$result['username']." \n Password : ".$result['password']." ",'From: info@jomingeorge.co.uk');
+        mail($result['email_address'],'Recuperar contrasena',"Hello " . $result['first_name'] . ",\n\nHas pedido ver tus credenciales de nuevo\n\n Usuario : ".$result['username']." \n Contrasena : ".$result['password']." ",'From: tafiradesarrolladores@tafira.es');
         return true;
     }
 
     return false;
 }
+
+
 
 ?>

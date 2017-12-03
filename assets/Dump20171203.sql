@@ -1,233 +1,240 @@
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.2.11
+-- http://www.phpmyadmin.net
 --
--- Host: localhost    Database: pw_web_app
--- ------------------------------------------------------
--- Server version	5.7.16-log
+-- Host: 127.0.0.1
+-- Generation Time: Nov 29, 2017 at 08:38 PM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Database: `germanbeade`
+--
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `days_exercises`
 --
 
-DROP TABLE IF EXISTS `days_exercises`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `days_exercises` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `days_exercises` (
+`id` int(11) NOT NULL,
   `id_exercise` int(11) NOT NULL,
-  `id_day` int(11) NOT NULL,
-  `sets` int(11) DEFAULT NULL,
-  `reps` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_exercise` (`id_exercise`),
-  KEY `id_day` (`id_day`),
-  CONSTRAINT `days_exercises_ibfk_1` FOREIGN KEY (`id_exercise`) REFERENCES `exercises` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `days_exercises_ibfk_2` FOREIGN KEY (`id_day`) REFERENCES `routines_days` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id_day` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `days_exercises`
---
-
-LOCK TABLES `days_exercises` WRITE;
-/*!40000 ALTER TABLE `days_exercises` DISABLE KEYS */;
-INSERT INTO `days_exercises` VALUES (3,1,3,NULL,NULL),(4,2,3,NULL,NULL);
-/*!40000 ALTER TABLE `days_exercises` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `exercises`
 --
 
-DROP TABLE IF EXISTS `exercises`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `exercises` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `exercises` (
+`id` int(11) NOT NULL,
   `name` varchar(40) DEFAULT NULL,
   `video_url` varchar(200) DEFAULT NULL,
   `description` varchar(500) DEFAULT NULL,
-  `image_url` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `image_url` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `exercises`
---
-
-LOCK TABLES `exercises` WRITE;
-/*!40000 ALTER TABLE `exercises` DISABLE KEYS */;
-INSERT INTO `exercises` VALUES (1,'Press de banca','https://www.youtube.com/embed/bUUTESuUlwM','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','../assets/images/muscles/PW_Press_Banca.jpg'),(2,'Pectoral contracto','https://www.youtube.com/embed/K1RyiaLtlvY','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','../assets/images/exercises/pectoralcontracto.gif'),(3,'Peso muerto','https://www.youtube.com/embed/gB9_9ggQ5jA','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','../assets/images/muscles/PW_Peso_Muerto.jpg'),(4,'Remo barra','https://www.youtube.com/embed/P_kNA_HElgA','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','../assets/images/exercises/remo_barra.jpg');
-/*!40000 ALTER TABLE `exercises` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `muscles`
 --
 
-DROP TABLE IF EXISTS `muscles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `muscles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `muscles` (
+`id` int(11) NOT NULL,
   `name` varchar(20) DEFAULT NULL,
-  `image_url` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `image_url` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `muscles`
---
-
-LOCK TABLES `muscles` WRITE;
-/*!40000 ALTER TABLE `muscles` DISABLE KEYS */;
-INSERT INTO `muscles` VALUES (1,'Pecho','../assets/images/muscles/pecho_PW_ajustada.jpg'),(2,'Dorsales','../assets/images/muscles/dorsales-PW_ajustada.jpg'),(3,'Bíceps','../assets/images/muscles/bicpes_PW_ajustada.jpg'),(4,'Tríceps','../assets/images/muscles/tricpes_PW_ajustada.jpg'),(5,'Deltoides','../assets/images/muscles/deltoides_PW_ajustada.jpg'),(6,'Femorales','../assets/images/muscles/femorales_PW_ajustada.jpg'),(7,'Gemelos','../assets/images/muscles/gemelos_PW_ajustada.jpg'),(8,'Abdominales','../assets/images/muscles/abdominales_PW_ajustada.jpg');
-/*!40000 ALTER TABLE `muscles` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `muscles_exercises`
 --
 
-DROP TABLE IF EXISTS `muscles_exercises`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `muscles_exercises` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `muscles_exercises` (
+`id` int(11) NOT NULL,
   `id_muscles` int(11) NOT NULL,
-  `id_exercises` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_muscles` (`id_muscles`),
-  KEY `id_exercises` (`id_exercises`),
-  CONSTRAINT `muscles_exercises_ibfk_1` FOREIGN KEY (`id_muscles`) REFERENCES `muscles` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `muscles_exercises_ibfk_2` FOREIGN KEY (`id_exercises`) REFERENCES `exercises` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id_exercises` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `muscles_exercises`
---
-
-LOCK TABLES `muscles_exercises` WRITE;
-/*!40000 ALTER TABLE `muscles_exercises` DISABLE KEYS */;
-INSERT INTO `muscles_exercises` VALUES (5,1,1),(6,1,2),(7,2,3),(8,2,4);
-/*!40000 ALTER TABLE `muscles_exercises` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `routines`
 --
 
-DROP TABLE IF EXISTS `routines`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `routines` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `routines` (
+`id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_user` (`id_user`),
-  CONSTRAINT `routines_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `name` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `routines`
---
-
-LOCK TABLES `routines` WRITE;
-/*!40000 ALTER TABLE `routines` DISABLE KEYS */;
-INSERT INTO `routines` VALUES (2,1,'Rutina Ivan');
-/*!40000 ALTER TABLE `routines` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `routines_days`
 --
 
-DROP TABLE IF EXISTS `routines_days`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `routines_days` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `routines_days` (
+`id` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
-  `id_routine` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_routine` (`id_routine`),
-  CONSTRAINT `routines_days_ibfk_1` FOREIGN KEY (`id_routine`) REFERENCES `routines` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id_routine` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `routines_days`
---
-
-LOCK TABLES `routines_days` WRITE;
-/*!40000 ALTER TABLE `routines_days` DISABLE KEYS */;
-INSERT INTO `routines_days` VALUES (3,'1',2),(4,'2',2),(5,'3',2),(6,'4',2);
-/*!40000 ALTER TABLE `routines_days` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `users` (
+`id` int(11) NOT NULL,
   `firstname` varchar(30) DEFAULT NULL,
   `lastname` varchar(100) DEFAULT NULL,
-  `email_address` varchar(100) DEFAULT NULL,
-  `password` varchar(30) DEFAULT NULL,
-  `gender` varchar(6) DEFAULT NULL,
-  `birth_year` int(4) DEFAULT NULL,
-  `username` varchar(100) DEFAULT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `weight_unit` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `email_address` varchar(255) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `gender` enum('hombre','mujer') DEFAULT NULL,
+  `birth_year` int(11) DEFAULT NULL,
+  `weigh` decimal(10,0) DEFAULT NULL,
+  `weigh_unit` enum('lb','kg') NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Ivan','Gónzalez Hernández','ivanglez1996@gmail.com','pepe','male',25,'IvanGlez1996',56,'kg');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `email_address`, `username`, `password`, `gender`, `birth_year`, `weigh`, `weigh_unit`) VALUES
+(11, 'Jomin', 'George', 'jomink@yahoo.co.uk', 'root', '123456789aS', 'hombre', 1994, '100', 'kg');
 
 --
--- Dumping events for database 'pw_web_app'
+-- Indexes for dumped tables
 --
 
 --
--- Dumping routines for database 'pw_web_app'
+-- Indexes for table `days_exercises`
 --
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+ALTER TABLE `days_exercises`
+ ADD PRIMARY KEY (`id`), ADD KEY `id_exercise` (`id_exercise`), ADD KEY `id_day` (`id_day`);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Indexes for table `exercises`
+--
+ALTER TABLE `exercises`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `muscles`
+--
+ALTER TABLE `muscles`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `muscles_exercises`
+--
+ALTER TABLE `muscles_exercises`
+ ADD PRIMARY KEY (`id`), ADD KEY `id_muscles` (`id_muscles`), ADD KEY `id_exercises` (`id_exercises`);
+
+--
+-- Indexes for table `routines`
+--
+ALTER TABLE `routines`
+ ADD PRIMARY KEY (`id`), ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `routines_days`
+--
+ALTER TABLE `routines_days`
+ ADD PRIMARY KEY (`id`), ADD KEY `id_routine` (`id_routine`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `days_exercises`
+--
+ALTER TABLE `days_exercises`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `exercises`
+--
+ALTER TABLE `exercises`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `muscles`
+--
+ALTER TABLE `muscles`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `muscles_exercises`
+--
+ALTER TABLE `muscles_exercises`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `routines`
+--
+ALTER TABLE `routines`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `routines_days`
+--
+ALTER TABLE `routines_days`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `days_exercises`
+--
+ALTER TABLE `days_exercises`
+ADD CONSTRAINT `days_exercises_ibfk_1` FOREIGN KEY (`id_exercise`) REFERENCES `exercises` (`id`),
+ADD CONSTRAINT `days_exercises_ibfk_2` FOREIGN KEY (`id_day`) REFERENCES `routines_days` (`id`);
+
+--
+-- Constraints for table `muscles_exercises`
+--
+ALTER TABLE `muscles_exercises`
+ADD CONSTRAINT `muscles_exercises_ibfk_1` FOREIGN KEY (`id_muscles`) REFERENCES `muscles` (`id`),
+ADD CONSTRAINT `muscles_exercises_ibfk_2` FOREIGN KEY (`id_exercises`) REFERENCES `exercises` (`id`);
+
+--
+-- Constraints for table `routines`
+--
+ALTER TABLE `routines`
+ADD CONSTRAINT `routines_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `routines_days`
+--
+ALTER TABLE `routines_days`
+ADD CONSTRAINT `routines_days_ibfk_1` FOREIGN KEY (`id_routine`) REFERENCES `routines` (`id`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2017-12-03 12:30:58

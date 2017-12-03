@@ -46,8 +46,8 @@
                    pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><br>
             <input type="password" id="passwordr" name="retype_passwordr" class="w3-input w3-border w3-round-large"
                    placeholder="Repetir contraseña" required><br>
-            <input name="weight" class="short-input w3-border w3-round-large" placeholder="0,0" type="text" min="0">
-            <select name="weight_unit" class="w3-border w3-round-large short-input">
+            <input name="weigh" class="short-input w3-border w3-round-large" placeholder="0,0" type="text" min="0">
+            <select name="weigh_unit" class="w3-border w3-round-large short-input">
                 <option> kg</option>
                 <option> lb</option>
             </select>
@@ -79,12 +79,12 @@
             var formData = $( "#signup_form" ).serializeArray();
 
             swal({
-                    title: "Are you sure to Sign Up ?",
-                    text: "This action cannot be reverted",
+                    title: "Seguro que quieres registrarte?",
+                    text: "Esta accion no puede ser revertida",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonClass: "btn-danger",
-                    confirmButtonText: "Yes, sign up !",
+                    confirmButtonText: "Registrate!",
                     closeOnConfirm: false
                 },
                 function(){
@@ -96,22 +96,22 @@
                         success: function (result) {
 
                             if (result == "username taken") {
-                                swal("No se puede crear la cuenta", "Nombre de usuario no disponible ", "error");
+                                swal("No se pudo crear la cuenta", "El nombre de usuario ya esta en uso ", "error");
                             }
 
                             else if (result == "email taken") {
-                                swal("No se puede crear la cuenta", "Este correo ya pertenece a otro usuario ", "error");
+                                swal("No se pudo crear la cuenta", "Esta direccion de correo ya pertenece a otro usuario ", "error");
                             }
 
                             else if (result == "passwords not same") {
-                                swal("No se puede crear la cuenta", "Las contrasenas no coinciden", "error");
+                                swal("No se pudo crear la cuenta", "Las contrasenas no coinciden", "error");
                             }
 
-                            else if (result == "successfully created") {
+                            else if (result == "Cuenta creada exitosamente") {
 
                                 swal({
-                                    title: "Listo!",
-                                    text: " Tu cuenta ha sido creada correctamente",
+                                    title: "Successfully created account!",
+                                    text: " Your account has been created successfully.",
                                     type: "success",
                                     confirmButtonColor: "#289a36",
                                     confirmButtonText: "Okay",
@@ -124,7 +124,7 @@
                             }
 
                             else if (result == "failed to created") {
-                                swal("No se puede crear la cuenta", "Intentalo mas tarde", "error");
+                                swal("Unable to create the account!", "Please try again later!", "error");
                             }
                         }
                     });

@@ -6,7 +6,7 @@ if (!empty($_POST)) {
 
     //check if email address exist
     if (!checkIfEmailTaken($_POST['email_address'])) {
-        echo json_encode("Esta direccion de correo no existe");
+        echo json_encode("email address doesn't exist");
     }
 
     else{
