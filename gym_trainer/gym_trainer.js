@@ -1,8 +1,4 @@
-var userid = '<%= Session["user_id"] %>';
-
-
-
-
+var userid;
 
 
 /**********************************
@@ -141,7 +137,7 @@ function dragstart_handler(ev) {
     img.src = '../assets/images/weight.png';
     img.height = '50px';
     img.width = '50px';
-    ev.dataTransfer.setDragImage(img,10,10);
+    ev.dataTransfer.setDragImage(img, 10, 10);
 
     // Add the target element's id to the data transfer object
     ev.dataTransfer.setData("text/plain", ev.target.id);
@@ -332,14 +328,17 @@ function insertExercise(exercise_id, exercise_name, exercise_image_url, exercise
  * obtener las rutinas de la base de datos
  */
 function process() {
+    console.log('entro en process');
+
 
 // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 // retrieve name typed by user on form
-        var id = userid;
-        console.log(id);
+
 // execute quickstart.php page from server
-        xmlHttp.open("GET", "php/get_user_routines.php?id=" + id, true);
+        console.log('ESTOY AQUI');
+
+        xmlHttp.open("GET", "php/get_user_routines.php?id=" + userid, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerResponse;
 // make server request
@@ -348,6 +347,44 @@ function process() {
 // if connection is busy, try again after one second
         setTimeout('process()', 1000);
 
+}
+
+function getCurrentUserId() {
+console.log('entro en getCurrentUserId');
+
+// proceed only if xmlHttp object isn't busy
+    if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
+// retrieve name typed by user on form
+
+// execute quickstart.php page from server
+
+        xmlHttp.open("GET", "php/get_user_id.php", true);
+// define method to handle server responses
+        xmlHttp.onreadystatechange = handleUserIdResponse;
+// make server request
+        xmlHttp.send(null);
+    } else
+// if connection is busy, try again after one second
+        setTimeout('getCurrentUserId()', 1000);
+
+}
+
+function handleUserIdResponse() {
+    console.log('dentro de la recepcion');
+
+    if (xmlHttp.readyState == 4) { // transaction has completed
+// status of 200 indicates transaction completed successfully
+
+        if (xmlHttp.status == 200) {
+// extract JSON retrieved from server
+            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
+            console.log(jsonResponse);
+            userid = jsonResponse;
+
+        } else { // HTTP status different than 200 signals error
+            alert("Problem accesing the server: " + xmlHttp.statusText);
+        }
+    }
 }
 
 /**
@@ -1024,7 +1061,7 @@ function handleServerInsertNewRoutineIntoDBResponse() {
 
         if (xmlHttp.status == 200) {
             console.log("Status 200 OK");
-                process();
+            process();
 
         } else { // HTTP status different than 200 signals error
         }
