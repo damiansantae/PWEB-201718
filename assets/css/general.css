@@ -178,6 +178,9 @@ audio:not([controls]) {
 header {
     clear: both;
 }
+footer{
+    background-color: darkred;
+}
 
 #right-content{
     background-color: darkred;
