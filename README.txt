@@ -8,7 +8,7 @@ Además en /assets/functins.php debe completar los datos de la db con el host, e
 la contraseña y el nombre de la db (por ejemplo en nuestro caso esos datos serían respectivamente:
 'localhost', 'root', 'root', 'pw_web_app').
 
-
+Debe hacer anterior lo mismo que en el punto en el archivo /db_conn.php
 
 Entre a la ruta del proyecto mediante mediante el servidor web, y en concreto ejecute el archivo
 /Mainframe/mainFrame.php
