@@ -184,7 +184,7 @@ footer{
 
 #right-content{
     background-color: darkred;
-
+    position: fixed;
 }
 
 .icons-h{
@@ -261,6 +261,8 @@ div.tab button.active {
     -moz-tab-size: 4;
     -o-tab-size:   4;
     tab-size:      4;
+    padding-top: 80px;
+
 
 }
 
@@ -405,4 +407,23 @@ div.tab button.active {
 .w3-border {
     border: 1px solid #ccc !important
 }
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: darkred;
+    color: white;
+
+
+}
+
+#copyright{
+    float: right;
+    margin-right: 40px;
+    font-size: 12px;
+    display: inline-block;
+}
+
 

@@ -134,6 +134,7 @@ div.tab button.active {
 .hd-12 {
     width: 100%;
 }
+
 [class*="hd-"] {
     float: left;
     padding: 15px;
@@ -142,5 +143,14 @@ div.tab button.active {
 
 iframe{
     border: none;
+}
+
+.footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: darkred;
+    color: white;
+    text-align: center;
 }
 
