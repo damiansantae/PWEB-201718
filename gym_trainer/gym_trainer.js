@@ -282,7 +282,7 @@ function insertExercise(exercise_id, exercise_name, exercise_image_url, exercise
         '                        <h3>' + exercise_name + '</h3>\n' +
         '                    </div></td>\n' +
         '                      <td  class="hd-2"><input id="repetitions_' + exercise_day_id + '" class="short-input" type="number" step="1" placeholder="0" min="0" onchange="repetitionChange(this.id)"></td>\n' +
-        '                      <td  class="hd-2"><input id=sets_' + exercise_day_id + '" class="short-input" type="number" step="1" placeholder="0" min="0" onchange="setChange(this.id)"></td>' +
+        '                      <td  class="hd-2"><input id="sets_' + exercise_day_id + '" class="short-input" type="number" step="1" placeholder="0" min="0" onchange="setChange(this.id)"></td>' +
         '   <td class="hd-2"> <button id="delete_' + exercise_day_id + '_btn" class="w3-button w3-xlarge w3-circle w3-red w3-card-4" type="button"\n' +
         '                                                 onclick="deleteExercise(this.id)">-\n' +
         '                      </button>';
@@ -358,7 +358,9 @@ function handleServerResponse() {
 }
 
 function dayClicked(day_id) {
+
     document.getElementById('col_3_loader').style.display = "inline-table";
+    document.getElementById('add_new_ex_row').style.display = "none";
     var n = day_id.indexOf("_") + 1;
     var day_index_id = day_id.substring(n);
     var parent = document.getElementById('exercise_nav');
@@ -552,7 +554,7 @@ function handleServerExercisesResponse() {
 
             var add_btn = document.getElementById('add_new_ex_row');
             add_btn.style.display = "inline-table";
-            //getStepsAndReps();
+            getStepsAndReps();
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
         }
@@ -749,7 +751,7 @@ function repetitionChange(exercise_day_id) {
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 
 // execute quickstart.php page from server
-        xmlHttp.open("GET", "php/update_reps.php?exercise_day_id=" + exercise_day_idf + "value=" + rep_value, true);
+        xmlHttp.open("GET", "php/update_reps.php?exercise_day_id=" + exercise_day_idf + "&value=" + rep_value, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerRepetitionChangeResponse;
 // make server request
@@ -769,7 +771,7 @@ function handleServerRepetitionChangeResponse() {
 // status of 200 indicates transaction completed successfully
 
         if (xmlHttp.status == 200) {
-
+            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
         }
@@ -784,13 +786,17 @@ function handleServerRepetitionChangeResponse() {
 function setChange(exercise_day_id) {
     var set_input = document.getElementById(exercise_day_id);
     var set_value = set_input.value;
+
+
+    var n = exercise_day_id.indexOf("_") + 1;
+
     var exercise_day_idf = exercise_day_id.substring(n);
 
     // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 
 // execute quickstart.php page from server
-        xmlHttp.open("GET", "php/update_sets.php?exercise_day_id=" + exercise_day_idf + "value=" + set_value, true);
+        xmlHttp.open("GET", "php/update_sets.php?exercise_day_id=" + exercise_day_idf + "&value=" + set_value, true);
 // define method to handle server responses
         xmlHttp.onreadystatechange = handleServerSetChangeResponse;
 // make server request
@@ -811,6 +817,8 @@ function handleServerSetChangeResponse() {
 // status of 200 indicates transaction completed successfully
 
         if (xmlHttp.status == 200) {
+
+            var jsonResponse = eval('(' + xmlHttp.responseText + ')');
 
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
@@ -864,7 +872,7 @@ function handleServerStepsAndRepsResponse() {
                 changeSetAndRepValue(jsonResponse[i].day_exercise_id, jsonResponse[i].set_value, jsonResponse[i].rep_value);
             }
 
-            getStepsAndReps();
+
         } else { // HTTP status different than 200 signals error
             alert("Problem accesing the server: " + xmlHttp.statusText);
         }

@@ -14,7 +14,7 @@ try {
     $update_reps = "UPDATE days_exercises set reps=$value WHERE id=$exercise_day_id";
     $update = $db->query($update_reps);
 
-    echo json_encode($exercise_day_id);
+    echo json_encode($update);
 
 
     $db->commit();
