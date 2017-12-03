@@ -1,7 +1,7 @@
 <?php
 
 function get() {
-    $db = new mysqli('localhost', 'root', '', 'pwebdb');
+    $db = new mysqli('localhost', 'root', 'root', 'pw_web_app');
     return $db;
 }
 

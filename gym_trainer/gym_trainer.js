@@ -1,3 +1,10 @@
+var userid = '<%= Session["user_id"] %>';
+
+
+
+
+
+
 /**********************************
  * Filtro de busqueda de ejercicio***
  *************************************/
@@ -329,7 +336,7 @@ function process() {
 // proceed only if xmlHttp object isn't busy
     if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0) {
 // retrieve name typed by user on form
-        id = 1;
+        id = userid;
 // execute quickstart.php page from server
         xmlHttp.open("GET", "php/get_user_routines.php?id=" + id, true);
 // define method to handle server responses
