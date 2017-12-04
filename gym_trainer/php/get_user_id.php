@@ -9,8 +9,6 @@
 header('Content-Type: text/json');
 
 
-require "../../db_conn.php";
-$day_id = $_GET['day_id'];
 
 try {
 
